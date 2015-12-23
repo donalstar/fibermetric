@@ -1,0 +1,527 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		462490BC1C2A589300BEC7F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 462490BB1C2A589300BEC7F9 /* main.m */; };
+		462490BF1C2A589300BEC7F9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 462490BE1C2A589300BEC7F9 /* AppDelegate.m */; };
+		462490C21C2A589300BEC7F9 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 462490C11C2A589300BEC7F9 /* MasterViewController.m */; };
+		462490C51C2A589300BEC7F9 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 462490C41C2A589300BEC7F9 /* DetailViewController.m */; };
+		462490C81C2A589300BEC7F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 462490C61C2A589300BEC7F9 /* Main.storyboard */; };
+		462490CA1C2A589300BEC7F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 462490C91C2A589300BEC7F9 /* Assets.xcassets */; };
+		462490CD1C2A589300BEC7F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 462490CB1C2A589300BEC7F9 /* LaunchScreen.storyboard */; };
+		462490D81C2A589300BEC7F9 /* fibermetricTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 462490D71C2A589300BEC7F9 /* fibermetricTests.m */; };
+		462490E31C2A589300BEC7F9 /* fibermetricUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 462490E21C2A589300BEC7F9 /* fibermetricUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		462490D41C2A589300BEC7F9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 462490AF1C2A589200BEC7F9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 462490B61C2A589200BEC7F9;
+			remoteInfo = fibermetric;
+		};
+		462490DF1C2A589300BEC7F9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 462490AF1C2A589200BEC7F9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 462490B61C2A589200BEC7F9;
+			remoteInfo = fibermetric;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		462490B71C2A589200BEC7F9 /* fibermetric.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fibermetric.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		462490BB1C2A589300BEC7F9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		462490BD1C2A589300BEC7F9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		462490BE1C2A589300BEC7F9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		462490C01C2A589300BEC7F9 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		462490C11C2A589300BEC7F9 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		462490C31C2A589300BEC7F9 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		462490C41C2A589300BEC7F9 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		462490C71C2A589300BEC7F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		462490C91C2A589300BEC7F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		462490CC1C2A589300BEC7F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		462490CE1C2A589300BEC7F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		462490D31C2A589300BEC7F9 /* fibermetricTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fibermetricTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		462490D71C2A589300BEC7F9 /* fibermetricTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = fibermetricTests.m; sourceTree = "<group>"; };
+		462490D91C2A589300BEC7F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		462490DE1C2A589300BEC7F9 /* fibermetricUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fibermetricUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		462490E21C2A589300BEC7F9 /* fibermetricUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = fibermetricUITests.m; sourceTree = "<group>"; };
+		462490E41C2A589300BEC7F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		462490B41C2A589200BEC7F9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		462490D01C2A589300BEC7F9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		462490DB1C2A589300BEC7F9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		462490AE1C2A589200BEC7F9 = {
+			isa = PBXGroup;
+			children = (
+				462490B91C2A589200BEC7F9 /* fibermetric */,
+				462490D61C2A589300BEC7F9 /* fibermetricTests */,
+				462490E11C2A589300BEC7F9 /* fibermetricUITests */,
+				462490B81C2A589200BEC7F9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		462490B81C2A589200BEC7F9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				462490B71C2A589200BEC7F9 /* fibermetric.app */,
+				462490D31C2A589300BEC7F9 /* fibermetricTests.xctest */,
+				462490DE1C2A589300BEC7F9 /* fibermetricUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		462490B91C2A589200BEC7F9 /* fibermetric */ = {
+			isa = PBXGroup;
+			children = (
+				462490BD1C2A589300BEC7F9 /* AppDelegate.h */,
+				462490BE1C2A589300BEC7F9 /* AppDelegate.m */,
+				462490C01C2A589300BEC7F9 /* MasterViewController.h */,
+				462490C11C2A589300BEC7F9 /* MasterViewController.m */,
+				462490C31C2A589300BEC7F9 /* DetailViewController.h */,
+				462490C41C2A589300BEC7F9 /* DetailViewController.m */,
+				462490C61C2A589300BEC7F9 /* Main.storyboard */,
+				462490C91C2A589300BEC7F9 /* Assets.xcassets */,
+				462490CB1C2A589300BEC7F9 /* LaunchScreen.storyboard */,
+				462490CE1C2A589300BEC7F9 /* Info.plist */,
+				462490BA1C2A589200BEC7F9 /* Supporting Files */,
+			);
+			path = fibermetric;
+			sourceTree = "<group>";
+		};
+		462490BA1C2A589200BEC7F9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				462490BB1C2A589300BEC7F9 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		462490D61C2A589300BEC7F9 /* fibermetricTests */ = {
+			isa = PBXGroup;
+			children = (
+				462490D71C2A589300BEC7F9 /* fibermetricTests.m */,
+				462490D91C2A589300BEC7F9 /* Info.plist */,
+			);
+			path = fibermetricTests;
+			sourceTree = "<group>";
+		};
+		462490E11C2A589300BEC7F9 /* fibermetricUITests */ = {
+			isa = PBXGroup;
+			children = (
+				462490E21C2A589300BEC7F9 /* fibermetricUITests.m */,
+				462490E41C2A589300BEC7F9 /* Info.plist */,
+			);
+			path = fibermetricUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		462490B61C2A589200BEC7F9 /* fibermetric */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 462490E71C2A589300BEC7F9 /* Build configuration list for PBXNativeTarget "fibermetric" */;
+			buildPhases = (
+				462490B31C2A589200BEC7F9 /* Sources */,
+				462490B41C2A589200BEC7F9 /* Frameworks */,
+				462490B51C2A589200BEC7F9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = fibermetric;
+			productName = fibermetric;
+			productReference = 462490B71C2A589200BEC7F9 /* fibermetric.app */;
+			productType = "com.apple.product-type.application";
+		};
+		462490D21C2A589300BEC7F9 /* fibermetricTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 462490EA1C2A589300BEC7F9 /* Build configuration list for PBXNativeTarget "fibermetricTests" */;
+			buildPhases = (
+				462490CF1C2A589300BEC7F9 /* Sources */,
+				462490D01C2A589300BEC7F9 /* Frameworks */,
+				462490D11C2A589300BEC7F9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				462490D51C2A589300BEC7F9 /* PBXTargetDependency */,
+			);
+			name = fibermetricTests;
+			productName = fibermetricTests;
+			productReference = 462490D31C2A589300BEC7F9 /* fibermetricTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		462490DD1C2A589300BEC7F9 /* fibermetricUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 462490ED1C2A589300BEC7F9 /* Build configuration list for PBXNativeTarget "fibermetricUITests" */;
+			buildPhases = (
+				462490DA1C2A589300BEC7F9 /* Sources */,
+				462490DB1C2A589300BEC7F9 /* Frameworks */,
+				462490DC1C2A589300BEC7F9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				462490E01C2A589300BEC7F9 /* PBXTargetDependency */,
+			);
+			name = fibermetricUITests;
+			productName = fibermetricUITests;
+			productReference = 462490DE1C2A589300BEC7F9 /* fibermetricUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		462490AF1C2A589200BEC7F9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Donal Carroll";
+				TargetAttributes = {
+					462490B61C2A589200BEC7F9 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					462490D21C2A589300BEC7F9 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 462490B61C2A589200BEC7F9;
+					};
+					462490DD1C2A589300BEC7F9 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 462490B61C2A589200BEC7F9;
+					};
+				};
+			};
+			buildConfigurationList = 462490B21C2A589200BEC7F9 /* Build configuration list for PBXProject "fibermetric" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 462490AE1C2A589200BEC7F9;
+			productRefGroup = 462490B81C2A589200BEC7F9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				462490B61C2A589200BEC7F9 /* fibermetric */,
+				462490D21C2A589300BEC7F9 /* fibermetricTests */,
+				462490DD1C2A589300BEC7F9 /* fibermetricUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		462490B51C2A589200BEC7F9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				462490CD1C2A589300BEC7F9 /* LaunchScreen.storyboard in Resources */,
+				462490CA1C2A589300BEC7F9 /* Assets.xcassets in Resources */,
+				462490C81C2A589300BEC7F9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		462490D11C2A589300BEC7F9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		462490DC1C2A589300BEC7F9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		462490B31C2A589200BEC7F9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				462490BF1C2A589300BEC7F9 /* AppDelegate.m in Sources */,
+				462490C21C2A589300BEC7F9 /* MasterViewController.m in Sources */,
+				462490BC1C2A589300BEC7F9 /* main.m in Sources */,
+				462490C51C2A589300BEC7F9 /* DetailViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		462490CF1C2A589300BEC7F9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				462490D81C2A589300BEC7F9 /* fibermetricTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		462490DA1C2A589300BEC7F9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				462490E31C2A589300BEC7F9 /* fibermetricUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		462490D51C2A589300BEC7F9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 462490B61C2A589200BEC7F9 /* fibermetric */;
+			targetProxy = 462490D41C2A589300BEC7F9 /* PBXContainerItemProxy */;
+		};
+		462490E01C2A589300BEC7F9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 462490B61C2A589200BEC7F9 /* fibermetric */;
+			targetProxy = 462490DF1C2A589300BEC7F9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		462490C61C2A589300BEC7F9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				462490C71C2A589300BEC7F9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		462490CB1C2A589300BEC7F9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				462490CC1C2A589300BEC7F9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		462490E51C2A589300BEC7F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		462490E61C2A589300BEC7F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		462490E81C2A589300BEC7F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = fibermetric/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = guggiemedia.fibermetric;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		462490E91C2A589300BEC7F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = fibermetric/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = guggiemedia.fibermetric;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		462490EB1C2A589300BEC7F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = fibermetricTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = guggiemedia.fibermetricTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/fibermetric.app/fibermetric";
+			};
+			name = Debug;
+		};
+		462490EC1C2A589300BEC7F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = fibermetricTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = guggiemedia.fibermetricTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/fibermetric.app/fibermetric";
+			};
+			name = Release;
+		};
+		462490EE1C2A589300BEC7F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = fibermetricUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = guggiemedia.fibermetricUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = fibermetric;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		462490EF1C2A589300BEC7F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = fibermetricUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = guggiemedia.fibermetricUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = fibermetric;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		462490B21C2A589200BEC7F9 /* Build configuration list for PBXProject "fibermetric" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				462490E51C2A589300BEC7F9 /* Debug */,
+				462490E61C2A589300BEC7F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		462490E71C2A589300BEC7F9 /* Build configuration list for PBXNativeTarget "fibermetric" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				462490E81C2A589300BEC7F9 /* Debug */,
+				462490E91C2A589300BEC7F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		462490EA1C2A589300BEC7F9 /* Build configuration list for PBXNativeTarget "fibermetricTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				462490EB1C2A589300BEC7F9 /* Debug */,
+				462490EC1C2A589300BEC7F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		462490ED1C2A589300BEC7F9 /* Build configuration list for PBXNativeTarget "fibermetricUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				462490EE1C2A589300BEC7F9 /* Debug */,
+				462490EF1C2A589300BEC7F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 462490AF1C2A589200BEC7F9 /* Project object */;
+}
