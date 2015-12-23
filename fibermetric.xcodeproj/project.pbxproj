@@ -16,6 +16,16 @@
 		462490CD1C2A589300BEC7F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 462490CB1C2A589300BEC7F9 /* LaunchScreen.storyboard */; };
 		462490D81C2A589300BEC7F9 /* fibermetricTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 462490D71C2A589300BEC7F9 /* fibermetricTests.m */; };
 		462490E31C2A589300BEC7F9 /* fibermetricUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 462490E21C2A589300BEC7F9 /* fibermetricUITests.m */; };
+		46342EAB1C2A62E200E9958B /* fiber-meter.png in Resources */ = {isa = PBXBuildFile; fileRef = 46342EA41C2A62E200E9958B /* fiber-meter.png */; };
+		46342EAC1C2A62E200E9958B /* ic_camera_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 46342EA51C2A62E200E9958B /* ic_camera_gray.png */; };
+		46342EAD1C2A62E200E9958B /* filing_cabinet-24.png in Resources */ = {isa = PBXBuildFile; fileRef = 46342EA61C2A62E200E9958B /* filing_cabinet-24.png */; };
+		46342EAE1C2A62E200E9958B /* move_stock_filled-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 46342EA71C2A62E200E9958B /* move_stock_filled-25.png */; };
+		46342EAF1C2A62E200E9958B /* barcode_scanner-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 46342EA81C2A62E200E9958B /* barcode_scanner-25.png */; };
+		46342EB01C2A62E200E9958B /* flow_chart_filled-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 46342EA91C2A62E200E9958B /* flow_chart_filled-25.png */; };
+		46342EB11C2A62E200E9958B /* combo_chart-24.png in Resources */ = {isa = PBXBuildFile; fileRef = 46342EAA1C2A62E200E9958B /* combo_chart-24.png */; };
+		46342EB31C2A638B00E9958B /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46342EB21C2A638B00E9958B /* Media.xcassets */; };
+		46342EB81C2A63D300E9958B /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46342EB41C2A63D300E9958B /* DashboardViewController.m */; };
+		46342EB91C2A63D300E9958B /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46342EB71C2A63D300E9958B /* HistoryViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +64,18 @@
 		462490DE1C2A589300BEC7F9 /* fibermetricUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fibermetricUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		462490E21C2A589300BEC7F9 /* fibermetricUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = fibermetricUITests.m; sourceTree = "<group>"; };
 		462490E41C2A589300BEC7F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		46342EA41C2A62E200E9958B /* fiber-meter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fiber-meter.png"; sourceTree = "<group>"; };
+		46342EA51C2A62E200E9958B /* ic_camera_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_camera_gray.png; sourceTree = "<group>"; };
+		46342EA61C2A62E200E9958B /* filing_cabinet-24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "filing_cabinet-24.png"; sourceTree = "<group>"; };
+		46342EA71C2A62E200E9958B /* move_stock_filled-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "move_stock_filled-25.png"; sourceTree = "<group>"; };
+		46342EA81C2A62E200E9958B /* barcode_scanner-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "barcode_scanner-25.png"; sourceTree = "<group>"; };
+		46342EA91C2A62E200E9958B /* flow_chart_filled-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flow_chart_filled-25.png"; sourceTree = "<group>"; };
+		46342EAA1C2A62E200E9958B /* combo_chart-24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "combo_chart-24.png"; sourceTree = "<group>"; };
+		46342EB21C2A638B00E9958B /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		46342EB41C2A63D300E9958B /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardViewController.m; sourceTree = "<group>"; };
+		46342EB51C2A63D300E9958B /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
+		46342EB61C2A63D300E9958B /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
+		46342EB71C2A63D300E9958B /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +126,11 @@
 		462490B91C2A589200BEC7F9 /* fibermetric */ = {
 			isa = PBXGroup;
 			children = (
+				46342EB41C2A63D300E9958B /* DashboardViewController.m */,
+				46342EB51C2A63D300E9958B /* DashboardViewController.h */,
+				46342EB61C2A63D300E9958B /* HistoryViewController.h */,
+				46342EB71C2A63D300E9958B /* HistoryViewController.m */,
+				46342EB21C2A638B00E9958B /* Media.xcassets */,
 				462490BD1C2A589300BEC7F9 /* AppDelegate.h */,
 				462490BE1C2A589300BEC7F9 /* AppDelegate.m */,
 				462490C01C2A589300BEC7F9 /* MasterViewController.h */,
@@ -114,6 +141,7 @@
 				462490C91C2A589300BEC7F9 /* Assets.xcassets */,
 				462490CB1C2A589300BEC7F9 /* LaunchScreen.storyboard */,
 				462490CE1C2A589300BEC7F9 /* Info.plist */,
+				46342EA31C2A62AA00E9958B /* Resources */,
 				462490BA1C2A589200BEC7F9 /* Supporting Files */,
 			);
 			path = fibermetric;
@@ -143,6 +171,20 @@
 				462490E41C2A589300BEC7F9 /* Info.plist */,
 			);
 			path = fibermetricUITests;
+			sourceTree = "<group>";
+		};
+		46342EA31C2A62AA00E9958B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				46342EA41C2A62E200E9958B /* fiber-meter.png */,
+				46342EA51C2A62E200E9958B /* ic_camera_gray.png */,
+				46342EA61C2A62E200E9958B /* filing_cabinet-24.png */,
+				46342EA71C2A62E200E9958B /* move_stock_filled-25.png */,
+				46342EA81C2A62E200E9958B /* barcode_scanner-25.png */,
+				46342EA91C2A62E200E9958B /* flow_chart_filled-25.png */,
+				46342EAA1C2A62E200E9958B /* combo_chart-24.png */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,9 +290,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46342EAB1C2A62E200E9958B /* fiber-meter.png in Resources */,
+				46342EAD1C2A62E200E9958B /* filing_cabinet-24.png in Resources */,
 				462490CD1C2A589300BEC7F9 /* LaunchScreen.storyboard in Resources */,
+				46342EAC1C2A62E200E9958B /* ic_camera_gray.png in Resources */,
 				462490CA1C2A589300BEC7F9 /* Assets.xcassets in Resources */,
+				46342EB31C2A638B00E9958B /* Media.xcassets in Resources */,
+				46342EAE1C2A62E200E9958B /* move_stock_filled-25.png in Resources */,
+				46342EAF1C2A62E200E9958B /* barcode_scanner-25.png in Resources */,
+				46342EB01C2A62E200E9958B /* flow_chart_filled-25.png in Resources */,
 				462490C81C2A589300BEC7F9 /* Main.storyboard in Resources */,
+				46342EB11C2A62E200E9958B /* combo_chart-24.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,10 +325,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46342EB81C2A63D300E9958B /* DashboardViewController.m in Sources */,
 				462490BF1C2A589300BEC7F9 /* AppDelegate.m in Sources */,
 				462490C21C2A589300BEC7F9 /* MasterViewController.m in Sources */,
 				462490BC1C2A589300BEC7F9 /* main.m in Sources */,
 				462490C51C2A589300BEC7F9 /* DetailViewController.m in Sources */,
+				46342EB91C2A63D300E9958B /* HistoryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,6 +556,7 @@
 				462490E91C2A589300BEC7F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		462490EA1C2A589300BEC7F9 /* Build configuration list for PBXNativeTarget "fibermetricTests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +565,7 @@
 				462490EC1C2A589300BEC7F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		462490ED1C2A589300BEC7F9 /* Build configuration list for PBXNativeTarget "fibermetricUITests" */ = {
 			isa = XCConfigurationList;
@@ -520,6 +574,7 @@
 				462490EF1C2A589300BEC7F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

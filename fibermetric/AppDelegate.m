@@ -1,8 +1,8 @@
 //
 //  AppDelegate.m
-//  fibermetric
+//  fiber-counter
 //
-//  Created by Donal Carroll on 12/22/15.
+//  Created by Donal Carroll on 12/20/15.
 //  Copyright © 2015 Donal Carroll. All rights reserved.
 //
 
@@ -20,7 +20,7 @@
     // Override point for customization after application launch.
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
     UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
-    navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem;
+    // navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem;
     splitViewController.delegate = self;
     return YES;
 }
