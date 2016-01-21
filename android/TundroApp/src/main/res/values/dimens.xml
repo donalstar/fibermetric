@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (C) 2008 ZXing authors
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+<resources>
+    <dimen name="standard_padding">8dip</dimen>
+    <dimen name="half_padding">4dip</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp:
+         https://developer.android.com/design/patterns/navigation-drawer.html -->
+    <dimen name="navigation_drawer_width">240dp</dimen>
+
+    <dimen name="fab_button_margin_bottom">16dp</dimen>
+    <dimen name="fab_button_margin_right">16dp</dimen>
+
+    <!-- fab -->
+
+    <dimen name="red_action_button_size">108dp</dimen>
+    <dimen name="red_action_button_margin">48dp</dimen>
+
+    <dimen name="red_action_button_content_size">16dp</dimen>
+    <dimen name="red_action_button_content_margin">36dp</dimen>
+
+    <dimen name="red_action_menu_radius">96dp</dimen>
+    <dimen name="blue_sub_action_button_size">48dp</dimen>
+    <dimen name="blue_sub_action_button_content_margin">16dp</dimen>
+
+    <dimen name="radius_large">120dp</dimen>
+    <dimen name="radius_small">30dp</dimen>
+    <dimen name="radius_medium">72dp</dimen>
+
+    <dimen name="action_button_size">72dp</dimen>
+    <dimen name="action_button_content_margin">16dp</dimen>
+    <dimen name="action_button_margin">12dp</dimen>
+    <dimen name="action_menu_radius">96dp</dimen>
+
+    <dimen name="sub_action_button_size">48dp</dimen>
+    <dimen name="sub_action_button_content_margin">6dp</dimen>
+
+    <dimen name="sub_action_button_text_size">12dp</dimen>
+
+    <dimen name="sub_action_label_height">36dp</dimen>
+    <dimen name="sub_action_label_width">140dp</dimen>
+
+    <dimen name="chain_of_custody_row_height">100dp</dimen>
+
+    <dimen name="map_marker_icon_width">50dp</dimen>
+    <dimen name="map_marker_bg_image_margin">7dp</dimen>
+    <dimen name="map_marker_main_image_margin">12dp</dimen>
+    <dimen name="map_marker_badge_image_margin">27dp</dimen>
+
+    <dimen name="inventory_part_left_margin">72dp</dimen>
+
+    <dimen name="job_task_row_height">75dp</dimen>
+</resources>

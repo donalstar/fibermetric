@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="net.go_factory.tundro">
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera.flash" />
+    <uses-feature android:name="android.hardware.wifi" />
+    <uses-feature android:name="android.hardware.wifi.direct" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+
+    <permission
+        android:name="net.go_factory.tundrodemo.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="net.go_factory.tundrodemo.permission.MAPS_RECEIVE" />
+
+    <!--
+     To retrieve OAuth 2.0 tokens or invalidate tokens to disconnect a user. This disconnect
+     option is required to comply with the Google+ Sign-In developer policies
+    -->
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <!-- To retrieve the account name (email) as part of sign-in: -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <!--
+      normal icon stanza
+      android:icon="@mipmap/ic_launcher"
+
+          android:name="android.support.multidex.MultiDexApplication"
+    -->
+
+    <application
+        android:name="com.guggiemedia.fibermetric.lib.FibermetricApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/fibermetric_logo"
+        android:label="@string/app_name"
+        android:theme="@style/Base.Theme.Fibermetric">
+
+        <activity
+            android:name="com.guggiemedia.fibermetric.ui.login.LoginActivity"
+            android:exported="false"
+            android:label="@string/title_activity_login"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.guggiemedia.fibermetric.ui.main.MainActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/Base.Theme.Fibermetric" />
+
+        <activity
+            android:name="com.guggiemedia.fibermetric.ui.chart.ChartActivity"
+            android:exported="false"
+            android:parentActivityName="com.guggiemedia.fibermetric.ui.main.MainActivity"
+            android:label="@string/title_activity_chart" />
+
+        <activity
+            android:name="com.guggiemedia.fibermetric.ui.barcode.BarcodeCaptureActivity"
+            android:exported="false"
+            android:label="NEW BARCODE" />
+
+        <activity
+            android:name="com.guggiemedia.fibermetric.ui.splash.SplashActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.guggiemedia.fibermetric.ui.splash.DiagnosticActivity"
+            android:exported="false"
+            android:label="@string/title_activity_diagnostic"
+            android:screenOrientation="portrait" />
+
+        <receiver
+            android:name="com.guggiemedia.fibermetric.ui.receiver.MultiReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+
+                <action android:name="ENABLE_BT" />
+                <action android:name="HAPPY_BLE" />
+                <action android:name="MISSING_BLE" />
+                <action android:name="android.net" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+        <!-- skyguy -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyB3us1UkN0eV8Xef7wJ2G5xai8qPcCxcMs" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+    </application>
+</manifest>

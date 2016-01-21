@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="5dp"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvRowNdx"
+        android:textColor="#de000000"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        android:fontFamily="sans-serif-medium"
+        android:layout_width="55dip"
+        android:layout_height="wrap_content"
+        android:text="@string/stubShort"/>
+
+    <TextView
+        android:id="@+id/tvRowName"
+        android:textColor="#de000000"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        android:fontFamily="sans-serif-medium"
+        android:lines="4"
+        android:maxLines="4"
+        android:singleLine="false"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:text="@string/stubLong"/>
+</LinearLayout>

@@ -1,0 +1,14 @@
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:background="#fdffc3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.guggiemedia.fibermetric.ui.splash.SplashActivity">
+
+    <ImageView
+        android:src="@drawable/fiber_meter2"
+        android:layout_gravity="center"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"/>
+</FrameLayout>

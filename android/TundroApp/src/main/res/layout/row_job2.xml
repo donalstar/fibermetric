@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageRowState"
+        android:src="@drawable/ic_task_scheduled_list_40x40"
+        android:padding="10dp"
+        android:contentDescription="@string/description"
+        android:layout_below="@id/tvRowState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView style="@style/JobRowBanner"
+        android:id="@+id/tvRowName"
+        android:layout_below="@id/tvRowState"
+        android:layout_toRightOf="@id/imageRowState" />
+
+    <TextView style="@style/JobRow"
+        android:id="@+id/tvRowAsset"
+        android:layout_below="@id/tvRowName"
+        android:layout_toRightOf="@id/imageRowState" />
+
+    <TextView style="@style/JobRow"
+        android:id="@+id/tvRowSite"
+        android:layout_below="@id/tvRowAsset"
+        android:layout_toRightOf="@id/imageRowState" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_below="@id/tvRowAsset"
+        android:layout_alignParentRight="true"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageDuration"
+            android:src="@drawable/ic_duration_small"
+            android:contentDescription="@string/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView style="@style/JobRowDuration"
+            android:id="@+id/tvRowDuration" />
+    </LinearLayout>
+</RelativeLayout>

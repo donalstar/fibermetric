@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- drawable used for tabs background-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!-- Done due to text guides.
+    But due to tabs image colors seem be to start from #e94811 and ends with #e44100.
+    Please double check guide. -->
+    <gradient
+        android:startColor="#e44100"
+        android:endColor="#e94811"
+        android:angle="-180"/>
+</shape>

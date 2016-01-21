@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+    <style name="Theme.Fibermetric" parent="Base.Theme.Fibermetric">
+        <!-- empty -->
+    </style>
+
+    <style name="Base.Theme.Fibermetric1" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#673AB7</item>
+        <item name="colorPrimaryDark">#512DA8</item>
+        <item name="colorAccent">#FF4081</item>
+        <item name="android:windowBackground">@color/window_background</item>
+    </style>
+
+    <style name="Base.Theme.Fibermetric" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- main application color -->
+        <item name="colorPrimary">@color/tomato</item>
+        <!-- darker variant of primary color. Color of status bar -->
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <!-- FAB will use this color as its background -->
+        <item name="colorAccent">@color/tomato</item>
+        <!-- color of titles -->
+        <item name="android:textColorPrimary">@color/warm_grey_dark</item>
+        <!-- color of controls and toolbar subtitle -->
+        <item name="android:textColorSecondary">@color/warm_grey_light</item>
+        <!-- color of regular text -->
+        <item name="android:textColor">@color/black87</item>
+        <!-- Style of toolbar -->
+        <item name="toolbarStyle">@style/AppToolbarStyle</item>
+        <item name="drawerArrowStyle">@style/WhiteDrawerIconStyle</item>
+        <!-- Widgets styles -->
+        <item name="android:buttonStyle">@style/AppButtonStyle</item>
+        <item name="android:checkboxStyle">@style/AppCheckBoxStyle</item>
+
+    </style>
+
+    <!-- Style of toolbar -->
+    <style name="AppToolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="android:background">@drawable/toolbar</item>
+        <item name="titleMargins">12dp</item>
+    </style>
+
+    <!-- Style of Navigation Drawer button in toolbar -->
+    <style name="WhiteDrawerIconStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@color/white</item>
+    </style>
+
+    <!-- Style of tab bar -->
+    <style name="AppTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabBackground">@drawable/tab</item>
+        <item name="tabIndicatorColor">@color/white</item>
+        <item name="tabTextAppearance">@style/AppTabTextAppearance</item>
+        <item name="tabSelectedTextColor">@color/white</item>
+    </style>
+
+    <!-- Style of single unselected tab -->
+    <style name="AppTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textColor">@color/semi_white</item>
+        <item name="textAllCaps">true</item>
+    </style>
+
+    <!-- Typography styles -->
+    <style name="Subhead2" parent="Subhead1">
+        <item name="android:fontFamily">sans-serif-medium</item> // roboto medium
+    </style>
+
+    <style name="Subhead1" parent="Base.TextAppearance.AppCompat.Subhead">
+        <item name="android:textColor">@color/black87</item>
+    </style>
+
+    <style name="Body2" parent="TextAppearance.AppCompat.Body2">
+        <item name="android:fontFamily">sans-serif-medium</item> // roboto medium
+        <item name="android:textColor">@color/black87</item>
+    </style>
+
+    <style name="Body1" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textColor">@color/black54</item>
+    </style>
+
+    <style name="NavigationTabs">
+        <item name="android:fontFamily">sans-serif-medium</item> // roboto medium
+        <item name="android:textColor">@color/nav_tab</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Caption2" parent="TextAppearance.AppCompat.Caption">
+        <item name="android:fontFamily">sans-serif-medium</item> // roboto medium
+        <item name="android:textColor">@color/caption2</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Caption1" parent="TextAppearance.AppCompat.Caption">
+        <item name="android:textColor">@color/black54</item>
+    </style>
+
+    <!-- Widgets styles -->
+    <style name="AppButtonStyle" parent="Base.Widget.AppCompat.Button">
+        <item name="android:fontFamily">sans-serif-medium</item> // roboto medium
+        <item name="android:textColor">@color/tomato</item>
+    </style>
+
+    <style name="AppCheckBoxStyle" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:textColor">@color/black87</item>
+    </style>
+
+</resources>

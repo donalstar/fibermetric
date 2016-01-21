@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+    <!-- from igoo -->
+    <color name="primary_dark">#be3e19</color>
+    <color name="tomato">#ef4f23</color>
+    <color name="marigold">#ffbf00</color>
+    <color name="mid_green">#48b04b</color>
+    <color name="white">#eeeeee</color>
+    <color name="semi_white">#80eeeeee</color>
+    <color name="warm_grey_dark">#808080</color>
+    <color name="warm_grey_light">#999999</color>
+    <color name="nav_tab">#666666</color>
+    <color name="caption2">#999999</color>
+    <color name="black87">#DE000000</color>
+    <color name="black54">#8A000000</color>
+    <color name="white70">#b2ffffff</color>
+    <color name="brownishGrey">#666666</color>
+    <color name="bright_white">#ffffff</color>
+
+    <!-- -->
+    <color name="window_background">#FFF5F5F5</color>
+
+    <!-- below for ZXing -->
+  <color name="contents_text">#ff000000</color>
+  <color name="encode_view">#ffffffff</color>
+  <color name="possible_result_points">#c0ffbd21</color> <!-- Android standard ICS color -->
+  <color name="result_minor_text">#ffc0c0c0</color>
+  <color name="result_points">#c099cc00</color> <!-- Android standard ICS color -->
+  <color name="result_text">#ffffffff</color>
+  <color name="result_view">#b0000000</color>
+  <color name="status_text">#ffffffff</color>
+  <color name="transparent">#00000000</color>
+  <color name="viewfinder_laser">#ffcc0000</color> <!-- Android standard ICS color -->
+  <color name="viewfinder_mask">#60000000</color>
+</resources>

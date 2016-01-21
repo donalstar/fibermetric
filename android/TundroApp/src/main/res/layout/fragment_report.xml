@@ -1,0 +1,78 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context="com.guggiemedia.fibermetric.ui.main.ReportFragment">
+
+
+<LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#d8d8d8" />
+
+        <RelativeLayout
+            android:id="@+id/partNameWrapper"
+            android:layout_marginLeft="6dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="60dip"
+                android:layout_height="60dip"
+                android:padding="5dp"
+                android:src="@drawable/button_action_selector" />
+
+            <ImageView
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="6dp"
+                android:padding="11dp"
+                android:src="@drawable/ic_parts" />
+
+            <TextView
+                android:id="@+id/partName"
+                style="@style/ReportProblemPartName"
+                android:text="Ultra Probe..." />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#d8d8d8" />
+
+        <RelativeLayout
+            android:id="@+id/photoWreapper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/photo"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="6dp"
+                android:padding="11dp"
+                android:src="@drawable/ic_button_camera_gray" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#d8d8d8" />
+
+        <TextView
+            android:id="@+id/damageInfo"
+            style="@style/ReportProblemFieldPrompt"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Damage information..." />
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,280 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    tools:context="com.guggiemedia.fibermetric.ui.main.PartFragment">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        tools:context="com.guggiemedia.fibermetric.ui.main.PartFragment">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="com.guggiemedia.fibermetric.ui.main.PartFragment">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableLayout
+                    android:id="@+id/headerTitleTable"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="1">
+
+                    <TableRow android:id="@+id/headerRow">
+
+                        <RelativeLayout
+                            android:id="@+id/headerImageWrapper"
+                            android:layout_width="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/headerImage"
+                                style="@style/PartHeaderImage"
+                                android:layout_height="120dp"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/img_part_default" />
+                        </RelativeLayout>
+                    </TableRow>
+
+                </TableLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/partHeaderView"
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dip"
+                    android:layout_below="@id/headerTitleTable"
+                    android:layout_marginBottom="10dp"
+                    android:background="#ffffff" />
+
+                <View
+                    android:id="@+id/sep"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/partHeaderView"
+                    android:layout_marginLeft="@dimen/inventory_part_left_margin"
+                    android:layout_marginRight="10dp"
+                    android:background="@android:color/darker_gray" />
+
+
+                <TextView
+                    android:id="@+id/locationHeader"
+                    style="@style/FieldLabel"
+                    android:layout_below="@id/sep"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="@dimen/inventory_part_left_margin"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/part_location_label" />
+
+                <RelativeLayout
+                    android:id="@+id/locationImageWrapper"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/locationHeader"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="14dp">
+
+                    <ImageView
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:src="@drawable/map_bg_square" />
+
+                    <ImageView
+                        android:id="@+id/locationImage"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:contentDescription="@string/description"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_location_red" />
+                </RelativeLayout>
+
+
+                <TableLayout
+                    android:id="@+id/locationTable"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/locationHeader"
+                    android:layout_marginBottom="10dp"
+                    android:stretchColumns="1">
+
+                    <TableRow>
+
+                        <TextView
+                            android:id="@+id/siteName"
+                            style="@style/FieldText"
+                            android:layout_marginLeft="@dimen/inventory_part_left_margin" />
+                    </TableRow>
+
+                    <TableRow>
+
+                        <TextView
+                            android:id="@+id/location"
+                            style="@style/FieldText"
+                            android:layout_marginLeft="@dimen/inventory_part_left_margin" />
+
+                    </TableRow>
+                </TableLayout>
+
+                <TableLayout
+                    android:id="@+id/headerInfoTable"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/locationTable"
+                    android:layout_marginLeft="@dimen/inventory_part_left_margin"
+                    android:stretchColumns="1">
+
+                    <TableRow>
+
+                        <TextView
+                            android:id="@+id/manufacturerLabel"
+                            style="@style/FieldLabel"
+                            android:text="@string/manufacturer_label" />
+                    </TableRow>
+
+                    <TableRow>
+
+                        <TextView
+                            android:id="@+id/manufacturer"
+                            style="@style/FieldText" />
+                    </TableRow>
+
+                    <TableRow>
+
+                        <TextView
+                            android:id="@+id/modelNumberLabel"
+                            style="@style/FieldLabel"
+                            android:text="@string/model_number_label" />
+                    </TableRow>
+
+                    <TableRow>
+
+                        <TextView
+                            android:id="@+id/modelNumber"
+                            style="@style/FieldText" />
+                    </TableRow>
+
+                </TableLayout>
+
+                <TextView
+                    android:id="@+id/descriptionHeader"
+                    style="@style/FieldLabel"
+                    android:layout_below="@id/headerInfoTable"
+                    android:layout_marginLeft="@dimen/inventory_part_left_margin"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/part_description_label" />
+
+                <TextView
+                    android:id="@+id/description"
+                    style="@style/FieldText"
+                    android:layout_below="@id/descriptionHeader"
+                    android:layout_marginLeft="@dimen/inventory_part_left_margin" />
+
+
+                <TableLayout
+                    android:id="@+id/idTable"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/description"
+                    android:layout_marginLeft="@dimen/inventory_part_left_margin"
+                    android:stretchColumns="1">
+
+                    <TableRow>
+
+                        <TextView
+                            android:id="@+id/serialNumberLabel"
+                            style="@style/FieldLabel"
+                            android:text="@string/id_number_label" />
+                    </TableRow>
+
+                    <TableRow>
+
+                        <TextView
+                            android:id="@+id/serialNumber"
+                            style="@style/FieldText" />
+                    </TableRow>
+
+
+                </TableLayout>
+
+                <TextView
+                    android:id="@+id/cocHeader"
+                    style="@style/COCHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/idTable"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/part_coc_label" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/chainOfCustodyItems"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dip"
+                    android:layout_below="@id/cocHeader"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="14dp"
+                    android:background="#ffffff"
+                    android:transcriptMode="alwaysScroll" />
+
+            </RelativeLayout>
+        </ScrollView>
+
+
+        <RelativeLayout
+            android:id="@+id/transferFabHolder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true">
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/transferFab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/ic_transfer_custody_white"
+                app:backgroundTint="@color/tomato"
+                app:borderWidth="0dp"
+                app:elevation="6dp" />
+
+        </RelativeLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/transferFabHolder"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="0dp"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/ic_refresh_red"
+            app:backgroundTint="#ffffff"
+            app:borderWidth="0dp"
+            app:elevation="6dp"
+            app:fabSize="normal" />
+
+
+        <RelativeLayout
+            android:id="@+id/fabHolder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true">
+
+            <FrameLayout
+                android:id="@+id/fabFrame"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></FrameLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

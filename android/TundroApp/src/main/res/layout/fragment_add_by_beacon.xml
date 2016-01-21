@@ -1,0 +1,37 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eeeeee"
+    tools:context="com.guggiemedia.fibermetric.ui.main.AddByBeaconFragment">
+
+    <com.guggiemedia.fibermetric.ui.component.RecyclerViewEmptySupport
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:transcriptMode="alwaysScroll" />
+
+    <TextView
+        android:id="@+id/list_empty"
+        style="@style/EmptyListMessage"
+        android:text="@string/labelNoRows" />
+
+
+    <RelativeLayout
+        android:id="@+id/scanningMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:id="@+id/scanningMessageText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corner"
+            android:padding="11dp"
+            android:text="@string/msg_scanning" />
+    </RelativeLayout>
+
+</RelativeLayout>
+

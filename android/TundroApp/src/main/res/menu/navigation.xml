@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/group1"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/navToday"
+            android:checked="true"
+            android:icon="@drawable/ic_today_default"
+            android:title="@string/menuJobToday" />
+
+        <item
+            android:id="@+id/navWeek"
+            android:icon="@drawable/ic_week_default"
+            android:title="@string/menuJobWeek" />
+
+        <item
+            android:id="@+id/navInventory"
+            android:icon="@drawable/ic_inventory_default"
+            android:title="@string/menuInventory" />
+    </group>
+
+    <group android:id="@+id/group2">
+        <item
+            android:id="@+id/navAlerts"
+            android:icon="@drawable/ic_alerts_default"
+            android:title="@string/menuAlerts" />
+        <item
+            android:id="@+id/navChat"
+            android:icon="@drawable/ic_chats_default"
+            android:title="@string/menuChat" />
+
+    </group>
+
+
+    <group android:id="@+id/group3">
+        <item
+            android:id="@+id/navSetting"
+            android:icon="@drawable/ic_settings_default"
+            android:title="@string/menuSetting" />
+        <item
+            android:id="@+id/navHelp"
+            android:icon="@drawable/ic_help_default"
+            android:title="@string/menuHelp" />
+    </group>
+
+    <group android:id="@+id/group4">
+        <item
+            android:id="@+id/navSignOut"
+            android:icon="@drawable/ic_signout_default"
+            android:title="@string/menuSignOut" />
+    </group>
+
+</menu>

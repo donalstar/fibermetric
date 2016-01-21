@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="5dp">
+
+    <ImageView
+        android:id="@+id/statusImage"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_chain_current" />
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="74dp"
+        android:layout_below="@id/statusImage"
+        android:src="@drawable/ic_chain_dash_copy_3" />
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_toRightOf="@id/statusImage"
+        android:stretchColumns="1">
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/nameLabel"
+                style="@style/COCTitle"
+                android:text="@string/coc_name_label" />
+
+            <TextView
+                android:id="@+id/name"
+                style="@style/COCTitle"
+                android:paddingLeft="5dp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/pickedUpDateLabel"
+                style="@style/COCLineText"
+                android:text="@string/part_pickedup_label"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/pickedUpDate"
+                style="@style/COCLineText"
+                android:paddingLeft="5dp" />
+        </TableRow>
+
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/locLabel"
+                style="@style/COCLineText"
+                android:text="@string/part_location_label"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/location"
+                style="@style/COCLineText"
+                android:paddingLeft="5dp" />
+        </TableRow>
+
+
+    </TableLayout>
+</RelativeLayout>
+
+

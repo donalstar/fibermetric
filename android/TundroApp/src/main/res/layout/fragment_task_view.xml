@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    tools:context="com.guggiemedia.fibermetric.ui.main.TaskViewFragment">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <RelativeLayout style="@style/RelativeForm">
+
+                    <ImageView
+                        android:id="@+id/taskStatusImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/description"
+                        android:src="@drawable/ic_task_scheduled" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_toRightOf="@id/taskStatusImage"
+                        android:orientation="vertical"
+                        android:paddingLeft="15dp">
+
+                        <TextView
+                            android:id="@+id/tvTaskName"
+                            style="@style/JobBanner"
+                            android:text="@string/stubShort" />
+
+                        <TextView
+                            android:id="@+id/tvTaskStatus"
+                            style="@style/JobSubBanner"
+                            android:text="@string/stubShort" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout style="@style/RelativeForm">
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="50dip"
+                        android:layout_height="50dip"
+                        android:contentDescription="@string/description"
+                        android:src="@drawable/ic_location_red" />
+
+                    <TextView
+                        android:id="@+id/tvAssetBanner"
+                        style="@style/JobLeftColumn"
+                        android:paddingLeft="55dip"
+                        android:paddingTop="5dip"
+                        android:text="@string/labelAsset" />
+
+                    <TextView
+                        android:id="@+id/tvAsset"
+                        style="@style/JobRightColumn"
+                        android:layout_below="@id/tvAssetBanner"
+                        android:paddingLeft="55dip"
+                        android:paddingTop="0dip"
+                        android:text="@string/stubShort" />
+
+                    <TextView
+                        android:id="@+id/tvSite"
+                        style="@style/JobRightColumn"
+                        android:layout_below="@id/tvAsset"
+                        android:layout_toRightOf="@id/imageView2"
+                        android:paddingLeft="5dip"
+                        android:paddingTop="0dip"
+                        android:text="@string/stubShort" />
+
+                    <TextView
+                        android:id="@+id/tvJobIdBanner"
+                        style="@style/JobLeftColumn"
+                        android:layout_below="@id/tvSite"
+                        android:paddingLeft="55dip"
+                        android:paddingTop="15dip"
+                        android:text="@string/labelJobId" />
+
+                    <TextView
+                        android:id="@+id/tvJobId"
+                        style="@style/JobRightColumn"
+                        android:layout_below="@id/tvJobIdBanner"
+                        android:paddingLeft="55dip"
+                        android:paddingTop="0dip"
+                        android:text="@string/stubShort" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tvTaskDetail"
+                    style="@style/JobLeftColumn"
+                    android:paddingLeft="55dip"
+                    android:paddingTop="5dip"
+                    android:text="@string/labelTaskDetail" />
+
+                <ListView
+                    android:id="@+id/lvTaskDetail"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" />
+
+                <TextView
+                    android:id="@+id/tvTaskAction"
+                    style="@style/JobLeftColumn"
+                    android:paddingLeft="55dip"
+                    android:paddingTop="5dip"
+                    android:text="@string/labelTaskAction" />
+
+                <ListView
+                    android:id="@+id/requiredActionList"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" />
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="0dp"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/ic_checkmark_white"
+        app:backgroundTint="@color/mid_green"
+        app:borderWidth="0dp"
+        app:fabSize="normal"
+        app:rippleColor="@color/mid_green" />
+</android.support.design.widget.CoordinatorLayout>

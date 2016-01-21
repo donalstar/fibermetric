@@ -1,0 +1,84 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_red"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.guggiemedia.fibermetric.ui.DiagnosticActivity">
+
+
+    <!--<Button-->
+    <!--android:id="@+id/button_seed_db_allan"-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="@string/button_seed_db_allan"/>-->
+
+    <!--<Button-->
+    <!--android:id="@+id/button_seed_db_bryan"-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="@string/button_seed_db_bryan"/>-->
+
+    <!--<Button-->
+    <!--android:id="@+id/button_seed_db_donal"-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="@string/button_seed_db_donal"/>-->
+
+    <!--<Button-->
+    <!--android:id="@+id/button_test_notify"-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="@string/button_test_notify"/>-->
+
+    <!--<Button-->
+    <!--android:id="@+id/button_test_zxing"-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="@string/button_test_zxing"/>-->
+
+    <!--<Button-->
+    <!--android:id="@+id/button_test_discovery"-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="@string/button_test_discovery"/>-->
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        android:stretchColumns="0">
+
+        <TableRow>
+
+            <EditText
+                android:id="@+id/userLatitude"
+                android:inputType="numberSigned|numberDecimal"
+                android:hint="@string/prompt_set_latitude"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
+        </TableRow>
+
+        <TableRow>
+
+            <EditText
+                android:id="@+id/userLongitude"
+                android:inputType="numberSigned|numberDecimal"
+                android:hint="@string/prompt_set_longitude"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:id="@+id/button_finished"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/button_action_touch"
+        android:text="@string/button_finished" />
+</LinearLayout>
