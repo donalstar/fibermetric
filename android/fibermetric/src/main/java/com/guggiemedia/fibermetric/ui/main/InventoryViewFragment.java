@@ -18,7 +18,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.guggiemedia.fibermetric.R;
-import com.guggiemedia.fibermetric.lib.Personality;
 import com.guggiemedia.fibermetric.lib.db.DataBaseTable;
 import com.guggiemedia.fibermetric.lib.db.InventoryCategoryEnum;
 import com.guggiemedia.fibermetric.lib.db.InventoryStatusEnum;
@@ -26,7 +25,6 @@ import com.guggiemedia.fibermetric.lib.db.JobTaskModel;
 import com.guggiemedia.fibermetric.lib.db.JobTaskTable;
 import com.guggiemedia.fibermetric.lib.db.PartModel;
 import com.guggiemedia.fibermetric.lib.db.PartTable;
-import com.guggiemedia.fibermetric.lib.db.PersonPartTable;
 
 
 import java.util.Date;
@@ -89,20 +87,6 @@ public class InventoryViewFragment extends Fragment implements LoaderManager.Loa
                 break;
             }
 
-            case myInventory: {
-                selection = PartTable.Columns.CATEGORY + "=? and "
-                        + PersonPartTable.TABLE_NAME + "." + PersonPartTable.Columns.PERSON_ID + "=? ";
-
-                selection += "and status = 'inCustody'";
-
-                selectionArgs = new String[]{
-                        _category.toString(),
-                        String.valueOf(Personality.personSelf.getId())
-                };
-
-                uri = Uri.parse(PartTable.QUERY_BY_PERSON_CONTENT_URI);
-                break;
-            }
             default: // today's inventory
             {
                 selection = PartTable.Columns.CATEGORY + "=? and "

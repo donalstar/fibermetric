@@ -9,7 +9,7 @@
             android:id="@+id/navToday"
             android:checked="true"
             android:icon="@drawable/ic_today_default"
-            android:title="@string/menuJobToday" />
+            android:title="@string/menuStatus" />
 
         <item
             android:id="@+id/navWeek"

@@ -135,23 +135,10 @@ public class TaskEndFragment extends Fragment {
                     }
                 };
 
-                Snackbar.Callback snackbarDismissedCallback =
-                        new Snackbar.Callback() {
-                            @Override
-                            public void onDismissed(Snackbar snackbar, int event) {
-                                if (getCompleteStatus()) {
-                                    CommandFacade.jobTaskUpdate(savedJobTaskModel, getActivity());
-
-                                    _listener.fragmentSelect(MainActivityFragmentEnum.JOB_TODAY_LIST, new Bundle());
-                                } else {
-                                    Log.i(LOG_TAG, "UNDO - dont complete the job");
-                                }
-                            }
-                        };
 
                 ToastHelper.showSnackbar(getActivity(), message,
                         getResources().getString(R.string.undo_button),
-                        listener, snackbarDismissedCallback);
+                        listener, null);
             }
         });
 

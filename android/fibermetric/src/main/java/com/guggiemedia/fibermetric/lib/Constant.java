@@ -11,8 +11,9 @@ public class Constant {
     public static final Integer SQL_TRUE = 1;
     public static final Integer SQL_FALSE = 0;
 
+
     //
-    public static final String AUTHORITY = "dbprovider";
+    public static final String AUTHORITY = "com.guggiemedia.fibermetric.dbprovider";
 
     //
     public static final String AUTHORIZATION_FAIL = "AUTH_FAIL";

@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.guggiemedia.fibermetric.R;
-import com.guggiemedia.fibermetric.lib.Personality;
 import com.guggiemedia.fibermetric.lib.chain.CommandFacade;
 import com.guggiemedia.fibermetric.lib.db.InventoryCategoryEnum;
 import com.guggiemedia.fibermetric.lib.db.InventoryStatusEnum;
@@ -116,7 +115,7 @@ public class AddByBeaconViewAdapter extends RecyclerView.Adapter<AddByBeaconView
 
         model.setBleInRange(1);
 
-        CommandFacade.partStatusUpdate(model, Personality.personSelf.getName(), model.getSiteId(), _context);
+
     }
 
     @Override

@@ -154,8 +154,7 @@ public class JobViewFragment extends Fragment {
                 JobTaskModel task = _taskList.get(position);
 
                 Bundle newBundle = new Bundle();
-                newBundle.putLong(TaskPagerFragment.ARG_PARAM_JOB_ID, task.getParent());
-                newBundle.putLong(TaskPagerFragment.ARG_PARAM_TASK_ID, task.getId());
+
 
                 Bundle oldBundle = new Bundle();
                 oldBundle.putLong(JobViewFragment.ARG_PARAM_JOB_ID, task.getParent());

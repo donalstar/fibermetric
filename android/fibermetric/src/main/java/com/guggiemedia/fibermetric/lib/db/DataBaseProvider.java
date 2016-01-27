@@ -97,26 +97,12 @@ public class DataBaseProvider extends ContentProvider {
         URI_MATCHER.addURI(Constant.AUTHORITY, PartTable.TABLE_NAME + "/by_person", URI_MATCH_PART_PERSONID);
         URI_MATCHER.addURI(Constant.AUTHORITY, PartTable.TABLE_NAME + "/by_job", URI_MATCH_PART_JOB_ID);
 
-        URI_MATCHER.addURI(Constant.AUTHORITY, PersonTable.TABLE_NAME, URI_MATCH_PERSON);
-        URI_MATCHER.addURI(Constant.AUTHORITY, PersonTable.TABLE_NAME + "/#", URI_MATCH_PERSON_ID);
 
-        URI_MATCHER.addURI(Constant.AUTHORITY, PersonPartTable.TABLE_NAME, URI_MATCH_PERSON_PART);
-        URI_MATCHER.addURI(Constant.AUTHORITY, PersonPartTable.TABLE_NAME + "/#", URI_MATCH_PERSON_PART_ID);
 
         URI_MATCHER.addURI(Constant.AUTHORITY, com.guggiemedia.fibermetric.lib.db.SiteTable.TABLE_NAME, URI_MATCH_SITE);
         URI_MATCHER.addURI(Constant.AUTHORITY, com.guggiemedia.fibermetric.lib.db.SiteTable.TABLE_NAME + "/#", URI_MATCH_SITE_ID);
 
-        URI_MATCHER.addURI(Constant.AUTHORITY, TaskActionTable.TABLE_NAME, URI_MATCH_TASK_ACTION);
-        URI_MATCHER.addURI(Constant.AUTHORITY, TaskActionTable.TABLE_NAME + "/#", URI_MATCH_TASK_ACTION_ID);
 
-        URI_MATCHER.addURI(Constant.AUTHORITY, TaskDetailTable.TABLE_NAME, URI_MATCH_TASK_DETAIL);
-        URI_MATCHER.addURI(Constant.AUTHORITY, TaskDetailTable.TABLE_NAME + "/#", URI_MATCH_TASK_DETAIL_ID);
-
-        URI_MATCHER.addURI(Constant.AUTHORITY, com.guggiemedia.fibermetric.lib.db.ThingTable.TABLE_NAME, URI_MATCH_THING);
-        URI_MATCHER.addURI(Constant.AUTHORITY, com.guggiemedia.fibermetric.lib.db.ThingTable.TABLE_NAME + "/#", URI_MATCH_THING_ID);
-
-        URI_MATCHER.addURI(Constant.AUTHORITY, ToolTable.TABLE_NAME, URI_MATCH_TOOL);
-        URI_MATCHER.addURI(Constant.AUTHORITY, ToolTable.TABLE_NAME + "/#", URI_MATCH_TOOL_ID);
     }
 
     private DataBaseHelper _dbHelper;
@@ -196,20 +182,7 @@ public class DataBaseProvider extends ContentProvider {
                 id = uri.getPathSegments().get(1);
                 count = db.delete(PartTable.TABLE_NAME, PartTable.Columns._ID + "=" + id + (!TextUtils.isEmpty(selection) ? " AND (" + selection + ')' : ""), selectionArgs);
                 break;
-            case URI_MATCH_PERSON:
-                count = db.delete(PersonTable.TABLE_NAME, selection, selectionArgs);
-                break;
-            case URI_MATCH_PERSON_ID:
-                id = uri.getPathSegments().get(1);
-                count = db.delete(PersonTable.TABLE_NAME, PersonTable.Columns._ID + "=" + id + (!TextUtils.isEmpty(selection) ? " AND (" + selection + ')' : ""), selectionArgs);
-                break;
-            case URI_MATCH_PERSON_PART:
-                count = db.delete(PersonPartTable.TABLE_NAME, selection, selectionArgs);
-                break;
-            case URI_MATCH_PERSON_PART_ID:
-                id = uri.getPathSegments().get(1);
-                count = db.delete(PersonPartTable.TABLE_NAME, PersonPartTable.Columns._ID + "=" + id + (!TextUtils.isEmpty(selection) ? " AND (" + selection + ')' : ""), selectionArgs);
-                break;
+
             case URI_MATCH_SITE:
                 count = db.delete(com.guggiemedia.fibermetric.lib.db.SiteTable.TABLE_NAME, selection, selectionArgs);
                 break;
@@ -217,27 +190,8 @@ public class DataBaseProvider extends ContentProvider {
                 id = uri.getPathSegments().get(1);
                 count = db.delete(com.guggiemedia.fibermetric.lib.db.SiteTable.TABLE_NAME, com.guggiemedia.fibermetric.lib.db.SiteTable.Columns._ID + "=" + id + (!TextUtils.isEmpty(selection) ? " AND (" + selection + ')' : ""), selectionArgs);
                 break;
-            case URI_MATCH_TASK_ACTION:
-                count = db.delete(TaskActionTable.TABLE_NAME, selection, selectionArgs);
-                break;
-            case URI_MATCH_TASK_ACTION_ID:
-                id = uri.getPathSegments().get(1);
-                count = db.delete(TaskActionTable.TABLE_NAME, TaskActionTable.Columns._ID + "=" + id + (!TextUtils.isEmpty(selection) ? " AND (" + selection + ')' : ""), selectionArgs);
-                break;
-            case URI_MATCH_TASK_DETAIL:
-                count = db.delete(TaskDetailTable.TABLE_NAME, selection, selectionArgs);
-                break;
-            case URI_MATCH_TASK_DETAIL_ID:
-                id = uri.getPathSegments().get(1);
-                count = db.delete(TaskDetailTable.TABLE_NAME, TaskDetailTable.Columns._ID + "=" + id + (!TextUtils.isEmpty(selection) ? " AND (" + selection + ')' : ""), selectionArgs);
-                break;
-            case URI_MATCH_TOOL:
-                count = db.delete(ToolTable.TABLE_NAME, selection, selectionArgs);
-                break;
-            case URI_MATCH_TOOL_ID:
-                id = uri.getPathSegments().get(1);
-                count = db.delete(ToolTable.TABLE_NAME, ToolTable.Columns._ID + "=" + id + (!TextUtils.isEmpty(selection) ? " AND (" + selection + ')' : ""), selectionArgs);
-                break;
+
+
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);
         }
@@ -285,38 +239,17 @@ public class DataBaseProvider extends ContentProvider {
                 return PartTable.CONTENT_TYPE;
             case URI_MATCH_PART_ID:
                 return PartTable.CONTENT_ITEM_TYPE;
-            case URI_MATCH_PERSON:
-                return PersonTable.CONTENT_TYPE;
-            case URI_MATCH_PERSON_ID:
-                return PersonTable.CONTENT_ITEM_TYPE;
+
             case URI_MATCH_PART_PERSONID:
                 return PartTable.CONTENT_TYPE;
             case URI_MATCH_PART_JOB_ID:
                 return PartTable.CONTENT_TYPE;
-            case URI_MATCH_PERSON_PART:
-                return PersonPartTable.CONTENT_TYPE;
-            case URI_MATCH_PERSON_PART_ID:
-                return PersonPartTable.CONTENT_ITEM_TYPE;
+
             case URI_MATCH_SITE:
                 return com.guggiemedia.fibermetric.lib.db.SiteTable.CONTENT_TYPE;
             case URI_MATCH_SITE_ID:
                 return com.guggiemedia.fibermetric.lib.db.SiteTable.CONTENT_ITEM_TYPE;
-            case URI_MATCH_TASK_ACTION:
-                return TaskActionTable.CONTENT_TYPE;
-            case URI_MATCH_TASK_ACTION_ID:
-                return TaskActionTable.CONTENT_ITEM_TYPE;
-            case URI_MATCH_TASK_DETAIL:
-                return TaskDetailTable.CONTENT_TYPE;
-            case URI_MATCH_TASK_DETAIL_ID:
-                return TaskDetailTable.CONTENT_ITEM_TYPE;
-            case URI_MATCH_THING:
-                return com.guggiemedia.fibermetric.lib.db.ThingTable.CONTENT_TYPE;
-            case URI_MATCH_THING_ID:
-                return com.guggiemedia.fibermetric.lib.db.ThingTable.CONTENT_ITEM_TYPE;
-            case URI_MATCH_TOOL:
-                return ToolTable.CONTENT_TYPE;
-            case URI_MATCH_TOOL_ID:
-                return ToolTable.CONTENT_ITEM_TYPE;
+
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);
         }
@@ -400,22 +333,7 @@ public class DataBaseProvider extends ContentProvider {
                     return result;
                 }
                 break;
-            case URI_MATCH_PERSON:
-                rowId = db.insert(PersonTable.TABLE_NAME, null, values);
-                if (rowId > 0) {
-                    Uri result = ContentUris.withAppendedId(PersonTable.CONTENT_URI, rowId);
-                    getContext().getContentResolver().notifyChange(PersonTable.CONTENT_URI, null);
-                    return result;
-                }
-                break;
-            case URI_MATCH_PERSON_PART:
-                rowId = db.insert(PersonPartTable.TABLE_NAME, null, values);
-                if (rowId > 0) {
-                    Uri result = ContentUris.withAppendedId(PersonPartTable.CONTENT_URI, rowId);
-                    getContext().getContentResolver().notifyChange(PersonPartTable.CONTENT_URI, null);
-                    return result;
-                }
-                break;
+
             case URI_MATCH_SITE:
                 rowId = db.insert(com.guggiemedia.fibermetric.lib.db.SiteTable.TABLE_NAME, null, values);
                 if (rowId > 0) {
@@ -424,38 +342,8 @@ public class DataBaseProvider extends ContentProvider {
                     return result;
                 }
                 break;
-            case URI_MATCH_TASK_ACTION:
-                rowId = db.insert(TaskActionTable.TABLE_NAME, null, values);
-                if (rowId > 0) {
-                    Uri result = ContentUris.withAppendedId(TaskActionTable.CONTENT_URI, rowId);
-                    getContext().getContentResolver().notifyChange(TaskActionTable.CONTENT_URI, null);
-                    return result;
-                }
-                break;
-            case URI_MATCH_TASK_DETAIL:
-                rowId = db.insert(TaskDetailTable.TABLE_NAME, null, values);
-                if (rowId > 0) {
-                    Uri result = ContentUris.withAppendedId(TaskDetailTable.CONTENT_URI, rowId);
-                    getContext().getContentResolver().notifyChange(TaskDetailTable.CONTENT_URI, null);
-                    return result;
-                }
-                break;
-            case URI_MATCH_THING:
-                rowId = db.insert(com.guggiemedia.fibermetric.lib.db.ThingTable.TABLE_NAME, null, values);
-                if (rowId > 0) {
-                    Uri result = ContentUris.withAppendedId(com.guggiemedia.fibermetric.lib.db.ThingTable.CONTENT_URI, rowId);
-                    getContext().getContentResolver().notifyChange(com.guggiemedia.fibermetric.lib.db.ThingTable.CONTENT_URI, null);
-                    return result;
-                }
-                break;
-            case URI_MATCH_TOOL:
-                rowId = db.insert(ToolTable.TABLE_NAME, null, values);
-                if (rowId > 0) {
-                    Uri result = ContentUris.withAppendedId(ToolTable.CONTENT_URI, rowId);
-                    getContext().getContentResolver().notifyChange(ToolTable.CONTENT_URI, null);
-                    return result;
-                }
-                break;
+
+
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);
         }
@@ -609,14 +497,7 @@ public class DataBaseProvider extends ContentProvider {
                     orderBy = PartTable.DEFAULT_SORT_ORDER;
                 }
                 break;
-            case URI_MATCH_PART_PERSONID:
-                qb.setTables(PartTable.TABLE_JOIN_PERSON_PART_TABLE);
-                qb.setDistinct (true);
 
-                if (sortOrder == null) {
-                    orderBy = PartTable.DEFAULT_SORT_ORDER;
-                }
-                break;
             case URI_MATCH_PART_JOB_ID:
                 qb.setTables(PartTable.TABLE_JOIN_PART_JOB_TABLE);
                 qb.setDistinct (true);
@@ -625,36 +506,7 @@ public class DataBaseProvider extends ContentProvider {
                     orderBy = PartTable.DEFAULT_SORT_ORDER;
                 }
                 break;
-            case URI_MATCH_PERSON:
-                qb.setTables(PersonTable.TABLE_NAME);
-                qb.setProjectionMap(PersonTable.PROJECTION_MAP);
-                if (sortOrder == null) {
-                    orderBy = PersonTable.DEFAULT_SORT_ORDER;
-                }
-                break;
-            case URI_MATCH_PERSON_ID:
-                qb.setTables(PersonTable.TABLE_NAME);
-                qb.setProjectionMap(PersonTable.PROJECTION_MAP);
-                qb.appendWhere(PersonTable.Columns._ID + "=" + uri.getPathSegments().get(1));
-                if (sortOrder == null) {
-                    orderBy = PersonTable.DEFAULT_SORT_ORDER;
-                }
-                break;
-            case URI_MATCH_PERSON_PART:
-                qb.setTables(PersonPartTable.TABLE_NAME);
-                qb.setProjectionMap(PersonPartTable.PROJECTION_MAP);
-                if (sortOrder == null) {
-                    orderBy = PersonPartTable.DEFAULT_SORT_ORDER;
-                }
-                break;
-            case URI_MATCH_PERSON_PART_ID:
-                qb.setTables(PersonPartTable.TABLE_NAME);
-                qb.setProjectionMap(PersonPartTable.PROJECTION_MAP);
-                qb.appendWhere(PersonPartTable.Columns._ID + "=" + uri.getPathSegments().get(1));
-                if (sortOrder == null) {
-                    orderBy = PersonPartTable.DEFAULT_SORT_ORDER;
-                }
-                break;
+
             case URI_MATCH_SITE:
                 qb.setTables(com.guggiemedia.fibermetric.lib.db.SiteTable.TABLE_NAME);
                 qb.setProjectionMap(com.guggiemedia.fibermetric.lib.db.SiteTable.PROJECTION_MAP);
@@ -670,58 +522,7 @@ public class DataBaseProvider extends ContentProvider {
                     orderBy = com.guggiemedia.fibermetric.lib.db.SiteTable.DEFAULT_SORT_ORDER;
                 }
                 break;
-            case URI_MATCH_TASK_ACTION:
-                qb.setTables(TaskActionTable.TABLE_NAME);
-                qb.setProjectionMap(TaskActionTable.PROJECTION_MAP);
-                if (sortOrder == null) {
-                    orderBy = TaskActionTable.DEFAULT_SORT_ORDER;
-                }
-                break;
-            case URI_MATCH_TASK_DETAIL:
-                qb.setTables(TaskDetailTable.TABLE_NAME);
-                qb.setProjectionMap(TaskDetailTable.PROJECTION_MAP);
-                if (sortOrder == null) {
-                    orderBy = TaskDetailTable.DEFAULT_SORT_ORDER;
-                }
-                break;
-            case URI_MATCH_TASK_DETAIL_ID:
-                qb.setTables(TaskDetailTable.TABLE_NAME);
-                qb.setProjectionMap(TaskDetailTable.PROJECTION_MAP);
-                qb.appendWhere(TaskDetailTable.Columns._ID + "=" + uri.getPathSegments().get(1));
-                if (sortOrder == null) {
-                    orderBy = TaskDetailTable.DEFAULT_SORT_ORDER;
-                }
-                break;
-            case URI_MATCH_THING:
-                qb.setTables(com.guggiemedia.fibermetric.lib.db.ThingTable.TABLE_NAME);
-                qb.setProjectionMap(com.guggiemedia.fibermetric.lib.db.ThingTable.PROJECTION_MAP);
-                if (sortOrder == null) {
-                    orderBy = com.guggiemedia.fibermetric.lib.db.ThingTable.DEFAULT_SORT_ORDER;
-                }
-                break;
-            case URI_MATCH_THING_ID:
-                qb.setTables(com.guggiemedia.fibermetric.lib.db.ThingTable.TABLE_NAME);
-                qb.setProjectionMap(com.guggiemedia.fibermetric.lib.db.ThingTable.PROJECTION_MAP);
-                qb.appendWhere(com.guggiemedia.fibermetric.lib.db.ThingTable.Columns._ID + "=" + uri.getPathSegments().get(1));
-                if (sortOrder == null) {
-                    orderBy = com.guggiemedia.fibermetric.lib.db.ThingTable.DEFAULT_SORT_ORDER;
-                }
-                break;
-            case URI_MATCH_TOOL:
-                qb.setTables(ToolTable.TABLE_NAME);
-                qb.setProjectionMap(ToolTable.PROJECTION_MAP);
-                if (sortOrder == null) {
-                    orderBy = ToolTable.DEFAULT_SORT_ORDER;
-                }
-                break;
-            case URI_MATCH_TOOL_ID:
-                qb.setTables(ToolTable.TABLE_NAME);
-                qb.setProjectionMap(ToolTable.PROJECTION_MAP);
-                qb.appendWhere(ToolTable.Columns._ID + "=" + uri.getPathSegments().get(1));
-                if (sortOrder == null) {
-                    orderBy = ToolTable.DEFAULT_SORT_ORDER;
-                }
-                break;
+
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);
         }
@@ -802,20 +603,7 @@ public class DataBaseProvider extends ContentProvider {
                 id = uri.getPathSegments().get(1);
                 count = db.update(PartTable.TABLE_NAME, values, PartTable.Columns._ID + "=" + id + (!TextUtils.isEmpty(selection) ? " AND (" + selection + ')' : ""), selectionArgs);
                 break;
-            case URI_MATCH_PERSON:
-                count = db.update(PersonTable.TABLE_NAME, values, selection, selectionArgs);
-                break;
-            case URI_MATCH_PERSON_ID:
-                id = uri.getPathSegments().get(1);
-                count = db.update(PersonTable.TABLE_NAME, values, PersonTable.Columns._ID + "=" + id + (!TextUtils.isEmpty(selection) ? " AND (" + selection + ')' : ""), selectionArgs);
-                break;
-            case URI_MATCH_PERSON_PART:
-                count = db.update(PersonPartTable.TABLE_NAME, values, selection, selectionArgs);
-                break;
-            case URI_MATCH_PERSON_PART_ID:
-                id = uri.getPathSegments().get(1);
-                count = db.update(PersonPartTable.TABLE_NAME, values, PersonPartTable.Columns._ID + "=" + id + (!TextUtils.isEmpty(selection) ? " AND (" + selection + ')' : ""), selectionArgs);
-                break;
+
             case URI_MATCH_SITE:
                 count = db.update(com.guggiemedia.fibermetric.lib.db.SiteTable.TABLE_NAME, values, selection, selectionArgs);
                 break;
@@ -823,34 +611,8 @@ public class DataBaseProvider extends ContentProvider {
                 id = uri.getPathSegments().get(1);
                 count = db.update(com.guggiemedia.fibermetric.lib.db.SiteTable.TABLE_NAME, values, com.guggiemedia.fibermetric.lib.db.SiteTable.Columns._ID + "=" + id + (!TextUtils.isEmpty(selection) ? " AND (" + selection + ')' : ""), selectionArgs);
                 break;
-            case URI_MATCH_TASK_ACTION:
-                count = db.update(TaskActionTable.TABLE_NAME, values, selection, selectionArgs);
-                break;
-            case URI_MATCH_TASK_ACTION_ID:
-                id = uri.getPathSegments().get(1);
-                count = db.update(TaskActionTable.TABLE_NAME, values, TaskActionTable.Columns._ID + "=" + id + (!TextUtils.isEmpty(selection) ? " AND (" + selection + ')' : ""), selectionArgs);
-                break;
-            case URI_MATCH_TASK_DETAIL:
-                count = db.update(TaskDetailTable.TABLE_NAME, values, selection, selectionArgs);
-                break;
-            case URI_MATCH_TASK_DETAIL_ID:
-                id = uri.getPathSegments().get(1);
-                count = db.update(TaskDetailTable.TABLE_NAME, values, TaskDetailTable.Columns._ID + "=" + id + (!TextUtils.isEmpty(selection) ? " AND (" + selection + ')' : ""), selectionArgs);
-                break;
-            case URI_MATCH_THING:
-                count = db.update(com.guggiemedia.fibermetric.lib.db.ThingTable.TABLE_NAME, values, selection, selectionArgs);
-                break;
-            case URI_MATCH_THING_ID:
-                id = uri.getPathSegments().get(1);
-                count = db.update(com.guggiemedia.fibermetric.lib.db.ThingTable.TABLE_NAME, values, com.guggiemedia.fibermetric.lib.db.ThingTable.Columns._ID + "=" + id + (!TextUtils.isEmpty(selection) ? " AND (" + selection + ')' : ""), selectionArgs);
-                break;
-            case URI_MATCH_TOOL:
-                count = db.update(ToolTable.TABLE_NAME, values, selection, selectionArgs);
-                break;
-            case URI_MATCH_TOOL_ID:
-                id = uri.getPathSegments().get(1);
-                count = db.update(ToolTable.TABLE_NAME, values, ToolTable.Columns._ID + "=" + id + (!TextUtils.isEmpty(selection) ? " AND (" + selection + ')' : ""), selectionArgs);
-                break;
+
+
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);
         }

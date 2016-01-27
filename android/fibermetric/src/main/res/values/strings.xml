@@ -59,7 +59,7 @@
     <string name="menuHelp">Help</string>
     <string name="menuInventory">My Inventory</string>
     <string name="menuJob">Job</string>
-    <string name="menuJobToday">Today</string>
+    <string name="menuStatus">Status</string>
     <string name="menuJobWeek">Week</string>
     <string name="menuReplaceBeacon">Replace Beacon</string>
     <string name="menuRequiredInventory">Required Inventory</string>

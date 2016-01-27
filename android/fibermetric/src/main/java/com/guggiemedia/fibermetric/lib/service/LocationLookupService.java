@@ -16,7 +16,6 @@ import com.google.android.gms.location.LocationServices;
 import com.guggiemedia.fibermetric.lib.chain.CommandEnum;
 import com.guggiemedia.fibermetric.lib.chain.CommandFactory;
 import com.guggiemedia.fibermetric.lib.chain.ContextFactory;
-import com.guggiemedia.fibermetric.lib.chain.GeographicUpdateCtx;
 import com.guggiemedia.fibermetric.lib.utility.UserPreferenceHelper;
 
 
@@ -86,20 +85,7 @@ public class LocationLookupService extends Service
 
     @Override
     public void onLocationChanged(Location location) {
-        Location testLocation = getTestLocation();
 
-      //  Personality2.currentLocation = (testLocation == null) ? location : testLocation;
-
-        GeographicUpdateCtx updateCtx = (GeographicUpdateCtx) ContextFactory.factory(CommandEnum.GEOGRAPHIC_UPDATE, this);
-        if (testLocation == null) {
-            updateCtx.setTestFlag(false);
-            updateCtx.setLocation(location);
-        } else {
-            updateCtx.setTestFlag(true);
-            updateCtx.setLocation(testLocation);
-        }
-
-        CommandFactory.execute(updateCtx);
     }
 
     /**

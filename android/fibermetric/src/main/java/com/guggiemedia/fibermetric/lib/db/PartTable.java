@@ -28,13 +28,7 @@ public class PartTable implements DataBaseTable {
 
     public static final String DEFAULT_SORT_ORDER = Columns.NAME + " ASC";
 
-    public static final String TABLE_JOIN_PERSON_PART_TABLE =
-            PartTable.TABLE_NAME + " " + PartTable.TABLE_NAME + " " +
-                    "INNER JOIN " + PersonPartTable.TABLE_NAME + " "
-                    + PersonPartTable.TABLE_NAME
-                    + " ON " + PartTable.TABLE_NAME + "." + Columns._ID + " = "
-                    + PersonPartTable.TABLE_NAME
-                    + "." + PersonPartTable.Columns.PART_ID;
+
 
     public static final String TABLE_JOIN_PART_JOB_TABLE
             = PartTable.TABLE_NAME + " as " + PartTable.TABLE_NAME +

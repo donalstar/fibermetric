@@ -11,8 +11,6 @@ import android.content.Intent;
 import android.os.Handler;
 import android.util.Log;
 
-import com.guggiemedia.fibermetric.lib.chain.AlertBumpCounterCtx;
-import com.guggiemedia.fibermetric.lib.chain.AlertStopCtx;
 import com.guggiemedia.fibermetric.lib.chain.CommandEnum;
 import com.guggiemedia.fibermetric.lib.chain.CommandFactory;
 import com.guggiemedia.fibermetric.lib.chain.ContextFactory;
@@ -95,9 +93,9 @@ public class BleScanService extends IntentService {
         final BluetoothAdapter btAdapter = manager.getAdapter();
 
         if (btAdapter == null || !btAdapter.isEnabled()) {
-            generateDisabledAlert();
+
         } else {
-            clearDisabledAlert();
+
 
             Date scanStartTime = new Date();
 
@@ -169,31 +167,4 @@ public class BleScanService extends IntentService {
         am.set(AlarmManager.RTC, nextAlarm, pi);
     }
 
-    private void clearDisabledAlert() {
-        AlertStopCtx alertStopCtx = (AlertStopCtx) ContextFactory.factory(CommandEnum.ALERT_STOP, getBaseContext());
-        alertStopCtx.setAlertType(AlertEnum.BLE_DISABLED);
-        CommandFactory.execute(alertStopCtx);
-    }
-
-    private void generateDisabledAlert() {
-        AlertBumpCounterCtx alertBumpCounterCtx = (AlertBumpCounterCtx) ContextFactory.factory(CommandEnum.ALERT_BUMP_COUNTER, getBaseContext());
-        alertBumpCounterCtx.setAlertType(AlertEnum.BLE_DISABLED);
-        alertBumpCounterCtx.setThingName("Bluetooth Radio");
-        CommandFactory.execute(alertBumpCounterCtx);
-    }
-
-    private void clearMissingBeaconAlert(long thingRowId) {
-        AlertStopCtx alertStopCtx = (AlertStopCtx) ContextFactory.factory(CommandEnum.ALERT_STOP, getBaseContext());
-        alertStopCtx.setAlertType(AlertEnum.BLE_MISSING);
-        alertStopCtx.setThingRowId(thingRowId);
-        CommandFactory.execute(alertStopCtx);
-    }
-
-    private void generateMissingBeaconAlert(long thingRowId, String thingName) {
-        AlertBumpCounterCtx alertBumpCounterCtx = (AlertBumpCounterCtx) ContextFactory.factory(CommandEnum.ALERT_BUMP_COUNTER, getBaseContext());
-        alertBumpCounterCtx.setAlertType(AlertEnum.BLE_MISSING);
-        alertBumpCounterCtx.setThingRowId(thingRowId);
-        alertBumpCounterCtx.setThingName(thingName);
-        CommandFactory.execute(alertBumpCounterCtx);
-    }
 }

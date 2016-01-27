@@ -122,14 +122,8 @@ public class DataBaseFacade {
             result = new JobTaskModel();
         } else if (tableName.equals(PartTable.TABLE_NAME)) {
             result = new PartModel();
-        } else if (tableName.equals(PersonTable.TABLE_NAME)) {
-            result = new PersonModel();
         } else if (tableName.equals(SiteTable.TABLE_NAME)) {
             result = new SiteModel();
-        } else if (tableName.equals(TaskActionTable.TABLE_NAME)) {
-            result = new TaskActionModel();
-        } else if (tableName.equals(ThingTable.TABLE_NAME)) {
-            result = new ThingModel();
         } else {
             throw new IllegalArgumentException("unknown table:" + tableName);
         }
@@ -138,35 +132,6 @@ public class DataBaseFacade {
         return result;
     }
 
-    /**
-     * discover user by account name
-     * @param userName
-     * @return
-     */
-    public PersonModel selectUser(String userName) {
-        DataBaseTable table = new PersonTable();
-
-        String[] projection = table.getDefaultProjection();
-        String orderBy = table.getDefaultSortOrder();
-
-        String selection = PersonTable.Columns.NAME_USER + "=?";
-        String[] selectionArgs = {userName};
-
-        SQLiteDatabase sqlDb = _dbh.getReadableDatabase();
-        Cursor cursor = sqlDb.query(table.getTableName(), projection, selection, selectionArgs, null, null, orderBy);
-
-        PersonModel model = new PersonModel();
-        model.setDefault();
-
-        if (cursor.moveToFirst()) {
-            model.fromCursor(cursor);
-        }
-
-        cursor.close();
-        sqlDb.close();
-
-        return model;
-    }
 
     /**
      * Return tasks associated w/a job
@@ -240,69 +205,4 @@ public class DataBaseFacade {
         return result;
     }
 
-    /**
-     * Return tasks associated w/a job
-     * @param parentId
-     * @return
-     */
-    public TaskActionModelList selectTaskActionByParent(Long parentId) {
-        TaskActionModelList result = new TaskActionModelList();
-
-        TaskActionTable table = new TaskActionTable();
-
-        String selection = TaskActionTable.Columns.PARENT + "=?";
-        String[] selectionArgs = new String[] {Long.toString(parentId)};
-
-        String orderBy = TaskActionTable.Columns.ORDER_NDX + " ASC";
-
-        SQLiteDatabase sqlDb = _dbh.getReadableDatabase();
-        Cursor cursor = sqlDb.query(TaskActionTable.TABLE_NAME, table.getDefaultProjection(), selection, selectionArgs, null, null, orderBy);
-
-        if (cursor.moveToFirst()) {
-            do {
-                TaskActionModel model = new TaskActionModel();
-                model.setDefault();
-                model.fromCursor(cursor);
-                result.add(model);
-            } while(cursor.moveToNext());
-        }
-
-        cursor.close();
-        sqlDb.close();
-
-        return result;
-    }
-
-    /**
-     * Return tasks associated w/a job
-     * @param parentId
-     * @return
-     */
-    public TaskDetailModelList selectTaskDetailByParent(Long parentId) {
-        TaskDetailModelList result = new TaskDetailModelList();
-
-        TaskDetailTable table = new TaskDetailTable();
-
-        String selection = TaskDetailTable.Columns.PARENT + "=?";
-        String[] selectionArgs = new String[] {Long.toString(parentId)};
-
-        String orderBy = TaskDetailTable.Columns.ORDER_NDX + " ASC";
-
-        SQLiteDatabase sqlDb = _dbh.getReadableDatabase();
-        Cursor cursor = sqlDb.query(TaskDetailTable.TABLE_NAME, table.getDefaultProjection(), selection, selectionArgs, null, null, orderBy);
-
-        if (cursor.moveToFirst()) {
-            do {
-                TaskDetailModel model = new TaskDetailModel();
-                model.setDefault();
-                model.fromCursor(cursor);
-                result.add(model);
-            } while(cursor.moveToNext());
-        }
-
-        cursor.close();
-        sqlDb.close();
-
-        return result;
-    }
 }

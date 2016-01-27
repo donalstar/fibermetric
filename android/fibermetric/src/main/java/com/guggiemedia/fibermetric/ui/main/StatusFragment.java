@@ -1,10 +1,14 @@
 package com.guggiemedia.fibermetric.ui.main;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -18,35 +22,57 @@ import android.widget.TextView;
 import com.guggiemedia.fibermetric.R;
 import com.guggiemedia.fibermetric.lib.chain.CommandFacade;
 import com.guggiemedia.fibermetric.lib.chain.JobTaskDurationCtx;
-import com.guggiemedia.fibermetric.lib.db.ChartModel;
-import com.guggiemedia.fibermetric.lib.db.JobTaskModelList;
-import com.guggiemedia.fibermetric.ui.component.RecyclerViewEmptySupport;
+import com.guggiemedia.fibermetric.lib.db.DataBaseTable;
+import com.guggiemedia.fibermetric.lib.db.InventoryCategoryEnum;
+import com.guggiemedia.fibermetric.lib.db.PartTable;
 
 
+public class StatusFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
-public class JobListFragment extends Fragment {
-    public static final String FRAGMENT_TAG = "FRAGMENT_JOB_LIST";
+    public static final String FRAGMENT_TAG = "FRAGMENT_STATUS";
 
-    public static final String LOG_TAG = JobListFragment.class.getName();
+    public static final String LOG_TAG = StatusFragment.class.getName();
 
     // display only jobs matching today date else all known jobs
     public static final String ARG_PARAM_TODAY = "PARAM_TODAY";
 
     private boolean _paramToday = false;
 
-    private JobListAdapter _adapter;
     private MainActivityListener _listener;
+
+    private InventoryViewAdapter _adapter;
 
     private ProgressBar _progressBar;
     private TextView _progressValue;
 
-    private JobTaskModelList _jobList = new JobTaskModelList();
-
     public static final int LOADER_ID = 271828;
 
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        DataBaseTable table = new PartTable();
+
+        String[] projection = table.getDefaultProjection();
+
+        String orderBy = PartTable.Columns.STATUS + " DESC";
+
+        return new CursorLoader(getActivity(), PartTable.CONTENT_URI, projection, null, null, orderBy);
+    }
+
+
+    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+        if (cursor != null) {
+            _adapter.setCursor(cursor);
+            _adapter.notifyDataSetChanged();
+            _adapter.setCategory(InventoryCategoryEnum.tools);
+        }
+
+    }
+
+    public void onLoaderReset(Loader<Cursor> loader) {
+        _adapter.setCursor(null);
+    }
 
     public static Fragment newInstance(Bundle args) {
-        JobListFragment fragment = new JobListFragment();
+        StatusFragment fragment = new StatusFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,9 +81,7 @@ public class JobListFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        JobTaskModelList temp = CommandFacade.jobTaskSelectToday(getActivity());
 
-        _adapter = new JobListAdapter(temp, MainActivityFragmentEnum.JOB_TODAY_LIST, getActivity());
         _listener = (MainActivityListener) getActivity();
     }
 
@@ -69,38 +93,34 @@ public class JobListFragment extends Fragment {
             _paramToday = getArguments().getBoolean(ARG_PARAM_TODAY);
         }
 
-        if (_paramToday) {
-            _jobList = CommandFacade.jobTaskSelectToday(getActivity());
-        }
-
         setHasOptionsMenu(true);
+
+
+        _adapter = new InventoryViewAdapter(getActivity(), InventoryPagerFragment.ViewType.todaysInventory);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_job_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_status, container, false);
 
         _progressBar = (ProgressBar) view.findViewById(R.id.pbJobProgress);
         _progressValue = (TextView) view.findViewById(R.id.tvProgressValue);
 
-        RecyclerViewEmptySupport recyclerView = (RecyclerViewEmptySupport)view.findViewById(R.id.recyclerView);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView.setEmptyView(view.findViewById(R.id.list_empty));
+        RecyclerView recyclerView2 = (RecyclerView) view.findViewById(R.id.recyclerView2);
 
-        recyclerView.setAdapter(_adapter);
 
-        final SwipeRefreshLayout swipeRefresh = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefresh);
-        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        recyclerView2.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        recyclerView2.setAdapter(_adapter);
 
-            @Override
-            public void onRefresh() {
-                _adapter.refresh(CommandFacade.jobTaskSelectToday(getActivity()));
-                swipeRefresh.setRefreshing(false);
-            }
-        });
 
         return view;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        getLoaderManager().initLoader(LOADER_ID, null, this);
     }
 
     @Override
@@ -131,14 +151,8 @@ public class JobListFragment extends Fragment {
                 _listener.navDrawerOpen(true);
                 break;
 
-            case R.id.actionToolBox:
-                _listener.fragmentSelect(MainActivityFragmentEnum.TODAYS_INVENTORY_VIEW, new Bundle());
-                break;
-            case R.id.actionHelp:
-                _listener.fragmentSelect(MainActivityFragmentEnum.HELP_VIEW, new Bundle());
-                break;
-            case R.id.actionFeedBack:
-                _listener.fragmentSelect(MainActivityFragmentEnum.FEEDBACK_FORM, new Bundle());
+            case R.id.actionSearch:
+
                 break;
             default:
                 throw new IllegalArgumentException("unknown menu option");
@@ -158,6 +172,6 @@ public class JobListFragment extends Fragment {
         }
 
         _progressBar.setProgress(progress);
-        _progressValue.setText(Integer.toString(progress) + "%");
+        _progressValue.setText("X" + Integer.toString(progress) + "%");
     }
 }

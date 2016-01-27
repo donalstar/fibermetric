@@ -34,7 +34,7 @@ public class JobTaskModel implements DataBaseModel, Serializable {
     private Integer _duration;
     private Date _deadlineTime;
     private Date _updateTime;
-    private boolean _stuntFlag; //TRUE, this is a header for JobListFragment
+    private boolean _stuntFlag; //TRUE, this is a header for StatusFragment
 
     @Override
     public void setDefault() {

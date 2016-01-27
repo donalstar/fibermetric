@@ -3,7 +3,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
 
     <!-- job progress -->
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -18,6 +19,7 @@
             android:padding="5dp" />
 
         <LinearLayout
+            android:id="@+id/progressBar"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/pbJobProgress"
@@ -33,26 +35,18 @@
                 style="@style/JobProgressRightBanner"
                 android:text="@string/labelZeroPercent" />
         </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView2"
+            android:layout_below="@id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/tomato"
+            />
     </RelativeLayout>
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefresh"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
 
-        <android.support.design.widget.CoordinatorLayout
-            android:background="#ffffff"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
 
-            <com.guggiemedia.fibermetric.ui.component.RecyclerViewEmptySupport
-                android:id="@+id/recyclerView"
-                style="@style/RecyclerList" />
 
-            <TextView
-                android:id="@+id/list_empty"
-                style="@style/EmptyListMessage"
-                android:text="@string/labelNoRows" />
-        </android.support.design.widget.CoordinatorLayout>
-    </android.support.v4.widget.SwipeRefreshLayout>
+
 </LinearLayout>

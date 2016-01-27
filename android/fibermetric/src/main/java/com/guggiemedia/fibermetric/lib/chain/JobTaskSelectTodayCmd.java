@@ -42,7 +42,7 @@ public class JobTaskSelectTodayCmd extends AbstractCmd {
     }
 
     /**
-     * JobListFragment needs a magic row between actual jobs as a header
+     * StatusFragment needs a magic row between actual jobs as a header
      * @param freshState
      * @return
      */

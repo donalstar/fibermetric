@@ -11,8 +11,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
-import com.guggiemedia.fibermetric.lib.Personality;
-
 
 /**
  * collect location updates
@@ -26,7 +24,7 @@ public class LocationReportService extends Service implements LocationListener {
     public void onLocationChanged(Location location) {
         Log.d(LOG_TAG, "xxx xxx Location Change:" + location.toString());
 
-        Personality.currentLocation = location;
+
     }
 
     // LocationListener

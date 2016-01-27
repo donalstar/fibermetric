@@ -22,7 +22,7 @@
                 android:id="@+id/navToolBar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary" />
+                android:background="@color/mid_green" />
 
             <FrameLayout
                 android:id="@+id/contentLayout"

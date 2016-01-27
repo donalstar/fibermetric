@@ -283,35 +283,6 @@ public class ContentFacade {
     //////////////////////////
     //////////////////////////
 
-    /**
-     * @param model
-     * @param context
-     */
-    public void updateTaskAction(TaskActionModel model, Context context) {
-        if (model.getId() > 0L) {
-            String[] target = new String[1];
-            target[0] = Long.toString(model.getId());
-            context.getContentResolver().update(TaskActionTable.CONTENT_URI, model.toContentValues(), "_id=?", target);
-        } else {
-            Uri uri = context.getContentResolver().insert(TaskActionTable.CONTENT_URI, model.toContentValues());
-            model.setId(ContentUris.parseId(uri));
-        }
-    }
-
-    /**
-     * @param model
-     * @param context
-     */
-    public void updateTaskDetail(TaskDetailModel model, Context context) {
-        if (model.getId() > 0L) {
-            String[] target = new String[1];
-            target[0] = Long.toString(model.getId());
-            context.getContentResolver().update(TaskDetailTable.CONTENT_URI, model.toContentValues(), "_id=?", target);
-        } else {
-            Uri uri = context.getContentResolver().insert(TaskDetailTable.CONTENT_URI, model.toContentValues());
-            model.setId(ContentUris.parseId(uri));
-        }
-    }
 
     //////////////////////////
     //////////////////////////
@@ -451,42 +422,7 @@ public class ContentFacade {
     //////////////////////////
     //////////////////////////
 
-    public PersonModelList selectPersonAll(Context context) {
-        PersonModelList result = new PersonModelList();
 
-        Cursor cursor = context.getContentResolver().query(PersonTable.CONTENT_URI, null, null, null, null);
-        if (cursor.moveToFirst()) {
-            do {
-                PersonModel model = new PersonModel();
-                model.setDefault();
-                model.fromCursor(cursor);
-                result.add(model);
-            } while (cursor.moveToNext());
-        }
-
-        cursor.close();
-
-        return result;
-    }
-
-    public PersonModel selectPersonByRowId(long rowId, Context context) {
-        PersonModel model = new PersonModel();
-        model.setDefault();
-
-        if (rowId > 0) {
-            String[] target = new String[1];
-            target[0] = Long.toString(rowId);
-
-            Cursor cursor = context.getContentResolver().query(PersonTable.CONTENT_URI, null, "_id=?", target, null);
-            if (cursor.moveToFirst()) {
-                model.fromCursor(cursor);
-            }
-
-            cursor.close();
-        }
-
-        return model;
-    }
 
     public List<SiteModel> selectSiteAll(Context context) {
         List<SiteModel> result = new ArrayList<>();
@@ -507,50 +443,7 @@ public class ContentFacade {
         return result;
     }
 
-    /*
-    public PersonModel selectPersonSelf(Context context) {
-        PersonModel model = new PersonModel();
-        model.setDefault();
 
-        String[] target = new String[1];
-        target[0] = Integer.toString(Constant.SQL_TRUE);
-
-        Cursor cursor = context.getContentResolver().query(PersonTable.CONTENT_URI, null, PersonTable.Columns.SELF_FLAG + "=?", target, null);
-        if (cursor.moveToFirst()) {
-            model.fromCursor(cursor);
-        }
-
-        cursor.close();
-
-        return model;
-    }
-    */
-
-    public void updatePerson(PersonModel model, Context context) {
-        if (model.getId() > 0L) {
-            String[] target = new String[1];
-            target[0] = Long.toString(model.getId());
-            context.getContentResolver().update(PersonTable.CONTENT_URI, model.toContentValues(), "_id=?", target);
-        } else {
-            Uri uri = context.getContentResolver().insert(PersonTable.CONTENT_URI, model.toContentValues());
-            model.setId(ContentUris.parseId(uri));
-        }
-    }
-
-    /**
-     * @param model
-     * @param context
-     */
-    public void updatePersonPart(PersonPartModel model, Context context) {
-        if (model.getId() > 0L) {
-            String[] target = new String[1];
-            target[0] = Long.toString(model.getId());
-            context.getContentResolver().update(PersonPartTable.CONTENT_URI, model.toContentValues(), "_id=?", target);
-        } else {
-            Uri uri = context.getContentResolver().insert(PersonPartTable.CONTENT_URI, model.toContentValues());
-            model.setId(ContentUris.parseId(uri));
-        }
-    }
 
 
     //////////////////////////
@@ -572,145 +465,10 @@ public class ContentFacade {
         }
     }
 
-    //////////////////////////
-    //////////////////////////
-    //////////////////////////
 
-    /*
-    public void deleteTask(Long arg, Context context) {
-        String[] target = new String[1];
-        target[0] = arg.toString();
-
-        context.getContentResolver().delete(TaskTable.CONTENT_URI, "_id=?", target);
-    }
-    */
-
-    /**
-     * @param model
-     * @param context
-     */
-    /*
-    public void updateTask(TaskModel model, Context context) {
-        if (model.getId() > 0L) {
-            String[] target = new String[1];
-            target[0] = Long.toString(model.getId());
-            context.getContentResolver().update(TaskTable.CONTENT_URI, model.toContentValues(), "_id=?", target);
-        } else {
-            Uri uri = context.getContentResolver().insert(TaskTable.CONTENT_URI, model.toContentValues());
-            model.setId(ContentUris.parseId(uri));
-        }
-    }
-    */
 
     //////////////////////////
     //////////////////////////
     //////////////////////////
 
-    /**
-     * select model by row id
-     *
-     * @param rowId
-     * @param context
-     * @return
-     */
-    public ThingModel selectThingByRowId(long rowId, Context context) {
-        ThingModel model = new ThingModel();
-        model.setDefault();
-
-        if (rowId > 0) {
-            String[] target = new String[1];
-            target[0] = Long.toString(rowId);
-
-            Cursor cursor = context.getContentResolver().query(ThingTable.CONTENT_URI, null, "_id=?", target, null);
-            if (cursor.moveToFirst()) {
-                model.fromCursor(cursor);
-            }
-
-            cursor.close();
-        }
-
-        return model;
-    }
-
-    /**
-     * select model by barcode
-     *
-     * @param barcode
-     * @param context
-     * @return
-     */
-    public ThingModel selectThingByBarCode(String barcode, Context context) {
-        ThingModel model = new ThingModel();
-        model.setDefault();
-
-        String selection = ThingTable.Columns.BARCODE + "=? and " + ThingTable.Columns.BARCODE_FLAG + "=?";
-        String selectionArgs[] = new String[]{barcode, Integer.toString(Constant.SQL_TRUE)};
-
-        Cursor cursor = context.getContentResolver().query(ThingTable.CONTENT_URI, null, selection, selectionArgs, null);
-        if (cursor.moveToFirst()) {
-            model.fromCursor(cursor);
-        }
-
-        cursor.close();
-
-        return model;
-    }
-
-    /**
-     * select model by BLE address
-     *
-     * @param address
-     * @param context
-     * @return selected model if found, else default model
-     */
-    public ThingModel selectThingByBleAddress(String address, Context context) {
-        ThingModel model = new ThingModel();
-        model.setDefault();
-
-        String selection = ThingTable.Columns.BLE_ADDRESS + "=? and " + ThingTable.Columns.BLE_FLAG + "=?";
-        String selectionArgs[] = new String[]{address, Integer.toString(Constant.SQL_TRUE)};
-
-        Cursor cursor = context.getContentResolver().query(ThingTable.CONTENT_URI, null, selection, selectionArgs, null);
-        if (cursor.moveToFirst()) {
-            model.fromCursor(cursor);
-        }
-
-        cursor.close();
-
-        return model;
-    }
-
-    /**
-     * @param model
-     * @param context
-     */
-    public void updateThing(ThingModel model, Context context) {
-        if (model.getId() > 0L) {
-            String[] target = new String[1];
-            target[0] = Long.toString(model.getId());
-            context.getContentResolver().update(ThingTable.CONTENT_URI, model.toContentValues(), "_id=?", target);
-        } else {
-            Uri uri = context.getContentResolver().insert(ThingTable.CONTENT_URI, model.toContentValues());
-            model.setId(ContentUris.parseId(uri));
-        }
-    }
-
-    //////////////////////////
-    //////////////////////////
-    //////////////////////////
-
-    /**
-     * @param model
-     * @param context
-     */
-    public void updateTool(ToolModel model, Context context) {
-        if (model.getId() > 0L) {
-            String[] target = new String[1];
-            target[0] = Long.toString(model.getId());
-            context.getContentResolver().update(ToolTable.CONTENT_URI, model.toContentValues(), "_id=?", target);
-        } else {
-            Uri uri = context.getContentResolver().insert(ToolTable.CONTENT_URI, model.toContentValues());
-            model.setId(ContentUris.parseId(uri));
-        }
-    }
 }
