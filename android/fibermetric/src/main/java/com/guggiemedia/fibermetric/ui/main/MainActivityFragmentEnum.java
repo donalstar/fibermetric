@@ -1,14 +1,5 @@
 package com.guggiemedia.fibermetric.ui.main;
 
-/**
- * fragments controlled by MainBarcodeActivity
- *
- * naming convention:
- *   list = recycler (formerly ListView)
- *   form = fragment which saves data
- *   pager = fragment pager
- *   view = fragment which provides a read only detail
- */
 public enum MainActivityFragmentEnum {
     UNKNOWN("Unknown"),
     ADD_BEACON_VIEW("AddBeaconView"),
@@ -24,17 +15,7 @@ public enum MainActivityFragmentEnum {
     REQUIRED_INVENTORY_VIEW("RequiredInventoryView"),
     JOB_TODAY_LIST("JobTodayList"),
     JOB_VIEW("JobView"),
-    PART_VIEW("PartView"),
-    REPORT_VIEW("ReportView"),
-    REPLACE_BEACON_VIEW("ReplaceBeaconView"),
-    SETTING_FORM("SettingForm"),
-    STUB_VIEW("StubView"),
-    TASK_END("TaskEnd"),
-    TASK_PAGER("TaskPager"),
-    TASK_VIEW("TaskView"),
-    NAVIGATION_PREVIEW("NavigationPreview"),
-    TURN_BY_TURN_VIEW("TurnByTurnView"),
-    TURN_BY_TURN_LIST("TurnByTurnList");
+    STATUS_VIEW("StatusView");
 
     private final String _name;
 

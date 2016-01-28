@@ -125,7 +125,7 @@ public class StatusFragment extends Fragment implements LoaderManager.LoaderCall
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.job_list_fragment, menu);
+        inflater.inflate(R.menu.status_fragment, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 

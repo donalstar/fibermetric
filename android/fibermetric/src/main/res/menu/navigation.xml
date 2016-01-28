@@ -6,34 +6,16 @@
         android:checkableBehavior="single">
 
         <item
-            android:id="@+id/navToday"
+            android:id="@+id/navStatus"
             android:checked="true"
             android:icon="@drawable/ic_today_default"
             android:title="@string/menuStatus" />
 
         <item
-            android:id="@+id/navWeek"
+            android:id="@+id/navHistory"
             android:icon="@drawable/ic_week_default"
-            android:title="@string/menuJobWeek" />
-
-        <item
-            android:id="@+id/navInventory"
-            android:icon="@drawable/ic_inventory_default"
-            android:title="@string/menuInventory" />
+            android:title="@string/menuHistory" />
     </group>
-
-    <group android:id="@+id/group2">
-        <item
-            android:id="@+id/navAlerts"
-            android:icon="@drawable/ic_alerts_default"
-            android:title="@string/menuAlerts" />
-        <item
-            android:id="@+id/navChat"
-            android:icon="@drawable/ic_chats_default"
-            android:title="@string/menuChat" />
-
-    </group>
-
 
     <group android:id="@+id/group3">
         <item

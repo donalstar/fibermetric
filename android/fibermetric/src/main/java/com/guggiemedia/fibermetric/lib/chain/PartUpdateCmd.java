@@ -1,5 +1,7 @@
 package com.guggiemedia.fibermetric.lib.chain;
 
+import com.guggiemedia.fibermetric.lib.db.ItemModel;
+
 /**
  * Created by donal on 10/5/15.
  */
@@ -18,7 +20,7 @@ public class PartUpdateCmd extends AbstractCmd {
         boolean result = false;
 
         final PartUpdateCtx ctx = (PartUpdateCtx) context;
-        final com.guggiemedia.fibermetric.lib.db.PartModel model = ctx.getModel();
+        final ItemModel model = ctx.getModel();
 
         _contentFacade.updatePart(model, ctx.getAndroidContext());
 

@@ -13,7 +13,7 @@
         android:id="@+id/headerImageView"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:src="@drawable/moxie_circle"/>
+        android:src="@drawable/fibermetric_logo"/>
 
     <TextView style="@android:style/TextAppearance.Material.Medium"
         android:id="@+id/headerTextView"

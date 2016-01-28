@@ -23,40 +23,19 @@ public class ItemTable implements DataBaseTable {
     public static final String DEFAULT_SORT_ORDER = Columns.NAME + " ASC";
 
 
-
     public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ("
             + Columns._ID + " INTEGER PRIMARY KEY,"
             + Columns.NAME + " TEXT NOT NULL,"
-            + Columns.SERIAL + " TEXT NOT NULL,"
-            + Columns.MANUFACTURER + " TEXT NOT NULL,"
-            + Columns.MODEL_NUMBER + " TEXT NOT NULL,"
-            + Columns.BARCODE + " TEXT,"
-            + Columns.BLE_ADDRESS + " TEXT,"
-            + Columns.BLE_IN_RANGE + " INTEGER NOT NULL,"
-            + Columns.OWNER + " TEXT NOT NULL,"
-            + Columns.PICKED_UP_DATE_TS + " INTEGER NOT NULL,"
-            + Columns.CONDITION + " TEXT NOT NULL,"
-            + Columns.SITE_ID + " INTEGER NOT NULL,"
-            + Columns.LATITUDE + " REAL NOT NULL,"
-            + Columns.LONGITUDE + " REAL NOT NULL,"
-            + Columns.DESCRIPTION + " TEXT NOT NULL"
+            + Columns.PORTION + " TEXT NOT NULL,"
+            + Columns.GRAMS + " FLOAT NOT NULL,"
+            + Columns.TYPE + " TEXT NOT NULL"
             + ");";
 
     public static final class Columns implements BaseColumns {
         public static final String NAME = "name";
-        public static final String SERIAL = "serial";
-        public static final String MANUFACTURER = "manufacturer";
-        public static final String MODEL_NUMBER = "model_number";
-        public static final String BARCODE = "barcode";
-        public static final String BLE_ADDRESS = "ble_address";
-        public static final String BLE_IN_RANGE = "ble_in_range";
-        public static final String OWNER = "owner";
-        public static final String PICKED_UP_DATE_TS = "picked_up_date_ts";
-        public static final String CONDITION = "condition";
-        public static final String SITE_ID = "site_id";
-        public static final String LATITUDE = "latitude";
-        public static final String LONGITUDE = "longitude";
-        public static final String DESCRIPTION = "description";
+        public static final String PORTION = "portion";
+        public static final String GRAMS = "grams";
+        public static final String TYPE = "type";
     }
 
     //
@@ -65,19 +44,9 @@ public class ItemTable implements DataBaseTable {
     static {
         PROJECTION_MAP.put(ItemTable.TABLE_NAME + "." + Columns._ID, Columns._ID);
         PROJECTION_MAP.put(ItemTable.TABLE_NAME + "." + Columns.NAME, Columns.NAME);
-        PROJECTION_MAP.put(Columns.SERIAL, Columns.SERIAL);
-        PROJECTION_MAP.put(Columns.MANUFACTURER, Columns.MANUFACTURER);
-        PROJECTION_MAP.put(Columns.MODEL_NUMBER, Columns.MODEL_NUMBER);
-        PROJECTION_MAP.put(Columns.BARCODE, Columns.BARCODE);
-        PROJECTION_MAP.put(Columns.BLE_ADDRESS, Columns.BLE_ADDRESS);
-        PROJECTION_MAP.put(Columns.BLE_IN_RANGE, Columns.BLE_IN_RANGE);
-        PROJECTION_MAP.put(Columns.OWNER, Columns.OWNER);
-        PROJECTION_MAP.put(Columns.PICKED_UP_DATE_TS, Columns.PICKED_UP_DATE_TS);
-        PROJECTION_MAP.put(Columns.CONDITION, Columns.CONDITION);
-        PROJECTION_MAP.put(Columns.SITE_ID, Columns.SITE_ID);
-        PROJECTION_MAP.put(Columns.LATITUDE, Columns.LATITUDE);
-        PROJECTION_MAP.put(Columns.LONGITUDE, Columns.LONGITUDE);
-        PROJECTION_MAP.put(ItemTable.TABLE_NAME + "." + Columns.DESCRIPTION, Columns.DESCRIPTION);
+        PROJECTION_MAP.put(Columns.PORTION, Columns.PORTION);
+        PROJECTION_MAP.put(Columns.GRAMS, Columns.GRAMS);
+        PROJECTION_MAP.put(Columns.TYPE, Columns.TYPE);
     }
 
     @Override

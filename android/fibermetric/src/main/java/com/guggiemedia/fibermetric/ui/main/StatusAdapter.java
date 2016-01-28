@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.guggiemedia.fibermetric.R;
-import com.guggiemedia.fibermetric.lib.db.PartModel;
+import com.guggiemedia.fibermetric.lib.db.ItemModel;
 
 
 /**
@@ -59,7 +59,7 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.ViewHolder
 
             _cursor.moveToPosition(position);
 
-            final PartModel model = new PartModel();
+            final ItemModel model = new ItemModel();
             model.setDefault();
             model.fromCursor(_cursor);
 
@@ -74,9 +74,7 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.ViewHolder
 
             int visibility = View.VISIBLE;
 
-            int imageResourceId = (model.getBleAddress().equals("0"))
-                    ? R.drawable.ic_checkmark_green
-                    : R.drawable.ic_beacon_blue;
+            int imageResourceId = R.drawable.ic_checkmark_green;
 
             viewHolder.statusCheck.setImageResource(imageResourceId);
 
@@ -88,7 +86,7 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.ViewHolder
             viewHolder.partIndicator.setImageResource(partIndicatorResourceId);
 
             viewHolder.itemName.setText(model.getName());
-            viewHolder.itemSerialNumber.setText(model.getSerial());
+            viewHolder.itemSerialNumber.setText(model.getPortion());
 
             viewHolder.view.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -99,7 +97,7 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.ViewHolder
 
                     bundle.putString(ARG_PARAM_ITEM_NAME, model.getName());
 
-                    _listener.fragmentSelect(MainActivityFragmentEnum.PART_VIEW, bundle);
+                    _listener.fragmentSelect(MainActivityFragmentEnum.STATUS_VIEW, bundle);
                 }
             });
         }
@@ -123,7 +121,6 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.ViewHolder
         public final TextView header;
         public final TextView itemName;
         public final TextView itemSerialNumber;
-        public final ImageView imageView;
         public final ImageView statusCheck;
         public final ImageView partIndicator;
 
@@ -135,8 +132,6 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.ViewHolder
 
             itemName = (TextView) view.findViewById(R.id.itemName);
             itemSerialNumber = (TextView) view.findViewById(R.id.itemSerialNumber);
-
-            imageView = (ImageView) view.findViewById(R.id.imageView);
 
             statusCheck = (ImageView) view.findViewById(R.id.statusCheck);
             partIndicator = (ImageView) view.findViewById(R.id.partIndicator);

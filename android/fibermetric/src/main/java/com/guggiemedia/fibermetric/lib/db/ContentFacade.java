@@ -25,7 +25,7 @@ public class ContentFacade {
      * @param model
      * @param context
      */
-    public void updatePart(PartModel model, Context context) {
+    public void updatePart(ItemModel model, Context context) {
         if (model.getId() > 0L) {
             String[] target = new String[1];
             target[0] = Long.toString(model.getId());
@@ -36,33 +36,14 @@ public class ContentFacade {
         }
     }
 
-    /**
-     * @param partId
-     * @param barcode
-     * @param context
-     * @return
-     */
-    public PartModel replaceBarcodeForPart(long partId, String barcode, Context context) {
-        PartModel partModel = selectPartByRowId(partId, context);
-
-        if (partModel.getId() != 0L) {
-            // update barcode
-            partModel.setBarcode(barcode);
-
-            updatePart(partModel, context);
-        }
-
-        return partModel;
-    }
-
 
     /**
      * @param rowId
      * @param context
      * @return
      */
-    public PartModel selectPartByRowId(long rowId, Context context) {
-        PartModel model = new PartModel();
+    public ItemModel selectPartByRowId(long rowId, Context context) {
+        ItemModel model = new ItemModel();
         model.setDefault();
 
         if (rowId > 0) {

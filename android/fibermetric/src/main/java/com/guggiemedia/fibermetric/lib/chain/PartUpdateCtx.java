@@ -2,14 +2,14 @@ package com.guggiemedia.fibermetric.lib.chain;
 
 import android.content.Context;
 
-import com.guggiemedia.fibermetric.lib.db.PartModel;
+import com.guggiemedia.fibermetric.lib.db.ItemModel;
 
 
 /**
  * Created by donal on 9/29/15.
  */
 public class PartUpdateCtx extends AbstractCmdCtx {
-    private PartModel _model = new PartModel();
+    private ItemModel _model = new ItemModel();
     private String _newCustodian;
     private String _siteId;
 
@@ -17,11 +17,11 @@ public class PartUpdateCtx extends AbstractCmdCtx {
         super(CommandEnum.PART_UPDATE, androidContext);
     }
 
-    public PartModel getModel() {
+    public ItemModel getModel() {
         return _model;
     }
 
-    public void setModel(PartModel arg) {
+    public void setModel(ItemModel arg) {
         _model = arg;
     }
 

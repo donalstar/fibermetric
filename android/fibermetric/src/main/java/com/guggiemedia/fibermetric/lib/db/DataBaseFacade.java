@@ -113,7 +113,7 @@ public class DataBaseFacade {
         DataBaseModel result = null;
 
         if (tableName.equals(ItemTable.TABLE_NAME)) {
-            result = new PartModel();
+            result = new ItemModel();
         } else {
             throw new IllegalArgumentException("unknown table:" + tableName);
         }

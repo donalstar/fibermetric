@@ -7,156 +7,103 @@ import com.guggiemedia.fibermetric.lib.chain.CommandFactory;
 import com.guggiemedia.fibermetric.lib.chain.ContextFactory;
 import com.guggiemedia.fibermetric.lib.chain.ContextList;
 import com.guggiemedia.fibermetric.lib.chain.PartUpdateCtx;
-import com.guggiemedia.fibermetric.lib.db.PartModel;
+import com.guggiemedia.fibermetric.lib.db.ItemModel;
+import com.guggiemedia.fibermetric.lib.db.ItemTypeEnum;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Seed the database for various scenarios
  */
 public class DataBaseScenario {
 
-    public List<PartModel> loadParts(Context context) {
-
+    public List<ItemModel> loadParts(Context context) {
 
 
         String[][] items = {
-                {"Brussel Sprouts", "1U-8760"},
-                {"Oil Filter Cutter GP", "175-7546"},
-                {"Magnetic testing rod", "MK 160/14"},
-                {"Used Oil Container", "BTZ11849"},
-                {"Diesel Engine Servicing Kit", "TK-45"},
-                {"Ultrasonic grease gun", "UP-201"},
-                {"Torque Wrench Kit", "5WFL7"},
-                {"Turbine Water Wash system", "GTE-W3418"},
-                {"Temperature sensor", "TP-32154"},
-                // parts
-                {"Oil Filter - CAT", "Lf691"},
-                {"Oil Filter - JD", "523-1693JD"},
-                {"Engine Oil - CAT", "444-3551"},
-                {"Engine Oil - JD", "TY26673"},
-                {"Bearing Lubricant", "ISO-VG-68"}
+                {"Artichoke", "1U-8760"},
+                {"Beans, baked, plain", "1U-8760"},
+                {"Beans, black", "1U-8760"},
+                {"Beans, kidney, canned", "1U-8760"},
+                {"Beans, lima", "1U-8760"},
+                {"Beans, navy", "1U-8760"},
+                {"Beans, pinto", "1U-8760"},
+                {"Beans, white, canned", "1U-8760"},
+                {"Chickpeas, canned", "1U-8760"},
+                {"Lentils", "1U-8760"},
+                {"Mixed vegetables, frozen", "1U-8760"},
+                {"Peas, green, frozen", "1U-8760"},
+                {"Peas, split", "1U-8760"},
+                {"Potato, baked, wi/skin", "1U-8760"},
         };
 
-        String barcodes[] = {
-                "722252161116",
-                "0",
-                "0",
-                "0",
-                "0",
-                "009800007615",
-                "312546629363",
-                "0",
-                "0",
-                "0",
-                "0",
-                "0",
-                "011594100373",
-                "381370047544"
+        String portions[] = {
+                "1 medium",
+                "1/2 Cup",
+                "1/2 Cup",
+                "1/2 Cup",
+                "1/2 Cup",
+                "1/2 Cup",
+                "1/2 Cup",
+                "1/2 Cup",
+                "1/2 Cup",
+                "1/2 Cup",
+                "1/2 Cup",
+                "1/2 Cup",
+                "1/2 Cup",
+                "1 medium"
         };
 
-        String bleAddresses[] = {
-                "0",
-                "0",
-                "0",
-                "0",
-                "0",
-                "C6:BC:A9:5E:B7:4E",
-//                "67:34:0B:AE:CD:C4",
-                "0",
-                "0",
-                "0",
-                "0",
-                "0",
-                "0",
-                "0",
-                "67:34:0B:AE:CD:C4"
+        Double grams[] = {
+                10.3,
+                5.2,
+                7.5,
+                6.9,
+                6.6,
+                9.5,
+                7.7,
+                6.3,
+                5.3,
+                7.8,
+                4.0,
+                4.4,
+                8.2,
+                4.4
         };
 
-        String manufacturers[] = {
-                "Caterpillar",
-                "Caterpillar",
-                "Magsy",
-                "Blitz",
-                "Operations",
-                "UE Systems",
-                "Zoro",
-                "GTE",
-                "@Temp",
-                "Caterpillar",
-                "John Deere",
-                "Caterpillar",
-                "John Deere",
-                "Sunoco"
+        ItemTypeEnum types[] = {
+                ItemTypeEnum.vegetable,
+                ItemTypeEnum.vegetable,
+                ItemTypeEnum.vegetable,
+                ItemTypeEnum.vegetable,
+                ItemTypeEnum.vegetable,
+                ItemTypeEnum.vegetable,
+                ItemTypeEnum.vegetable,
+                ItemTypeEnum.vegetable,
+                ItemTypeEnum.vegetable,
+                ItemTypeEnum.vegetable,
+                ItemTypeEnum.vegetable,
+                ItemTypeEnum.vegetable,
+                ItemTypeEnum.vegetable,
+                ItemTypeEnum.vegetable
         };
 
-        String serialNumbers[] = {
-                "CW-1453",
-                "CG-4214",
-                "MK-1287",
-                "OC-7342",
-                "TK-45",
-                "UG-514",
-                "TWK-12987",
-                "TW-12",
-                "TP-451",
-                "OF-C187",
-                "OF-JD42",
-                "Oil-235",
-                "Oil 263",
-                "LU-3268"
-        };
-
-        String descriptions[] = {
-                "Chain Wrench for removing oil filter in diesel powered industrial engines",
-                "Oil Filter Cutter to assist in oil filter inspection",
-                "Magnetic testing rod to inspect metal fragments in a used oil filter",
-                "Blitz USA 12 QUART DISPOS-OIL CONTAINER",
-                "General toolkit for diesel engine servicing jobs",
-                "Ultraprobe 201 - Grease Caddy",
-                "Torque Multiplier, 1250 ft-lb, 1/2x3/4 Dr",
-                "GTE Turbine - Compressor Water Wash and Cleaning System",
-                "Magnetic temperature sensor to monitor temperature of metal surfaces",
-                "Oil Filter for CAT C18 Engines",
-                "Oil Filter for John Deere Powertech 9.0l",
-                "DEO Cold Weather synthetic engine oil",
-                "Plus-50™ II Engine Oil synthetic 0w-40",
-                "Sunep VG 68 Bearing Lubricant - standard temp"
-        };
-
-        Set<String> pickupParts = new HashSet<>(Arrays.asList(
-                new String[]{"Ultrasonic grease gun", "Torque Wrench Kit", "Bearing Lubricant"}
-        ));
-
-        List<PartModel> models = new ArrayList<>();
+        List<ItemModel> models = new ArrayList<>();
 
         for (int i = 0; i < items.length; i++) {
-            PartModel model = new PartModel();
+            ItemModel model = new ItemModel();
             model.setDefault();
 
             String name = items[i][0];
 
             model.setName(name);
 
+            model.setPortion(portions[i]);
 
-            model.setManufacturer(manufacturers[i]);
-            model.setModelNumber(items[i][1]);
-            model.setSerial(serialNumbers[i]);
-            model.setBarcode(barcodes[i]);
-            model.setOwner("John Smith");
-            model.setPickedUpDate(new Date());
-            model.setCondition("Good");
+            model.setGrams(grams[i]);
+            model.setType(types[i]);
 
-
-            model.setBleAddress(bleAddresses[i]);
-
-
-            model.setDescription(descriptions[i]);
             models.add(model);
 
             ContextList list = new ContextList();
@@ -169,7 +116,7 @@ public class DataBaseScenario {
         return models;
     }
 
-    private void addToPartsContextList(PartModel model, ContextList list, Context context) {
+    private void addToPartsContextList(ItemModel model, ContextList list, Context context) {
         PartUpdateCtx ctx
                 = (PartUpdateCtx) ContextFactory.factory(CommandEnum.PART_UPDATE, context);
 

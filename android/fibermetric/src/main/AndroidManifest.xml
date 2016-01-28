@@ -40,7 +40,7 @@
     <application
         android:name="com.guggiemedia.fibermetric.lib.FibermetricApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/fibermetric"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
 
