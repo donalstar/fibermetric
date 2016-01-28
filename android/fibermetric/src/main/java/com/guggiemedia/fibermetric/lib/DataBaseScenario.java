@@ -7,8 +7,6 @@ import com.guggiemedia.fibermetric.lib.chain.CommandFactory;
 import com.guggiemedia.fibermetric.lib.chain.ContextFactory;
 import com.guggiemedia.fibermetric.lib.chain.ContextList;
 import com.guggiemedia.fibermetric.lib.chain.PartUpdateCtx;
-import com.guggiemedia.fibermetric.lib.db.InventoryCategoryEnum;
-import com.guggiemedia.fibermetric.lib.db.InventoryStatusEnum;
 import com.guggiemedia.fibermetric.lib.db.PartModel;
 
 import java.util.ArrayList;
@@ -25,26 +23,10 @@ public class DataBaseScenario {
 
     public List<PartModel> loadParts(Context context) {
 
-        InventoryCategoryEnum[] categories = {
-                InventoryCategoryEnum.tools,
-                InventoryCategoryEnum.tools,
-                InventoryCategoryEnum.tools,
-                InventoryCategoryEnum.tools,
-                InventoryCategoryEnum.tools,
-                InventoryCategoryEnum.tools,
-                InventoryCategoryEnum.tools,
-                InventoryCategoryEnum.tools,
-                InventoryCategoryEnum.tools,
-                InventoryCategoryEnum.parts,
-                InventoryCategoryEnum.parts,
-                InventoryCategoryEnum.parts,
-                InventoryCategoryEnum.parts,
-                InventoryCategoryEnum.parts
-        };
+
 
         String[][] items = {
-                //tools
-                {"Chain Wrench", "1U-8760"},
+                {"Brussel Sprouts", "1U-8760"},
                 {"Oil Filter Cutter GP", "175-7546"},
                 {"Magnetic testing rod", "MK 160/14"},
                 {"Used Oil Container", "BTZ11849"},
@@ -161,10 +143,6 @@ public class DataBaseScenario {
 
             model.setName(name);
 
-            InventoryStatusEnum itemStatus = (pickupParts.contains(name)) ?
-                    InventoryStatusEnum.pickUp : InventoryStatusEnum.inCustody;
-
-            model.setStatus(itemStatus);
 
             model.setManufacturer(manufacturers[i]);
             model.setModelNumber(items[i][1]);
@@ -173,7 +151,7 @@ public class DataBaseScenario {
             model.setOwner("John Smith");
             model.setPickedUpDate(new Date());
             model.setCondition("Good");
-            model.setCategory(categories[i]);
+
 
             model.setBleAddress(bleAddresses[i]);
 

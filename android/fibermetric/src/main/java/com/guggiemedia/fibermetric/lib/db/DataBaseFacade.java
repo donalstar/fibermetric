@@ -5,10 +5,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.guggiemedia.fibermetric.lib.Constant;
-
-import java.util.Date;
-
 /**
  *
  */
@@ -116,14 +112,8 @@ public class DataBaseFacade {
     private DataBaseModel toModel(String tableName) {
         DataBaseModel result = null;
 
-        if (tableName.equals(ImageTable.TABLE_NAME)) {
-            result = new ImageModel();
-        } else if (tableName.equals(JobTaskTable.TABLE_NAME)) {
-            result = new JobTaskModel();
-        } else if (tableName.equals(PartTable.TABLE_NAME)) {
+        if (tableName.equals(ItemTable.TABLE_NAME)) {
             result = new PartModel();
-        } else if (tableName.equals(SiteTable.TABLE_NAME)) {
-            result = new SiteModel();
         } else {
             throw new IllegalArgumentException("unknown table:" + tableName);
         }
@@ -133,76 +123,5 @@ public class DataBaseFacade {
     }
 
 
-    /**
-     * Return tasks associated w/a job
-     * @param parentId
-     * @return
-     */
-    public JobTaskModelList selectJobTaskByParent(Long parentId) {
-        JobTaskModelList result = new JobTaskModelList();
-
-        JobTaskTable table = new JobTaskTable();
-
-        String selection = JobTaskTable.Columns.PARENT + "=? and " + JobTaskTable.Columns.JOB_FLAG + "=?";
-        String[] selectionArgs = new String[] {Long.toString(parentId), Integer.toString(Constant.SQL_FALSE)};
-
-        String orderBy = JobTaskTable.Columns.ORDER_NDX + " ASC";
-
-        SQLiteDatabase sqlDb = _dbh.getReadableDatabase();
-        Cursor cursor = sqlDb.query(JobTaskTable.TABLE_NAME, table.getDefaultProjection(), selection, selectionArgs, null, null, orderBy);
-
-        if (cursor.moveToFirst()) {
-            do {
-                JobTaskModel model = new JobTaskModel();
-                model.setDefault();
-                model.fromCursor(cursor);
-                result.add(model);
-            } while(cursor.moveToNext());
-        }
-
-        cursor.close();
-        sqlDb.close();
-
-        return result;
-    }
-
-    public JobTaskModelList selectJobs(boolean todayOnly) {
-        JobTaskModelList result = new JobTaskModelList();
-
-        JobTaskTable table = new JobTaskTable();
-
-        String selection = null;
-        String[] selectionArgs = null;
-
-        String[] projection = table.getDefaultProjection();
-        String orderBy = JobTaskTable.Columns.JOB_STATE + " DESC";
-
-        if (todayOnly) {
-            String target = JobTaskModel.formatter2(new Date());
-
-            selection = JobTaskTable.Columns.JOB_FLAG + "=? and " + JobTaskTable.Columns.DEADLINE + "=?";
-            selectionArgs = new String[] {Integer.toString(Constant.SQL_TRUE), target};
-        } else {
-            selection = JobTaskTable.Columns.JOB_FLAG + "=?";
-            selectionArgs = new String[] {Integer.toString(Constant.SQL_TRUE)};
-        }
-
-        SQLiteDatabase sqlDb = _dbh.getReadableDatabase();
-        Cursor cursor = sqlDb.query(JobTaskTable.TABLE_NAME, table.getDefaultProjection(), selection, selectionArgs, null, null, orderBy);
-
-        if (cursor.moveToFirst()) {
-            do {
-                JobTaskModel model = new JobTaskModel();
-                model.setDefault();
-                model.fromCursor(cursor);
-                result.add(model);
-            } while(cursor.moveToNext());
-        }
-
-        cursor.close();
-        sqlDb.close();
-
-        return result;
-    }
 
 }

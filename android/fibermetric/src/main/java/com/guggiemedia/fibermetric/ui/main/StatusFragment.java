@@ -20,11 +20,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.guggiemedia.fibermetric.R;
-import com.guggiemedia.fibermetric.lib.chain.CommandFacade;
-import com.guggiemedia.fibermetric.lib.chain.JobTaskDurationCtx;
 import com.guggiemedia.fibermetric.lib.db.DataBaseTable;
-import com.guggiemedia.fibermetric.lib.db.InventoryCategoryEnum;
-import com.guggiemedia.fibermetric.lib.db.PartTable;
+import com.guggiemedia.fibermetric.lib.db.ItemTable;
 
 
 public class StatusFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
@@ -36,11 +33,9 @@ public class StatusFragment extends Fragment implements LoaderManager.LoaderCall
     // display only jobs matching today date else all known jobs
     public static final String ARG_PARAM_TODAY = "PARAM_TODAY";
 
-    private boolean _paramToday = false;
-
     private MainActivityListener _listener;
 
-    private InventoryViewAdapter _adapter;
+    private StatusAdapter _adapter;
 
     private ProgressBar _progressBar;
     private TextView _progressValue;
@@ -48,13 +43,13 @@ public class StatusFragment extends Fragment implements LoaderManager.LoaderCall
     public static final int LOADER_ID = 271828;
 
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        DataBaseTable table = new PartTable();
+        DataBaseTable table = new ItemTable();
 
         String[] projection = table.getDefaultProjection();
 
-        String orderBy = PartTable.Columns.STATUS + " DESC";
+        String orderBy = ItemTable.Columns._ID + " DESC";
 
-        return new CursorLoader(getActivity(), PartTable.CONTENT_URI, projection, null, null, orderBy);
+        return new CursorLoader(getActivity(), ItemTable.CONTENT_URI, projection, null, null, orderBy);
     }
 
 
@@ -62,7 +57,6 @@ public class StatusFragment extends Fragment implements LoaderManager.LoaderCall
         if (cursor != null) {
             _adapter.setCursor(cursor);
             _adapter.notifyDataSetChanged();
-            _adapter.setCategory(InventoryCategoryEnum.tools);
         }
 
     }
@@ -89,14 +83,9 @@ public class StatusFragment extends Fragment implements LoaderManager.LoaderCall
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments() != null) {
-            _paramToday = getArguments().getBoolean(ARG_PARAM_TODAY);
-        }
-
         setHasOptionsMenu(true);
 
-
-        _adapter = new InventoryViewAdapter(getActivity(), InventoryPagerFragment.ViewType.todaysInventory);
+        _adapter = new StatusAdapter(getActivity());
     }
 
     @Override
@@ -107,12 +96,10 @@ public class StatusFragment extends Fragment implements LoaderManager.LoaderCall
         _progressValue = (TextView) view.findViewById(R.id.tvProgressValue);
 
 
-        RecyclerView recyclerView2 = (RecyclerView) view.findViewById(R.id.recyclerView2);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
-
-        recyclerView2.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView2.setAdapter(_adapter);
-
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        recyclerView.setAdapter(_adapter);
 
         return view;
     }
@@ -163,15 +150,10 @@ public class StatusFragment extends Fragment implements LoaderManager.LoaderCall
 
     // set progress bar value, see github issue 107
     private void setProgressValue() {
-        JobTaskDurationCtx durationCtx = CommandFacade.jobTaskDuration(_paramToday, getActivity());
 
-        int progress = 0;
-        if (durationCtx.getTotalMinutes() > 0) {
-            int delta = durationCtx.getTotalMinutes() - durationCtx.getCompleteMinutes();
-            progress = 100 - 100 * delta / durationCtx.getTotalMinutes();
-        }
+        int progress = 25;
 
         _progressBar.setProgress(progress);
-        _progressValue.setText("X" + Integer.toString(progress) + "%");
+        _progressValue.setText(Integer.toString(progress) + "%");
     }
 }

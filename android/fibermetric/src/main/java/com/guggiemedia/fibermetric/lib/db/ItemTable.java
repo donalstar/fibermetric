@@ -11,16 +11,10 @@ import java.util.Set;
 /**
  *
  */
-public class PartTable implements DataBaseTable {
-    public static final String TABLE_NAME = "part";
+public class ItemTable implements DataBaseTable {
+    public static final String TABLE_NAME = "item";
 
     public static final Uri CONTENT_URI = Uri.parse("content://" + Constant.AUTHORITY + "/" + TABLE_NAME);
-
-    public static final String QUERY_BY_PERSON_CONTENT_URI = "content://" + Constant.AUTHORITY + "/"
-            + PartTable.TABLE_NAME + "/by_person/";
-
-    public static final String QUERY_BY_JOB_DEADLINE_CONTENT_URI = "content://" + Constant.AUTHORITY + "/"
-            + PartTable.TABLE_NAME + "/by_job/";
 
     public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.gofactory." + TABLE_NAME;
 
@@ -30,18 +24,9 @@ public class PartTable implements DataBaseTable {
 
 
 
-    public static final String TABLE_JOIN_PART_JOB_TABLE
-            = PartTable.TABLE_NAME + " as " + PartTable.TABLE_NAME +
-            "    INNER JOIN " + JobPartTable.TABLE_NAME + " AS " + JobPartTable.TABLE_NAME +
-            "    ON " + PartTable.TABLE_NAME + "._id = " + JobPartTable.TABLE_NAME + ".part_id" +
-            "    INNER JOIN " + JobTaskTable.TABLE_NAME + " AS " + JobTaskTable.TABLE_NAME +
-            "    ON job_part.jobtask_id = jobtask._id";
-
-
     public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ("
             + Columns._ID + " INTEGER PRIMARY KEY,"
             + Columns.NAME + " TEXT NOT NULL,"
-            + Columns.STATUS + " INTEGER NOT NULL,"
             + Columns.SERIAL + " TEXT NOT NULL,"
             + Columns.MANUFACTURER + " TEXT NOT NULL,"
             + Columns.MODEL_NUMBER + " TEXT NOT NULL,"
@@ -54,13 +39,11 @@ public class PartTable implements DataBaseTable {
             + Columns.SITE_ID + " INTEGER NOT NULL,"
             + Columns.LATITUDE + " REAL NOT NULL,"
             + Columns.LONGITUDE + " REAL NOT NULL,"
-            + Columns.DESCRIPTION + " TEXT NOT NULL,"
-            + Columns.CATEGORY + " TEXT NOT NULL"
+            + Columns.DESCRIPTION + " TEXT NOT NULL"
             + ");";
 
     public static final class Columns implements BaseColumns {
         public static final String NAME = "name";
-        public static final String STATUS = "status";
         public static final String SERIAL = "serial";
         public static final String MANUFACTURER = "manufacturer";
         public static final String MODEL_NUMBER = "model_number";
@@ -74,16 +57,14 @@ public class PartTable implements DataBaseTable {
         public static final String LATITUDE = "latitude";
         public static final String LONGITUDE = "longitude";
         public static final String DESCRIPTION = "description";
-        public static final String CATEGORY = "category";
     }
 
     //
     public static HashMap<String, String> PROJECTION_MAP = new HashMap<>();
 
     static {
-        PROJECTION_MAP.put(PartTable.TABLE_NAME + "." + Columns._ID, Columns._ID);
-        PROJECTION_MAP.put(PartTable.TABLE_NAME + "." + Columns.NAME, Columns.NAME);
-        PROJECTION_MAP.put(Columns.STATUS, Columns.STATUS);
+        PROJECTION_MAP.put(ItemTable.TABLE_NAME + "." + Columns._ID, Columns._ID);
+        PROJECTION_MAP.put(ItemTable.TABLE_NAME + "." + Columns.NAME, Columns.NAME);
         PROJECTION_MAP.put(Columns.SERIAL, Columns.SERIAL);
         PROJECTION_MAP.put(Columns.MANUFACTURER, Columns.MANUFACTURER);
         PROJECTION_MAP.put(Columns.MODEL_NUMBER, Columns.MODEL_NUMBER);
@@ -96,8 +77,7 @@ public class PartTable implements DataBaseTable {
         PROJECTION_MAP.put(Columns.SITE_ID, Columns.SITE_ID);
         PROJECTION_MAP.put(Columns.LATITUDE, Columns.LATITUDE);
         PROJECTION_MAP.put(Columns.LONGITUDE, Columns.LONGITUDE);
-        PROJECTION_MAP.put(PartTable.TABLE_NAME + "." + Columns.DESCRIPTION, Columns.DESCRIPTION);
-        PROJECTION_MAP.put(Columns.CATEGORY, Columns.CATEGORY);
+        PROJECTION_MAP.put(ItemTable.TABLE_NAME + "." + Columns.DESCRIPTION, Columns.DESCRIPTION);
     }
 
     @Override
@@ -112,7 +92,7 @@ public class PartTable implements DataBaseTable {
 
     @Override
     public String[] getDefaultProjection() {
-        Set<String> keySet = PartTable.PROJECTION_MAP.keySet();
+        Set<String> keySet = ItemTable.PROJECTION_MAP.keySet();
         return keySet.toArray(new String[keySet.size()]);
     }
 }

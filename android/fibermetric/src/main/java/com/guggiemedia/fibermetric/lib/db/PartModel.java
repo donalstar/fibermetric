@@ -20,7 +20,7 @@ public class PartModel implements DataBaseModel, Serializable {
 
     private Long _id;
     private String _name;
-    private InventoryStatusEnum _status;
+
     private String _serial;
     private String _manufacturer;
     private String _modelNumber;
@@ -35,14 +35,14 @@ public class PartModel implements DataBaseModel, Serializable {
     //    private String _locationName;
     private Long _siteId;
     private String _description;
-    private InventoryCategoryEnum _category;
+
 
     @Override
     public void setDefault() {
         _id = 0L;
 
         _name = "Unknown";
-        _status = InventoryStatusEnum.pickUp;
+
         _serial = "Unknown";
         _manufacturer = "Unknown";
         _modelNumber = "Unknown";
@@ -58,75 +58,70 @@ public class PartModel implements DataBaseModel, Serializable {
 //        _locationName = "Unknown";
         _siteId = 0L;
         _description = "No Description";
-        _category = InventoryCategoryEnum.unknown;
+
     }
 
     @Override
     public ContentValues toContentValues() {
         ContentValues cv = new ContentValues();
 
-        cv.put(PartTable.Columns.NAME, _name);
-        cv.put(PartTable.Columns.STATUS, _status.toString());
-        cv.put(PartTable.Columns.SERIAL, _serial);
-        cv.put(PartTable.Columns.MANUFACTURER, _manufacturer);
-        cv.put(PartTable.Columns.MODEL_NUMBER, _modelNumber);
-        cv.put(PartTable.Columns.BARCODE, _barcode);
-        cv.put(PartTable.Columns.BLE_ADDRESS, _bleAddress);
-        cv.put(PartTable.Columns.BLE_IN_RANGE, _bleInRange);
-        cv.put(PartTable.Columns.OWNER, _owner);
-        cv.put(PartTable.Columns.PICKED_UP_DATE_TS, _pickedUpDate.getTime());
-        cv.put(PartTable.Columns.CONDITION, _condition);
-        cv.put(PartTable.Columns.LATITUDE, _location.getLatitude());
-        cv.put(PartTable.Columns.LONGITUDE, _location.getLongitude());
-//        cv.put(PartTable.Columns.LOCATION, _locationName);
-        cv.put(PartTable.Columns.SITE_ID, _siteId);
-        cv.put(PartTable.Columns.DESCRIPTION, _description);
-        cv.put(PartTable.Columns.CATEGORY, _category.toString());
+        cv.put(ItemTable.Columns.NAME, _name);
+
+        cv.put(ItemTable.Columns.SERIAL, _serial);
+        cv.put(ItemTable.Columns.MANUFACTURER, _manufacturer);
+        cv.put(ItemTable.Columns.MODEL_NUMBER, _modelNumber);
+        cv.put(ItemTable.Columns.BARCODE, _barcode);
+        cv.put(ItemTable.Columns.BLE_ADDRESS, _bleAddress);
+        cv.put(ItemTable.Columns.BLE_IN_RANGE, _bleInRange);
+        cv.put(ItemTable.Columns.OWNER, _owner);
+        cv.put(ItemTable.Columns.PICKED_UP_DATE_TS, _pickedUpDate.getTime());
+        cv.put(ItemTable.Columns.CONDITION, _condition);
+        cv.put(ItemTable.Columns.LATITUDE, _location.getLatitude());
+        cv.put(ItemTable.Columns.LONGITUDE, _location.getLongitude());
+//        cv.put(ItemTable.Columns.LOCATION, _locationName);
+        cv.put(ItemTable.Columns.SITE_ID, _siteId);
+        cv.put(ItemTable.Columns.DESCRIPTION, _description);
+
 
         return cv;
     }
 
     @Override
     public void fromCursor(Cursor cursor) {
-        _id = cursor.getLong(cursor.getColumnIndex(PartTable.Columns._ID));
-        _name = cursor.getString(cursor.getColumnIndex(PartTable.Columns.NAME));
+        _id = cursor.getLong(cursor.getColumnIndex(ItemTable.Columns._ID));
+        _name = cursor.getString(cursor.getColumnIndex(ItemTable.Columns.NAME));
 
-        _status = InventoryStatusEnum.discoverMatchingEnum(
-                cursor.getString(cursor.getColumnIndex(PartTable.Columns.STATUS)));
 
-        _serial = cursor.getString(cursor.getColumnIndex(PartTable.Columns.SERIAL));
-        _manufacturer = cursor.getString(cursor.getColumnIndex(PartTable.Columns.MANUFACTURER));
-        _modelNumber = cursor.getString(cursor.getColumnIndex(PartTable.Columns.MODEL_NUMBER));
-        _barcode = cursor.getString(cursor.getColumnIndex(PartTable.Columns.BARCODE));
-        _bleAddress = cursor.getString(cursor.getColumnIndex(PartTable.Columns.BLE_ADDRESS));
-        _bleInRange = cursor.getInt(cursor.getColumnIndex(PartTable.Columns.BLE_IN_RANGE));
-        _owner = cursor.getString(cursor.getColumnIndex(PartTable.Columns.OWNER));
+        _serial = cursor.getString(cursor.getColumnIndex(ItemTable.Columns.SERIAL));
+        _manufacturer = cursor.getString(cursor.getColumnIndex(ItemTable.Columns.MANUFACTURER));
+        _modelNumber = cursor.getString(cursor.getColumnIndex(ItemTable.Columns.MODEL_NUMBER));
+        _barcode = cursor.getString(cursor.getColumnIndex(ItemTable.Columns.BARCODE));
+        _bleAddress = cursor.getString(cursor.getColumnIndex(ItemTable.Columns.BLE_ADDRESS));
+        _bleInRange = cursor.getInt(cursor.getColumnIndex(ItemTable.Columns.BLE_IN_RANGE));
+        _owner = cursor.getString(cursor.getColumnIndex(ItemTable.Columns.OWNER));
         _pickedUpDate.setTime(
-                cursor.getLong(cursor.getColumnIndex(PartTable.Columns.PICKED_UP_DATE_TS)));
+                cursor.getLong(cursor.getColumnIndex(ItemTable.Columns.PICKED_UP_DATE_TS)));
 
-        _condition = cursor.getString(cursor.getColumnIndex(PartTable.Columns.CONDITION));
+        _condition = cursor.getString(cursor.getColumnIndex(ItemTable.Columns.CONDITION));
 
         _location = new Location(PROVIDER);
-        _location.setLatitude(cursor.getDouble(cursor.getColumnIndex(PartTable.Columns.LATITUDE)));
-        _location.setLongitude(cursor.getDouble(cursor.getColumnIndex(PartTable.Columns.LONGITUDE)));
-        _siteId = cursor.getLong(cursor.getColumnIndex(PartTable.Columns.SITE_ID));
+        _location.setLatitude(cursor.getDouble(cursor.getColumnIndex(ItemTable.Columns.LATITUDE)));
+        _location.setLongitude(cursor.getDouble(cursor.getColumnIndex(ItemTable.Columns.LONGITUDE)));
+        _siteId = cursor.getLong(cursor.getColumnIndex(ItemTable.Columns.SITE_ID));
 
-//        _locationName = cursor.getString(cursor.getColumnIndex(PartTable.Columns.LOCATION));
-        _description = cursor.getString(cursor.getColumnIndex(PartTable.Columns.DESCRIPTION));
+//        _locationName = cursor.getString(cursor.getColumnIndex(ItemTable.Columns.LOCATION));
+        _description = cursor.getString(cursor.getColumnIndex(ItemTable.Columns.DESCRIPTION));
 
-        _category =
-                InventoryCategoryEnum.discoverMatchingEnum(
-                        cursor.getString((cursor.getColumnIndex(PartTable.Columns.CATEGORY))));
     }
 
     @Override
     public String getTableName() {
-        return PartTable.TABLE_NAME;
+        return ItemTable.TABLE_NAME;
     }
 
     @Override
     public Uri getTableUri() {
-        return PartTable.CONTENT_URI;
+        return ItemTable.CONTENT_URI;
     }
 
     public Long getId() {
@@ -145,13 +140,7 @@ public class PartModel implements DataBaseModel, Serializable {
         _name = arg;
     }
 
-    public InventoryStatusEnum getStatus() {
-        return _status;
-    }
 
-    public void setStatus(InventoryStatusEnum _status) {
-        this._status = _status;
-    }
 
     public String getSerial() {
         return _serial;
@@ -257,11 +246,4 @@ public class PartModel implements DataBaseModel, Serializable {
         _description = arg;
     }
 
-    public InventoryCategoryEnum getCategory() {
-        return _category;
-    }
-
-    public void setCategory(InventoryCategoryEnum category) {
-        this._category = category;
-    }
 }

@@ -2,8 +2,6 @@ package com.guggiemedia.fibermetric.lib.chain;
 
 import android.content.Context;
 
-import com.guggiemedia.fibermetric.lib.db.EventModel;
-
 
 /**
  *
@@ -23,18 +21,6 @@ public abstract class AbstractCmdCtx {
         _androidContext = androidContext;
     }
 
-    public void writeEvent(String message) {
-        EventModel eventModel = new EventModel();
-        eventModel.setDefault();
-        eventModel.setNote("fixme");
-
-        System.out.println("fixme:AbstractCmdCtx.writeEvent");
-
-        //TODO Add commandenum to message
-
-//        DataBaseFacade dataBaseFacade = new DataBaseFacade(context);
-//        dataBaseFacade.insertEvent(eventModel, ctx.getAndroidContext());
-    }
 
     public Context getAndroidContext() {
         return _androidContext;
@@ -54,10 +40,6 @@ public abstract class AbstractCmdCtx {
 
     public void setSuccess(boolean flag) {
         _successFlag = flag;
-    }
-
-    public ResultEnum getResultCode() {
-        return _result;
     }
 
     public void setResultCode(ResultEnum arg) {

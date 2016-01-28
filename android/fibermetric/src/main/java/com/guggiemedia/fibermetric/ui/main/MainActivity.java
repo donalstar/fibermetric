@@ -11,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.guggiemedia.fibermetric.R;
-import com.guggiemedia.fibermetric.lib.utility.AnalyticHelper;
 
 import java.util.Stack;
 
@@ -78,18 +77,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityListe
         int homeId = R.drawable.ic_menu_white;
 
         switch (selected) {
-            case ADD_BEACON_VIEW:
-                homeId = R.drawable.ic_arrow_back_white;
-                tag = AddByBeaconFragment.FRAGMENT_TAG;
-                title = getString(R.string.menuAddByBeacon);
-                fragment = AddByBeaconFragment.newInstance();
-                break;
-            case JOB_VIEW: // Job Detail (args contain JobTask row id)
-                tag = JobViewFragment.FRAGMENT_TAG;
-                title = getString(R.string.menuJob);
-                fragment = JobViewFragment.newInstance(args);
-                homeId = R.drawable.ic_arrow_back_white;
-                break;
+
             case JOB_TODAY_LIST: // Job Today List
                 _fragmentStack.clear();
                 tag = StatusFragment.FRAGMENT_TAG;
@@ -97,47 +85,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityListe
                 args.putBoolean(StatusFragment.ARG_PARAM_TODAY, true);
                 fragment = StatusFragment.newInstance(args);
                 break;
-            case MY_INVENTORY_VIEW: // Inventory
-                tag = InventoryPagerFragment.FRAGMENT_TAG;
-                title = getString(R.string.menuMyInventory);
-                args.putString(InventoryPagerFragment.VIEW_TYPE,
-                        InventoryPagerFragment.ViewType.myInventory.toString());
 
-                fragment = InventoryPagerFragment.newInstance(args);
-                break;
-            case PART_VIEW: // Part Detail
-                tag = PartFragment.FRAGMENT_TAG;
-                title = args.getString(PartFragment.ARG_PARAM_ITEM_NAME);
-                homeId = R.drawable.ic_arrow_back_white;
-                fragment = PartFragment.newInstance();
-                break;
-            case REPLACE_BEACON_VIEW:
-                homeId = R.drawable.ic_arrow_back_white;
-                tag = ReplaceBeaconFragment.FRAGMENT_TAG;
-                title = getString(R.string.menuReplaceBeacon);
-                fragment = ReplaceBeaconFragment.newInstance();
-                break;
-            case REQUIRED_INVENTORY_VIEW: // Job Inventory
-                tag = InventoryPagerFragment.FRAGMENT_TAG;
-                title = getString(R.string.menuRequiredInventory);
-                homeId = R.drawable.ic_arrow_back_white;
-
-                args.putString(InventoryPagerFragment.VIEW_TYPE,
-                        InventoryPagerFragment.ViewType.requiredInventory.toString());
-
-                fragment = InventoryPagerFragment.newInstance(args);
-                break;
-
-            case TODAYS_INVENTORY_VIEW: // Inventory
-                tag = InventoryPagerFragment.FRAGMENT_TAG;
-                title = getString(R.string.menuTodaysInventory);
-                homeId = R.drawable.ic_arrow_back_white;
-
-                args.putString(InventoryPagerFragment.VIEW_TYPE,
-                        InventoryPagerFragment.ViewType.todaysInventory.toString());
-
-                fragment = InventoryPagerFragment.newInstance(args);
-                break;
         }
 
         if (fragment == null) {
@@ -154,9 +102,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityListe
             fragmentTransaction.replace(R.id.contentLayout, fragment, tag);
 
             fragmentTransaction.commit();
-
-            AnalyticHelper analyticHelper = AnalyticHelper.getInstance(this);
-            analyticHelper.fragmentViewLog(tag);
         }
     }
 
