@@ -32,7 +32,6 @@ public class ItemModel implements DataBaseModel, Serializable {
 
         cv.put(ItemTable.Columns.NAME, _name);
         cv.put(ItemTable.Columns.PORTION, _portion);
-
         cv.put(ItemTable.Columns.GRAMS, _grams);
         cv.put(ItemTable.Columns.TYPE, _type.toString());
 

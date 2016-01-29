@@ -14,11 +14,11 @@
 
     <style name="Base.Theme.Fibermetric" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- main application color -->
-        <item name="colorPrimary">@color/tomato</item>
+        <item name="colorPrimary">@color/darkSeaGreen</item>
         <!-- darker variant of primary color. Color of status bar -->
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <!-- FAB will use this color as its background -->
-        <item name="colorAccent">@color/tomato</item>
+        <item name="colorAccent">@color/mid_green</item>
         <!-- color of titles -->
         <item name="android:textColorPrimary">@color/warm_grey_dark</item>
         <!-- color of controls and toolbar subtitle -->
@@ -98,7 +98,7 @@
     <!-- Widgets styles -->
     <style name="AppButtonStyle" parent="Base.Widget.AppCompat.Button">
         <item name="android:fontFamily">sans-serif-medium</item> // roboto medium
-        <item name="android:textColor">@color/tomato</item>
+        <item name="android:textColor">@color/darkSeaGreen</item>
     </style>
 
     <style name="AppCheckBoxStyle" parent="Widget.AppCompat.CompoundButton.CheckBox">

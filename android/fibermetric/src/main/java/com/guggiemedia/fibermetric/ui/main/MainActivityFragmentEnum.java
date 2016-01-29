@@ -2,19 +2,7 @@ package com.guggiemedia.fibermetric.ui.main;
 
 public enum MainActivityFragmentEnum {
     UNKNOWN("Unknown"),
-    ADD_BEACON_VIEW("AddBeaconView"),
-    CALENDAR_VIEW("CalendarView"),
-    CHART_VIEW("ChartView"),
-    CHAT_LIST("ChatList"),
-    CHAT_VIEW("ChatView"),
-    ESCALATION_FORM("EscalationForm"),
-    FEEDBACK_FORM("FeedbackForm"),
-    HELP_VIEW("HelpView"),
-    MY_INVENTORY_VIEW("MyInventoryView"),
-    TODAYS_INVENTORY_VIEW("TodaysInventoryView"),
-    REQUIRED_INVENTORY_VIEW("RequiredInventoryView"),
-    JOB_TODAY_LIST("JobTodayList"),
-    JOB_VIEW("JobView"),
+    FOOD_SELECTOR_VIEW("FoodSelectorView"),
     STATUS_VIEW("StatusView");
 
     private final String _name;

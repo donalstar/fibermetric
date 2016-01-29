@@ -5,31 +5,51 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 
 import com.guggiemedia.fibermetric.R;
 
-import java.util.Stack;
-
 public class MainActivity extends AppCompatActivity implements MainActivityListener {
     public static final String LOG_TAG = MainActivity.class.getName();
-
-    private Stack<StackElement> _fragmentStack = new Stack();
-    private Toolbar _toolBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // toolbars change w/fragment
-        _toolBar = (Toolbar) findViewById(R.id.navToolBar);
+        final FragmentManager fragmentManager = getSupportFragmentManager();
 
-        fragmentSelect(MainActivityFragmentEnum.JOB_TODAY_LIST, new Bundle());
+        fragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+            @Override
+            public void onBackStackChanged() {
 
+                Fragment fragment = fragmentManager.findFragmentById(R.id.contentLayout);
+
+                if (fragment != null) {
+                    FragmentContext fragmentContext = (FragmentContext) fragment;
+
+                    String title = fragmentContext.getName();
+
+                    getSupportActionBar().setTitle(title);
+
+                    getSupportActionBar().setHomeAsUpIndicator(fragmentContext.getHomeIndicator());
+                }
+
+                int stackHeight = getSupportFragmentManager().getBackStackEntryCount();
+
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+                if (stackHeight > 0) { // if we have something on the stack (doesn't include the current shown fragment)
+                    getSupportActionBar().setHomeButtonEnabled(true);
+                } else {
+                    getSupportActionBar().setHomeButtonEnabled(false);
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                }
+            }
+
+        });
+
+        fragmentSelect(MainActivityFragmentEnum.STATUS_VIEW, new Bundle());
     }
 
     @Override
@@ -39,80 +59,35 @@ public class MainActivity extends AppCompatActivity implements MainActivityListe
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-
-    @Override
-    public void requireLogIn() {
-
-    }
-
-    @Override
-    public void activitySelect(MainActivityEnum selected, Bundle args) {
-
-    }
-
-    // MainActivityListener
     @Override
     public void fragmentSelect(MainActivityFragmentEnum selected, Bundle args) {
-        String tag = "bogus";
-        String title = "bogus";
         Fragment fragment = null;
 
-        Log.d(LOG_TAG, "fragmentSelect:" + selected);
-
-        int homeId = R.drawable.ic_menu_white;
-
         switch (selected) {
-
-            case JOB_TODAY_LIST: // Job Today List
-                _fragmentStack.clear();
-                tag = StatusFragment.FRAGMENT_TAG;
-                title = getString(R.string.menuStatus);
-                args.putBoolean(StatusFragment.ARG_PARAM_TODAY, true);
-                fragment = StatusFragment.newInstance(args);
+            case FOOD_SELECTOR_VIEW:
+                fragment = FoodSelectorFragment.newInstance();
                 break;
-
+            case STATUS_VIEW:
+                args.putBoolean(HomeFragment.ARG_PARAM_TODAY, true);
+                fragment = HomeFragment.newInstance(args);
+                break;
         }
 
-        if (fragment == null) {
-            throw new IllegalArgumentException("missing fragment:" + selected);
-        } else {
-            getSupportActionBar().setTitle(title);
-            getSupportActionBar().setHomeAsUpIndicator(homeId);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-            fragment.setArguments(args);
-
+        if (fragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.contentLayout, fragment, tag);
 
+            fragmentTransaction.replace(R.id.contentLayout, fragment, fragment.getTag());
+
+            fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         }
     }
 
     @Override
     public void fragmentPop() {
-
-    }
-
-    @Override
-    public void fragmentPush(MainActivityFragmentEnum oldFragment, Bundle oldArgs, MainActivityFragmentEnum newFragment, Bundle newArgs) {
-
+        getSupportFragmentManager().popBackStack();
     }
 
     @Override

@@ -11,7 +11,7 @@
         <!-- darker variant of primary color. Color of status bar -->
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <!-- FAB will use this color as its background -->
-        <item name="colorAccent">@color/tomato</item>
+        <item name="colorAccent">@color/darkSeaGreen</item>
         <!-- color of titles -->
         <item name="android:textColorPrimary">@color/warm_grey_dark</item>
         <!-- color of controls and toolbar subtitle -->
@@ -97,7 +97,7 @@
     </style>
 
     <style name="JobBanner">
-        <item name="android:textColor">#ef4f23</item>
+        <item name="android:textColor">@color/darkSeaGreen</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">16sp</item>
         <item name="android:fontFamily">sans-serif-medium</item>
@@ -280,7 +280,7 @@
         <item name="android:gravity">center</item>
         <item name="android:layout_weight">0.3</item>
         <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">@color/tomato</item>
+        <item name="android:textColor">@color/darkSeaGreen</item>
         <item name="android:textSize">24sp</item>
     </style>
 
@@ -290,7 +290,7 @@
         <item name="android:gravity">center</item>
         <item name="android:layout_weight">0.3</item>
         <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">@color/tomato</item>
+        <item name="android:textColor">@color/darkSeaGreen</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>
     </style>
@@ -316,7 +316,7 @@
         <item name="android:layout_gravity">center</item>
         <item name="android:paddingBottom">50dp</item>
         <item name="android:layout_marginLeft">12dp</item>
-        <item name="android:textColor">@color/tomato</item>
+        <item name="android:textColor">@color/darkSeaGreen</item>
         <item name="android:textSize">24dp</item>
         <item name="android:textAllCaps">false</item>
     </style>
