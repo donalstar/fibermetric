@@ -36,7 +36,7 @@ public class FoodSelectorFragment extends Fragment implements FragmentContext, L
 
         String[] projection = table.getDefaultProjection();
 
-        String orderBy = ItemTable.Columns._ID + " DESC";
+        String orderBy = ItemTable.DEFAULT_SORT_ORDER;
 
         return new CursorLoader(getActivity(), ItemTable.CONTENT_URI, projection, null, null, orderBy);
     }
@@ -96,7 +96,7 @@ public class FoodSelectorFragment extends Fragment implements FragmentContext, L
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.food_selector_fragment, menu);
+        inflater.inflate(R.menu.food_selector_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 

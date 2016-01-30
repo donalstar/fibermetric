@@ -71,17 +71,29 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
 
             int imageResourceId = R.drawable.ic_checkmark_green;
 
-            viewHolder.statusCheck.setImageResource(imageResourceId);
+            int partIndicatorResourceId = R.drawable.ic_grain;
 
-            viewHolder.statusCheck.setVisibility(visibility);
+            switch (model.getType()) {
+                case fruit:
+                    partIndicatorResourceId = R.drawable.ic_fruit;
+                    break;
+                case vegetable:
+                    partIndicatorResourceId = R.drawable.ic_vegetable;
+                    break;
+                case grain:
+                    partIndicatorResourceId = R.drawable.ic_grain;
+                    break;
+            }
 
-            int partIndicatorResourceId = R.drawable.ic_cake_black_48dp;
-
-
+            viewHolder.itemIcon.setImageResource(partIndicatorResourceId);
             viewHolder.itemIcon.setImageResource(partIndicatorResourceId);
 
             viewHolder.itemName.setText(model.getName());
             viewHolder.itemPortion.setText(model.getPortion());
+
+            String gramsValue = String.valueOf(model.getGrams()) + " g";
+
+            viewHolder.grams.setText(gramsValue);
 
             viewHolder.view.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -107,16 +119,13 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
         return new ViewHolder(view);
     }
 
-
-
-
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public final View view;
 
         public final TextView header;
         public final TextView itemName;
         public final TextView itemPortion;
-        public final ImageView statusCheck;
+        public final TextView grams;
         public final ImageView itemIcon;
 
         public ViewHolder(View arg) {
@@ -127,10 +136,10 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
 
             itemName = (TextView) view.findViewById(R.id.itemName);
             itemPortion = (TextView) view.findViewById(R.id.itemPortion);
-
-            statusCheck = (ImageView) view.findViewById(R.id.statusCheck);
+            grams = (TextView) view.findViewById(R.id.grams);
             itemIcon = (ImageView) view.findViewById(R.id.itemIcon);
         }
     }
+
 
 }

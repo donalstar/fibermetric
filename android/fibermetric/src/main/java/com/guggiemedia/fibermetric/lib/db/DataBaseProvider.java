@@ -17,56 +17,28 @@ public class DataBaseProvider extends ContentProvider {
     public static final String LOG_TAG = DataBaseProvider.class.getName();
 
     //URI Matcher Targets
-    private static final int URI_MATCH_ALERT = 10;
-    private static final int URI_MATCH_ALERT_ID = 11;
+    private static final int URI_MATCH_ITEM = 1;
+    private static final int URI_MATCH_ITEM_ID = 2;
+    private static final int URI_MATCH_ITEM_ADDED = 3;
 
-    private static final int URI_MATCH_CHAIN_OF_CUSTODY = 14;
-    private static final int URI_MATCH_CHAIN_OF_CUSTODY_ID = 15;
-    private static final int URI_MATCH_CHAT = 16;
-    private static final int URI_MATCH_CHAT_ID = 17;
-    private static final int URI_MATCH_CHAT_MSG = 18;
-    private static final int URI_MATCH_CHAT_MSG_ID = 19;
-
-    private static final int URI_MATCH_EVENT = 20;
-    private static final int URI_MATCH_EVENT_ID = 21;
-
-    private static final int URI_MATCH_IMAGE = 22;
-    private static final int URI_MATCH_IMAGE_ID = 23;
-
-
-    private static final int URI_MATCH_PART = 28;
-    private static final int URI_MATCH_PART_ID = 29;
-    private static final int URI_MATCH_PART_PERSONID = 30;
-    private static final int URI_MATCH_PART_JOB_ID = 31;
-
-
-
-    private static final int URI_MATCH_SITE = 36;
-    private static final int URI_MATCH_SITE_ID = 37;
-
+    private static final int URI_MATCH_ADDED_ITEM = 4;
+    private static final int URI_MATCH_ADDED_ITEM_ID = 5;
 
     private static final UriMatcher URI_MATCHER;
 
     static {
         URI_MATCHER = new UriMatcher(UriMatcher.NO_MATCH);
 
+        URI_MATCHER.addURI(Constant.AUTHORITY, ItemTable.TABLE_NAME, URI_MATCH_ITEM);
+        URI_MATCHER.addURI(Constant.AUTHORITY, ItemTable.TABLE_NAME + "/#", URI_MATCH_ITEM_ID);
+        URI_MATCHER.addURI(Constant.AUTHORITY, ItemTable.TABLE_NAME + "/added_items", URI_MATCH_ITEM_ADDED);
 
-
-        URI_MATCHER.addURI(Constant.AUTHORITY, ItemTable.TABLE_NAME, URI_MATCH_PART);
-        URI_MATCHER.addURI(Constant.AUTHORITY, ItemTable.TABLE_NAME + "/#", URI_MATCH_PART_ID);
-        URI_MATCHER.addURI(Constant.AUTHORITY, ItemTable.TABLE_NAME + "/by_person", URI_MATCH_PART_PERSONID);
-        URI_MATCHER.addURI(Constant.AUTHORITY, ItemTable.TABLE_NAME + "/by_job", URI_MATCH_PART_JOB_ID);
-
-
-
-
+        URI_MATCHER.addURI(Constant.AUTHORITY, AddedItemTable.TABLE_NAME, URI_MATCH_ADDED_ITEM);
+        URI_MATCHER.addURI(Constant.AUTHORITY, AddedItemTable.TABLE_NAME + "/#", URI_MATCH_ADDED_ITEM_ID);
     }
 
     private DataBaseHelper _dbHelper;
 
-    public DataBaseProvider() {
-        //empty
-    }
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
@@ -78,14 +50,27 @@ public class DataBaseProvider extends ContentProvider {
         switch (URI_MATCHER.match(uri)) {
 
 
-            case URI_MATCH_PART:
+            case URI_MATCH_ITEM:
                 count = db.delete(ItemTable.TABLE_NAME, selection, selectionArgs);
                 break;
-            case URI_MATCH_PART_ID:
+            case URI_MATCH_ITEM_ID:
                 id = uri.getPathSegments().get(1);
-                count = db.delete(ItemTable.TABLE_NAME, ItemTable.Columns._ID + "=" + id + (!TextUtils.isEmpty(selection) ? " AND (" + selection + ')' : ""), selectionArgs);
+
+                selection = getItemIdSelectionClause(ItemTable.Columns._ID, id, selection);
+
+                count = db.delete(ItemTable.TABLE_NAME, selection, selectionArgs);
                 break;
 
+            case URI_MATCH_ADDED_ITEM:
+                count = db.delete(AddedItemTable.TABLE_NAME, selection, selectionArgs);
+                break;
+            case URI_MATCH_ADDED_ITEM_ID:
+                id = uri.getPathSegments().get(1);
+
+                selection = getItemIdSelectionClause(ItemTable.Columns._ID, id, selection);
+
+                count = db.delete(AddedItemTable.TABLE_NAME, selection, selectionArgs);
+                break;
 
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);
@@ -95,22 +80,31 @@ public class DataBaseProvider extends ContentProvider {
         return count;
     }
 
+    private String getItemIdSelectionClause(String idColumn, String id, String selection) {
+        String selectionClause = selection;
+
+        if (id != null && !id.isEmpty()) {
+            selectionClause = idColumn + "=" + id + (!TextUtils.isEmpty(selection) ? " AND (" + selection + ')' : "");
+        }
+
+        return selectionClause;
+    }
+
     @Override
     public String getType(Uri uri) {
         switch (URI_MATCHER.match(uri)) {
 
 
-
-            case URI_MATCH_PART:
+            case URI_MATCH_ITEM:
                 return ItemTable.CONTENT_TYPE;
-            case URI_MATCH_PART_ID:
+            case URI_MATCH_ITEM_ID:
                 return ItemTable.CONTENT_ITEM_TYPE;
-
-            case URI_MATCH_PART_PERSONID:
+            case URI_MATCH_ITEM_ADDED:
                 return ItemTable.CONTENT_TYPE;
-            case URI_MATCH_PART_JOB_ID:
-                return ItemTable.CONTENT_TYPE;
-
+            case URI_MATCH_ADDED_ITEM:
+                return AddedItemTable.CONTENT_TYPE;
+            case URI_MATCH_ADDED_ITEM_ID:
+                return AddedItemTable.CONTENT_ITEM_TYPE;
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);
         }
@@ -124,7 +118,7 @@ public class DataBaseProvider extends ContentProvider {
         switch (URI_MATCHER.match(uri)) {
 
 
-            case URI_MATCH_PART:
+            case URI_MATCH_ITEM:
                 rowId = db.insert(ItemTable.TABLE_NAME, null, values);
                 if (rowId > 0) {
                     Uri result = ContentUris.withAppendedId(ItemTable.CONTENT_URI, rowId);
@@ -133,8 +127,14 @@ public class DataBaseProvider extends ContentProvider {
                 }
                 break;
 
-
-
+            case URI_MATCH_ADDED_ITEM:
+                rowId = db.insert(AddedItemTable.TABLE_NAME, null, values);
+                if (rowId > 0) {
+                    Uri result = ContentUris.withAppendedId(AddedItemTable.CONTENT_URI, rowId);
+                    getContext().getContentResolver().notifyChange(AddedItemTable.CONTENT_URI, null);
+                    return result;
+                }
+                break;
 
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);
@@ -157,15 +157,14 @@ public class DataBaseProvider extends ContentProvider {
         switch (URI_MATCHER.match(uri)) {
 
 
-
-            case URI_MATCH_PART:
+            case URI_MATCH_ITEM:
                 qb.setTables(ItemTable.TABLE_NAME);
                 qb.setProjectionMap(ItemTable.PROJECTION_MAP);
                 if (sortOrder == null) {
                     orderBy = ItemTable.DEFAULT_SORT_ORDER;
                 }
                 break;
-            case URI_MATCH_PART_ID:
+            case URI_MATCH_ITEM_ID:
                 qb.setTables(ItemTable.TABLE_NAME);
                 qb.setProjectionMap(ItemTable.PROJECTION_MAP);
                 qb.appendWhere(ItemTable.Columns._ID + "=" + uri.getPathSegments().get(1));
@@ -173,7 +172,29 @@ public class DataBaseProvider extends ContentProvider {
                     orderBy = ItemTable.DEFAULT_SORT_ORDER;
                 }
                 break;
+            case URI_MATCH_ITEM_ADDED:
+                qb.setTables(ItemTable.TABLE_JOIN_ADDED_ITEM_TABLE);
+                qb.setDistinct(true);
 
+                if (sortOrder == null) {
+                    orderBy = ItemTable.DEFAULT_SORT_ORDER;
+                }
+                break;
+            case URI_MATCH_ADDED_ITEM:
+                qb.setTables(AddedItemTable.TABLE_NAME);
+                qb.setProjectionMap(AddedItemTable.PROJECTION_MAP);
+                if (sortOrder == null) {
+                    orderBy = AddedItemTable.DEFAULT_SORT_ORDER;
+                }
+                break;
+            case URI_MATCH_ADDED_ITEM_ID:
+                qb.setTables(AddedItemTable.TABLE_NAME);
+                qb.setProjectionMap(AddedItemTable.PROJECTION_MAP);
+                qb.appendWhere(AddedItemTable.Columns._ID + "=" + uri.getPathSegments().get(1));
+                if (sortOrder == null) {
+                    orderBy = AddedItemTable.DEFAULT_SORT_ORDER;
+                }
+                break;
 
 
             default:
@@ -194,14 +215,20 @@ public class DataBaseProvider extends ContentProvider {
 
         switch (URI_MATCHER.match(uri)) {
 
-            case URI_MATCH_PART:
+            case URI_MATCH_ITEM:
                 count = db.update(ItemTable.TABLE_NAME, values, selection, selectionArgs);
                 break;
-            case URI_MATCH_PART_ID:
+            case URI_MATCH_ITEM_ID:
                 id = uri.getPathSegments().get(1);
                 count = db.update(ItemTable.TABLE_NAME, values, ItemTable.Columns._ID + "=" + id + (!TextUtils.isEmpty(selection) ? " AND (" + selection + ')' : ""), selectionArgs);
                 break;
-
+            case URI_MATCH_ADDED_ITEM:
+                count = db.update(AddedItemTable.TABLE_NAME, values, selection, selectionArgs);
+                break;
+            case URI_MATCH_ADDED_ITEM_ID:
+                id = uri.getPathSegments().get(1);
+                count = db.update(AddedItemTable.TABLE_NAME, values, AddedItemTable.Columns._ID + "=" + id + (!TextUtils.isEmpty(selection) ? " AND (" + selection + ')' : ""), selectionArgs);
+                break;
 
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);

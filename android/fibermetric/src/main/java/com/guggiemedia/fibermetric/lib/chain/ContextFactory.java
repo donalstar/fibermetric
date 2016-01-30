@@ -14,8 +14,8 @@ public class ContextFactory {
 
         switch(command) {
 
-            case PART_UPDATE:
-                result = new PartUpdateCtx(androidContext);
+            case ITEM_UPDATE:
+                result = new ItemUpdateCtx(androidContext);
                 break;
 
             case SELECT_BY_ROW_ID:

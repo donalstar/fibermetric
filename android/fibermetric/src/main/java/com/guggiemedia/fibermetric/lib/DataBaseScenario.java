@@ -6,7 +6,7 @@ import com.guggiemedia.fibermetric.lib.chain.CommandEnum;
 import com.guggiemedia.fibermetric.lib.chain.CommandFactory;
 import com.guggiemedia.fibermetric.lib.chain.ContextFactory;
 import com.guggiemedia.fibermetric.lib.chain.ContextList;
-import com.guggiemedia.fibermetric.lib.chain.PartUpdateCtx;
+import com.guggiemedia.fibermetric.lib.chain.ItemUpdateCtx;
 import com.guggiemedia.fibermetric.lib.db.ItemModel;
 import com.guggiemedia.fibermetric.lib.db.ItemTypeEnum;
 
@@ -18,24 +18,39 @@ import java.util.List;
  */
 public class DataBaseScenario {
 
-    public List<ItemModel> loadParts(Context context) {
+    public List<ItemModel> loadItems(Context context) {
 
+        String[] items = {
+                // vegetables
+                "Artichoke",
+                "Beans, baked, plain",
+                "Beans, black",
+                "Beans, kidney, canned",
+                "Beans, lima",
+                "Beans, navy",
+                "Beans, pinto",
+                "Beans, white, canned",
+                "Chickpeas, canned",
+                "Lentils",
+                "Mixed vegetables, frozen",
+                "Peas, green, frozen",
+                "Peas, split",
+                "Potato, baked, wi/skin",
 
-        String[][] items = {
-                {"Artichoke", "1U-8760"},
-                {"Beans, baked, plain", "1U-8760"},
-                {"Beans, black", "1U-8760"},
-                {"Beans, kidney, canned", "1U-8760"},
-                {"Beans, lima", "1U-8760"},
-                {"Beans, navy", "1U-8760"},
-                {"Beans, pinto", "1U-8760"},
-                {"Beans, white, canned", "1U-8760"},
-                {"Chickpeas, canned", "1U-8760"},
-                {"Lentils", "1U-8760"},
-                {"Mixed vegetables, frozen", "1U-8760"},
-                {"Peas, green, frozen", "1U-8760"},
-                {"Peas, split", "1U-8760"},
-                {"Potato, baked, wi/skin", "1U-8760"},
+                // Fruit
+                "Blackberries",
+                "Pear with peel",
+                "Prunes (dried)",
+                "Raspberries",
+
+                // Grains
+                "Almonds, roasted",
+                "Bulgur",
+                "Cereal, high fiber, bran",
+                "Nuts, pistachios, pecans, walnuts",
+                "Peanuts, roasted",
+                "Quinoa"
+
         };
 
         String portions[] = {
@@ -52,7 +67,19 @@ public class DataBaseScenario {
                 "1/2 Cup",
                 "1/2 Cup",
                 "1/2 Cup",
-                "1 medium"
+                "1 medium",
+                //Fruit
+                "1/2 Cup",
+                "1 medium",
+                "1/2 Cup",
+                "1/2 Cup",
+                // Grains
+                "1/2 Cup",
+                "1/2 Cup",
+                "1/2 Cup",
+                "2 ounces",
+                "1/2 Cup",
+                "1/2 Cup"
         };
 
         Double grams[] = {
@@ -69,7 +96,19 @@ public class DataBaseScenario {
                 4.0,
                 4.4,
                 8.2,
-                4.4
+                4.4,
+
+                3.8,
+                4.0,
+                5.7,
+                4.2,
+
+                6.4,
+                4.1,
+                6.5,
+                5.0,
+                6.1,
+                5.0
         };
 
         ItemTypeEnum types[] = {
@@ -86,7 +125,19 @@ public class DataBaseScenario {
                 ItemTypeEnum.vegetable,
                 ItemTypeEnum.vegetable,
                 ItemTypeEnum.vegetable,
-                ItemTypeEnum.vegetable
+                ItemTypeEnum.vegetable,
+
+                ItemTypeEnum.fruit,
+                ItemTypeEnum.fruit,
+                ItemTypeEnum.fruit,
+                ItemTypeEnum.fruit,
+
+                ItemTypeEnum.grain,
+                ItemTypeEnum.grain,
+                ItemTypeEnum.grain,
+                ItemTypeEnum.grain,
+                ItemTypeEnum.grain,
+                ItemTypeEnum.grain,
         };
 
         List<ItemModel> models = new ArrayList<>();
@@ -95,7 +146,7 @@ public class DataBaseScenario {
             ItemModel model = new ItemModel();
             model.setDefault();
 
-            String name = items[i][0];
+            String name = items[i];
 
             model.setName(name);
 
@@ -108,7 +159,7 @@ public class DataBaseScenario {
 
             ContextList list = new ContextList();
 
-            addToPartsContextList(model, list, context);
+            addToContextList(model, list, context);
 
             CommandFactory.execute(list);
         }
@@ -116,9 +167,9 @@ public class DataBaseScenario {
         return models;
     }
 
-    private void addToPartsContextList(ItemModel model, ContextList list, Context context) {
-        PartUpdateCtx ctx
-                = (PartUpdateCtx) ContextFactory.factory(CommandEnum.PART_UPDATE, context);
+    private void addToContextList(ItemModel model, ContextList list, Context context) {
+        ItemUpdateCtx ctx
+                = (ItemUpdateCtx) ContextFactory.factory(CommandEnum.ITEM_UPDATE, context);
 
         ctx.setModel(model);
         list.add(ctx);

@@ -10,6 +10,7 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,6 +21,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.guggiemedia.fibermetric.R;
+import com.guggiemedia.fibermetric.lib.db.ContentFacade;
 import com.guggiemedia.fibermetric.lib.db.DataBaseTable;
 import com.guggiemedia.fibermetric.lib.db.ItemTable;
 
@@ -40,14 +42,15 @@ public class HomeFragment extends Fragment implements FragmentContext, LoaderMan
 
     public static final int LOADER_ID = 271828;
 
+
+    private ContentFacade _contentFacade;
+
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         DataBaseTable table = new ItemTable();
 
         String[] projection = table.getDefaultProjection();
 
-        String orderBy = ItemTable.Columns._ID + " DESC";
-
-        return new CursorLoader(getActivity(), ItemTable.CONTENT_URI, projection, null, null, orderBy);
+        return new CursorLoader(getActivity(), ItemTable.ADDED_ITEMS_CONTENT_URI, projection, null, null, null);
     }
 
 
@@ -74,6 +77,8 @@ public class HomeFragment extends Fragment implements FragmentContext, LoaderMan
         super.onAttach(context);
 
         _listener = (MainActivityListener) getActivity();
+
+        _contentFacade = new ContentFacade();
     }
 
     @Override
@@ -118,7 +123,12 @@ public class HomeFragment extends Fragment implements FragmentContext, LoaderMan
 
     @Override
     public void onResume() {
+        Log.i(LOG_TAG, "onResume");
+
         super.onResume();
+
+        getLoaderManager().restartLoader(LOADER_ID, null, this);
+
         setProgressValue();
     }
 
@@ -131,7 +141,7 @@ public class HomeFragment extends Fragment implements FragmentContext, LoaderMan
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.status_fragment, menu);
+        inflater.inflate(R.menu.home_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -165,10 +175,13 @@ public class HomeFragment extends Fragment implements FragmentContext, LoaderMan
     // set progress bar value, see github issue 107
     private void setProgressValue() {
 
-        int progress = 25;
+        Double progress = _contentFacade.getGetDailyProgress(getActivity());
 
-        _progressBar.setProgress(progress);
-        _progressValue.setText(Integer.toString(progress) + "%");
+
+        int progressValue = (int) (progress * 100);
+
+        _progressBar.setProgress(progressValue);
+        _progressValue.setText(Integer.toString(progressValue) + "%");
     }
 
 

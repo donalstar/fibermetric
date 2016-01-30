@@ -5,8 +5,8 @@ import com.guggiemedia.fibermetric.lib.db.ItemModel;
 /**
  * Created by donal on 10/5/15.
  */
-public class PartUpdateCmd extends AbstractCmd {
-    public static final String LOG_TAG = PartUpdateCmd.class.getName();
+public class ItemUpdateCmd extends AbstractCmd {
+    public static final String LOG_TAG = ItemUpdateCmd.class.getName();
 
     private final com.guggiemedia.fibermetric.lib.db.ContentFacade _contentFacade = new com.guggiemedia.fibermetric.lib.db.ContentFacade();
 
@@ -19,10 +19,10 @@ public class PartUpdateCmd extends AbstractCmd {
     public Boolean execute(com.guggiemedia.fibermetric.lib.chain.AbstractCmdCtx context) throws Exception {
         boolean result = false;
 
-        final PartUpdateCtx ctx = (PartUpdateCtx) context;
+        final ItemUpdateCtx ctx = (ItemUpdateCtx) context;
         final ItemModel model = ctx.getModel();
 
-        _contentFacade.updatePart(model, ctx.getAndroidContext());
+        _contentFacade.updateItem(model, ctx.getAndroidContext());
 
         return result;
     }

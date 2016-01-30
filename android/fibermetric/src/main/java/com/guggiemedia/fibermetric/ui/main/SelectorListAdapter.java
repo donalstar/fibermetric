@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.guggiemedia.fibermetric.R;
+import com.guggiemedia.fibermetric.lib.db.AddedItemModel;
+import com.guggiemedia.fibermetric.lib.db.ContentFacade;
 import com.guggiemedia.fibermetric.lib.db.ItemModel;
 import com.guggiemedia.fibermetric.ui.utility.ToastHelper;
 
@@ -29,10 +31,14 @@ public class SelectorListAdapter extends RecyclerView.Adapter<SelectorListAdapte
     private Context _context;
     private Cursor _cursor;
 
+    private ContentFacade _contentFacade;
+
 
     public SelectorListAdapter(Activity activity) {
         _listener = (MainActivityListener) activity;
         _context = activity;
+
+        _contentFacade = new ContentFacade();
     }
 
     public void setCursor(Cursor cursor) {
@@ -67,32 +73,40 @@ public class SelectorListAdapter extends RecyclerView.Adapter<SelectorListAdapte
                 viewHolder.header.setText("OK");
             }
 
-            int visibility = View.VISIBLE;
-
-            int imageResourceId = R.drawable.ic_checkmark_green;
-
-            viewHolder.statusCheck.setImageResource(imageResourceId);
-
-            viewHolder.statusCheck.setVisibility(visibility);
-
             int partIndicatorResourceId = R.drawable.ic_grain;
 
-            if (position % 3 == 0) {
-                partIndicatorResourceId = R.drawable.ic_vegetable;
-            } else if (position % 3 == 1) {
-                partIndicatorResourceId = R.drawable.ic_fruit;
+            switch (model.getType()) {
+                case fruit:
+                    partIndicatorResourceId = R.drawable.ic_fruit;
+                    break;
+                case vegetable:
+                    partIndicatorResourceId = R.drawable.ic_vegetable;
+                    break;
+                case grain:
+                    partIndicatorResourceId = R.drawable.ic_grain;
+                    break;
             }
-
 
             viewHolder.itemIcon.setImageResource(partIndicatorResourceId);
 
             viewHolder.itemName.setText(model.getName());
             viewHolder.itemPortion.setText(model.getPortion());
 
+            String gramsValue = String.valueOf(model.getGrams()) + " g";
+
+            viewHolder.grams.setText(gramsValue);
+
             viewHolder.view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     ToastHelper.show("Add item " + model.getName(), _context);
+
+                    // add
+                    AddedItemModel addedItem = new AddedItemModel();
+                    addedItem.setDefault();
+                    addedItem.setItemId(model.getId());
+
+                    _contentFacade.updateAddedItem(addedItem, _context);
 
                     _listener.fragmentPop();
                 }
@@ -102,7 +116,7 @@ public class SelectorListAdapter extends RecyclerView.Adapter<SelectorListAdapte
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        int viewId = R.layout.row_home;
+        int viewId = R.layout.row_food_selector;
 
         View view = LayoutInflater.from(parent.getContext()).inflate(viewId, parent, false);
 
@@ -116,7 +130,7 @@ public class SelectorListAdapter extends RecyclerView.Adapter<SelectorListAdapte
         public final TextView header;
         public final TextView itemName;
         public final TextView itemPortion;
-        public final ImageView statusCheck;
+        public final TextView grams;
         public final ImageView itemIcon;
 
         public ViewHolder(View arg) {
@@ -127,8 +141,7 @@ public class SelectorListAdapter extends RecyclerView.Adapter<SelectorListAdapte
 
             itemName = (TextView) view.findViewById(R.id.itemName);
             itemPortion = (TextView) view.findViewById(R.id.itemPortion);
-
-            statusCheck = (ImageView) view.findViewById(R.id.statusCheck);
+            grams = (TextView) view.findViewById(R.id.grams);
             itemIcon = (ImageView) view.findViewById(R.id.itemIcon);
         }
     }

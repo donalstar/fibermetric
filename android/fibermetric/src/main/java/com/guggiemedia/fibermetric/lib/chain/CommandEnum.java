@@ -5,9 +5,8 @@ package com.guggiemedia.fibermetric.lib.chain;
  */
 public enum CommandEnum {
     UNKNOWN("Unknown"),
-    PART_UPDATE("PartUpdate"),
+    ITEM_UPDATE("ItemUpdate"),
     SELECT_BY_ROW_ID("SelectByRowId");
-
 
     private final String _name;
 

@@ -9,7 +9,7 @@
         <!-- main application color -->
         <item name="colorPrimary">@color/warm_grey_light</item>
         <!-- darker variant of primary color. Color of status bar -->
-        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorPrimaryDark">@color/mid_green</item>
         <!-- FAB will use this color as its background -->
         <item name="colorAccent">@color/darkSeaGreen</item>
         <!-- color of titles -->
@@ -256,14 +256,6 @@
         <item name="android:paddingBottom">16dp</item>
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingTop">16dp</item>
-    </style>
-
-    <style name="COCTitle">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_gravity">left</item>
-        <item name="android:textColor">@color/black87</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:textStyle">bold</item>
     </style>
 
 
