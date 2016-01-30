@@ -10,6 +10,7 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,9 +22,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.guggiemedia.fibermetric.R;
+import com.guggiemedia.fibermetric.lib.db.AddedItemTable;
 import com.guggiemedia.fibermetric.lib.db.ContentFacade;
 import com.guggiemedia.fibermetric.lib.db.DataBaseTable;
 import com.guggiemedia.fibermetric.lib.db.ItemTable;
+import com.guggiemedia.fibermetric.utility.ToastHelper;
 
 
 public class HomeFragment extends Fragment implements FragmentContext, LoaderManager.LoaderCallbacks<Cursor> {
@@ -31,7 +34,7 @@ public class HomeFragment extends Fragment implements FragmentContext, LoaderMan
 
     public static final String ARG_PARAM_TODAY = "PARAM_TODAY";
 
-    private static final String TITLE = "Home";
+    private static final String TITLE = "Today";
 
     private MainActivityListener _listener;
 
@@ -42,15 +45,14 @@ public class HomeFragment extends Fragment implements FragmentContext, LoaderMan
 
     public static final int LOADER_ID = 271828;
 
-
     private ContentFacade _contentFacade;
 
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        DataBaseTable table = new ItemTable();
+        DataBaseTable table = new AddedItemTable();
 
         String[] projection = table.getDefaultProjection();
 
-        return new CursorLoader(getActivity(), ItemTable.ADDED_ITEMS_CONTENT_URI, projection, null, null, null);
+        return new CursorLoader(getActivity(), AddedItemTable.ADDED_ITEMS_CONTENT_URI, projection, null, null, null);
     }
 
 
@@ -103,12 +105,35 @@ public class HomeFragment extends Fragment implements FragmentContext, LoaderMan
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         recyclerView.setAdapter(_adapter);
 
+        ItemTouchHelper.SimpleCallback simpleItemTouchCallback
+                = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+                HomeListAdapter.ViewHolder vh = (HomeListAdapter.ViewHolder) viewHolder;
+
+                _contentFacade.deleteAddedItem(vh.id, getActivity());
+
+                getLoaderManager().restartLoader(LOADER_ID, null, HomeFragment.this);
+
+            }
+        };
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
+
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                _listener.fragmentSelect(MainActivityFragmentEnum.FOOD_SELECTOR_VIEW, new Bundle());
+                _listener.fragmentSelect(Fragments.FOOD_SELECTOR_VIEW, new Bundle());
             }
         });
 
@@ -163,7 +188,7 @@ public class HomeFragment extends Fragment implements FragmentContext, LoaderMan
                 break;
 
             case R.id.actionSearch:
-
+                ToastHelper.show("Choose a date", getContext());
                 break;
             default:
                 throw new IllegalArgumentException("unknown menu option");

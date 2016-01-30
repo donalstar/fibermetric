@@ -13,7 +13,7 @@ public interface MainActivityListener {
      * @param selected
      * @param args
      */
-    void fragmentSelect(MainActivityFragmentEnum selected, Bundle args);
+    void fragmentSelect(Fragments selected, Bundle args);
 
 
     /**

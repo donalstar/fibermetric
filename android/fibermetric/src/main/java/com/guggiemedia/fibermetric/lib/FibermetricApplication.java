@@ -3,7 +3,7 @@ package com.guggiemedia.fibermetric.lib;
 import android.app.Application;
 import android.util.Log;
 
-import com.guggiemedia.fibermetric.lib.utility.UserPreferenceHelper;
+import com.guggiemedia.fibermetric.utility.UserPreferenceHelper;
 
 /**
  *

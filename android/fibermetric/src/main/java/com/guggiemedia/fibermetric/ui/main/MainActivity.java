@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.guggiemedia.fibermetric.R;
+import com.guggiemedia.fibermetric.utility.ToastHelper;
 
 public class MainActivity extends AppCompatActivity implements MainActivityListener {
     public static final String LOG_TAG = MainActivity.class.getName();
@@ -67,7 +68,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityListe
             }
         });
 
-        fragmentSelect(MainActivityFragmentEnum.STATUS_VIEW, new Bundle());
+
+        fragmentSelect(Fragments.STATUS_VIEW, new Bundle());
     }
 
     @Override
@@ -79,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityListe
 
 
     @Override
-    public void fragmentSelect(MainActivityFragmentEnum selected, Bundle args) {
+    public void fragmentSelect(Fragments selected, Bundle args) {
         Fragment fragment = null;
 
         switch (selected) {
@@ -96,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityListe
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-            if (selected.equals(MainActivityFragmentEnum.FOOD_SELECTOR_VIEW)) {
+            if (selected.equals(Fragments.FOOD_SELECTOR_VIEW)) {
                 fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit);
             }
 
@@ -124,9 +126,11 @@ public class MainActivity extends AppCompatActivity implements MainActivityListe
 
         switch (arg) {
             case R.id.navStatus:
-                fragmentSelect(MainActivityFragmentEnum.STATUS_VIEW, bundle);
+                fragmentSelect(Fragments.STATUS_VIEW, bundle);
                 break;
             case R.id.navHistory:
+                ToastHelper.show("History" +
+                        "", this);
                 break;
             case R.id.navHelp:
                 break;

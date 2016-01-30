@@ -14,8 +14,6 @@ import com.guggiemedia.fibermetric.R;
 import com.guggiemedia.fibermetric.lib.db.AddedItemModel;
 import com.guggiemedia.fibermetric.lib.db.ContentFacade;
 import com.guggiemedia.fibermetric.lib.db.ItemModel;
-import com.guggiemedia.fibermetric.ui.utility.ToastHelper;
-
 
 /**
  *
@@ -99,7 +97,7 @@ public class SelectorListAdapter extends RecyclerView.Adapter<SelectorListAdapte
             viewHolder.view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ToastHelper.show("Add item " + model.getName(), _context);
+                   // ToastHelper.show("Add item " + model.getName(), _context);
 
                     // add
                     AddedItemModel addedItem = new AddedItemModel();

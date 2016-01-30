@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.guggiemedia.fibermetric.R;
+import com.guggiemedia.fibermetric.lib.db.AddedItemModel;
 import com.guggiemedia.fibermetric.lib.db.ItemModel;
 
 
@@ -19,6 +20,7 @@ import com.guggiemedia.fibermetric.lib.db.ItemModel;
  *
  */
 public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHolder> {
+
     public static final String LOG_TAG = HomeListAdapter.class.getName();
 
     public static final String ARG_PARAM_ROW_ID = "PARAM_ROW_ID";
@@ -58,18 +60,16 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
         if (_cursor != null) {
             _cursor.moveToPosition(position);
 
-            final ItemModel model = new ItemModel();
+            final AddedItemModel model = new AddedItemModel();
             model.setDefault();
             model.fromCursor(_cursor);
+
+            viewHolder.id = model.getId();
 
             if (viewHolder.header != null) {
                 viewHolder.header.setVisibility(View.GONE);
                 viewHolder.header.setText("OK");
             }
-
-            int visibility = View.VISIBLE;
-
-            int imageResourceId = R.drawable.ic_checkmark_green;
 
             int partIndicatorResourceId = R.drawable.ic_grain;
 
@@ -104,7 +104,7 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
 
                     bundle.putString(ARG_PARAM_ITEM_NAME, model.getName());
 
-                    _listener.fragmentSelect(MainActivityFragmentEnum.STATUS_VIEW, bundle);
+                    _listener.fragmentSelect(Fragments.STATUS_VIEW, bundle);
                 }
             });
         }
@@ -127,6 +127,8 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
         public final TextView itemPortion;
         public final TextView grams;
         public final ImageView itemIcon;
+        public Long id;
+
 
         public ViewHolder(View arg) {
             super(arg);

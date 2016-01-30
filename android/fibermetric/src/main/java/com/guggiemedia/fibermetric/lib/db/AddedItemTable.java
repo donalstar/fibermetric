@@ -16,17 +16,28 @@ public class AddedItemTable implements DataBaseTable {
 
     public static final Uri CONTENT_URI = Uri.parse("content://" + Constant.AUTHORITY + "/" + TABLE_NAME);
 
-    public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.gofactory." + TABLE_NAME;
+    public static final Uri ADDED_ITEMS_CONTENT_URI = Uri.parse("content://" + Constant.AUTHORITY + "/"
+            + TABLE_NAME + "/items");
 
-    public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.gofactory." + TABLE_NAME;
+    public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.guggiemedia." + TABLE_NAME;
+
+    public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.guggiemedia." + TABLE_NAME;
 
     public static final String DEFAULT_SORT_ORDER = TABLE_NAME + "." + Columns._ID + " ASC";
-
 
     public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ("
             + Columns._ID + " INTEGER PRIMARY KEY,"
             + Columns.ITEM_ID + " INTEGER NOT NULL"
             + ");";
+
+    public static final String TABLE_JOIN_ITEM_TABLE =
+            ItemTable.TABLE_NAME + " " + ItemTable.TABLE_NAME + " " +
+                    "INNER JOIN " + AddedItemTable.TABLE_NAME + " "
+                    + AddedItemTable.TABLE_NAME
+                    + " ON " + AddedItemTable.TABLE_NAME + "." + AddedItemTable.Columns.ITEM_ID + " = "
+                    + ItemTable.TABLE_NAME
+                    + "." + Columns._ID;
+
 
     public static final class Columns implements BaseColumns {
         public static final String ITEM_ID = "item_id";
@@ -38,6 +49,12 @@ public class AddedItemTable implements DataBaseTable {
     static {
         PROJECTION_MAP.put(AddedItemTable.TABLE_NAME + "." + Columns._ID, Columns._ID);
         PROJECTION_MAP.put(Columns.ITEM_ID, Columns.ITEM_ID);
+
+
+        PROJECTION_MAP.put(ItemTable.Columns.NAME, ItemTable.Columns.NAME);
+        PROJECTION_MAP.put(ItemTable.Columns.PORTION, ItemTable.Columns.PORTION);
+        PROJECTION_MAP.put(ItemTable.Columns.GRAMS, ItemTable.Columns.GRAMS);
+        PROJECTION_MAP.put(ItemTable.Columns.TYPE, ItemTable.Columns.TYPE);
     }
 
     @Override

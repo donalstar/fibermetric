@@ -5,9 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * access database via ContentProvider
  */
@@ -51,7 +48,6 @@ public class ContentFacade {
     }
 
     /**
-     *
      * @param context
      * @return
      */
@@ -60,10 +56,10 @@ public class ContentFacade {
 
         Double current = 0.0;
 
-        Cursor cursor = context.getContentResolver().query(ItemTable.ADDED_ITEMS_CONTENT_URI, null, null, null, null);
+        Cursor cursor = context.getContentResolver().query(AddedItemTable.ADDED_ITEMS_CONTENT_URI, null, null, null, null);
         if (cursor.moveToFirst()) {
             do {
-                ItemModel model = new ItemModel();
+                AddedItemModel model = new AddedItemModel();
                 model.setDefault();
                 model.fromCursor(cursor);
 
@@ -74,5 +70,12 @@ public class ContentFacade {
         cursor.close();
 
         return current / daily;
+    }
+
+    public void deleteAddedItem(Long id, Context context) {
+        String[] target = new String[1];
+        target[0] = Long.toString(id);
+
+        context.getContentResolver().delete(AddedItemTable.CONTENT_URI, "_id=?", target);
     }
 }

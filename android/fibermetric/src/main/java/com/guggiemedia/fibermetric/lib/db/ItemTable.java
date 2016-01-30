@@ -16,22 +16,11 @@ public class ItemTable implements DataBaseTable {
 
     public static final Uri CONTENT_URI = Uri.parse("content://" + Constant.AUTHORITY + "/" + TABLE_NAME);
 
-    public static final Uri ADDED_ITEMS_CONTENT_URI = Uri.parse("content://" + Constant.AUTHORITY + "/"
-            + TABLE_NAME + "/added_items");
+    public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.guggiemedia." + TABLE_NAME;
 
-    public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.gofactory." + TABLE_NAME;
-
-    public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.gofactory." + TABLE_NAME;
+    public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.guggiemedia." + TABLE_NAME;
 
     public static final String DEFAULT_SORT_ORDER = ItemTable.TABLE_NAME + "." + Columns.NAME + " ASC";
-
-    public static final String TABLE_JOIN_ADDED_ITEM_TABLE =
-            ItemTable.TABLE_NAME + " " + ItemTable.TABLE_NAME + " " +
-                    "INNER JOIN " + AddedItemTable.TABLE_NAME + " "
-                    + AddedItemTable.TABLE_NAME
-                    + " ON " + AddedItemTable.TABLE_NAME + "." + AddedItemTable.Columns.ITEM_ID + " = "
-                    + ItemTable.TABLE_NAME
-                    + "." + Columns._ID;
 
     public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ("
             + Columns._ID + " INTEGER PRIMARY KEY,"

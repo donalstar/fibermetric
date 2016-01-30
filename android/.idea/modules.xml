@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TundroApp/Fibermetric.iml" filepath="$PROJECT_DIR$/TundroApp/Fibermetric.iml" />
       <module fileurl="file://$PROJECT_DIR$/android.iml" filepath="$PROJECT_DIR$/android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fibermetric/fibermetric.iml" filepath="$PROJECT_DIR$/fibermetric/fibermetric.iml" />
     </modules>
   </component>
 </project>

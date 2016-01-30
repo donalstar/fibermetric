@@ -19,10 +19,10 @@ public class DataBaseProvider extends ContentProvider {
     //URI Matcher Targets
     private static final int URI_MATCH_ITEM = 1;
     private static final int URI_MATCH_ITEM_ID = 2;
-    private static final int URI_MATCH_ITEM_ADDED = 3;
 
     private static final int URI_MATCH_ADDED_ITEM = 4;
     private static final int URI_MATCH_ADDED_ITEM_ID = 5;
+    private static final int URI_MATCH_ADDED_ITEM_ITEMS = 6;
 
     private static final UriMatcher URI_MATCHER;
 
@@ -31,10 +31,10 @@ public class DataBaseProvider extends ContentProvider {
 
         URI_MATCHER.addURI(Constant.AUTHORITY, ItemTable.TABLE_NAME, URI_MATCH_ITEM);
         URI_MATCHER.addURI(Constant.AUTHORITY, ItemTable.TABLE_NAME + "/#", URI_MATCH_ITEM_ID);
-        URI_MATCHER.addURI(Constant.AUTHORITY, ItemTable.TABLE_NAME + "/added_items", URI_MATCH_ITEM_ADDED);
 
         URI_MATCHER.addURI(Constant.AUTHORITY, AddedItemTable.TABLE_NAME, URI_MATCH_ADDED_ITEM);
         URI_MATCHER.addURI(Constant.AUTHORITY, AddedItemTable.TABLE_NAME + "/#", URI_MATCH_ADDED_ITEM_ID);
+        URI_MATCHER.addURI(Constant.AUTHORITY, AddedItemTable.TABLE_NAME + "/items", URI_MATCH_ADDED_ITEM_ITEMS);
     }
 
     private DataBaseHelper _dbHelper;
@@ -99,12 +99,12 @@ public class DataBaseProvider extends ContentProvider {
                 return ItemTable.CONTENT_TYPE;
             case URI_MATCH_ITEM_ID:
                 return ItemTable.CONTENT_ITEM_TYPE;
-            case URI_MATCH_ITEM_ADDED:
-                return ItemTable.CONTENT_TYPE;
             case URI_MATCH_ADDED_ITEM:
                 return AddedItemTable.CONTENT_TYPE;
             case URI_MATCH_ADDED_ITEM_ID:
                 return AddedItemTable.CONTENT_ITEM_TYPE;
+            case URI_MATCH_ADDED_ITEM_ITEMS:
+                return AddedItemTable.CONTENT_TYPE;
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);
         }
@@ -172,14 +172,6 @@ public class DataBaseProvider extends ContentProvider {
                     orderBy = ItemTable.DEFAULT_SORT_ORDER;
                 }
                 break;
-            case URI_MATCH_ITEM_ADDED:
-                qb.setTables(ItemTable.TABLE_JOIN_ADDED_ITEM_TABLE);
-                qb.setDistinct(true);
-
-                if (sortOrder == null) {
-                    orderBy = ItemTable.DEFAULT_SORT_ORDER;
-                }
-                break;
             case URI_MATCH_ADDED_ITEM:
                 qb.setTables(AddedItemTable.TABLE_NAME);
                 qb.setProjectionMap(AddedItemTable.PROJECTION_MAP);
@@ -196,7 +188,14 @@ public class DataBaseProvider extends ContentProvider {
                 }
                 break;
 
+            case URI_MATCH_ADDED_ITEM_ITEMS:
+                qb.setTables(AddedItemTable.TABLE_JOIN_ITEM_TABLE);
+                qb.setDistinct(true);
 
+                if (sortOrder == null) {
+                    orderBy = AddedItemTable.DEFAULT_SORT_ORDER;
+                }
+                break;
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);
         }
