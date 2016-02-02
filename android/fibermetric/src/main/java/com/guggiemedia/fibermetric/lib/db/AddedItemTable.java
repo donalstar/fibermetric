@@ -27,7 +27,9 @@ public class AddedItemTable implements DataBaseTable {
 
     public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ("
             + Columns._ID + " INTEGER PRIMARY KEY,"
-            + Columns.ITEM_ID + " INTEGER NOT NULL"
+            + Columns.ITEM_ID + " INTEGER NOT NULL,"
+            + Columns.SELECTED_PORTION + " TEXT NOT NULL,"
+            + Columns.WEIGHT_MULTIPLE + " FLOAT NOT NULL"
             + ");";
 
     public static final String TABLE_JOIN_ITEM_TABLE =
@@ -41,6 +43,8 @@ public class AddedItemTable implements DataBaseTable {
 
     public static final class Columns implements BaseColumns {
         public static final String ITEM_ID = "item_id";
+        public static final String SELECTED_PORTION = "selected_portion";
+        public static final String WEIGHT_MULTIPLE = "weight_multiple";
     }
 
     //
@@ -49,10 +53,10 @@ public class AddedItemTable implements DataBaseTable {
     static {
         PROJECTION_MAP.put(AddedItemTable.TABLE_NAME + "." + Columns._ID, Columns._ID);
         PROJECTION_MAP.put(Columns.ITEM_ID, Columns.ITEM_ID);
-
+        PROJECTION_MAP.put(Columns.SELECTED_PORTION, Columns.SELECTED_PORTION);
+        PROJECTION_MAP.put(Columns.WEIGHT_MULTIPLE, Columns.WEIGHT_MULTIPLE);
 
         PROJECTION_MAP.put(ItemTable.Columns.NAME, ItemTable.Columns.NAME);
-        PROJECTION_MAP.put(ItemTable.Columns.PORTION, ItemTable.Columns.PORTION);
         PROJECTION_MAP.put(ItemTable.Columns.GRAMS, ItemTable.Columns.GRAMS);
         PROJECTION_MAP.put(ItemTable.Columns.TYPE, ItemTable.Columns.TYPE);
     }

@@ -9,6 +9,7 @@ import com.guggiemedia.fibermetric.lib.chain.ContextList;
 import com.guggiemedia.fibermetric.lib.chain.ItemUpdateCtx;
 import com.guggiemedia.fibermetric.lib.db.ItemModel;
 import com.guggiemedia.fibermetric.lib.db.ItemTypeEnum;
+import com.guggiemedia.fibermetric.lib.db.PortionTypeEnum;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,6 +83,33 @@ public class DataBaseScenario {
                 "1/2 Cup"
         };
 
+        PortionTypeEnum portionTypes[] = {
+                PortionTypeEnum.unit,
+                PortionTypeEnum.cup,
+                PortionTypeEnum.cup,
+                PortionTypeEnum.cup,
+                PortionTypeEnum.cup,
+                PortionTypeEnum.cup,
+                PortionTypeEnum.cup,
+                PortionTypeEnum.cup,
+                PortionTypeEnum.cup,
+                PortionTypeEnum.cup,
+                PortionTypeEnum.cup,
+                PortionTypeEnum.cup,
+                PortionTypeEnum.cup,
+                PortionTypeEnum.unit,
+                PortionTypeEnum.cup,
+                PortionTypeEnum.unit,
+                PortionTypeEnum.cup,
+                PortionTypeEnum.cup,
+                PortionTypeEnum.cup,
+                PortionTypeEnum.cup,
+                PortionTypeEnum.cup,
+                PortionTypeEnum.ounces,
+                PortionTypeEnum.cup,
+                PortionTypeEnum.cup
+        };
+
         Double grams[] = {
                 10.3,
                 5.2,
@@ -151,6 +179,7 @@ public class DataBaseScenario {
             model.setName(name);
 
             model.setPortion(portions[i]);
+            model.setPortionType(portionTypes[i]);
 
             model.setGrams(grams[i]);
             model.setType(types[i]);

@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.NumberPicker;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.guggiemedia.fibermetric.R;
@@ -88,28 +90,93 @@ public class SelectorListAdapter extends RecyclerView.Adapter<SelectorListAdapte
             viewHolder.itemIcon.setImageResource(partIndicatorResourceId);
 
             viewHolder.itemName.setText(model.getName());
-            viewHolder.itemPortion.setText(model.getPortion());
 
             String gramsValue = String.valueOf(model.getGrams()) + " g";
 
             viewHolder.grams.setText(gramsValue);
 
-            viewHolder.view.setOnClickListener(new View.OnClickListener() {
+            final String portionTypes[] = new String[3];
+
+            switch (model.getPortionType()) {
+                case unit:
+                    portionTypes[0] = "1/2 medium";
+                    portionTypes[1] = "1 medium";
+                    portionTypes[2] = "1 large";
+                    break;
+                case cup:
+                    portionTypes[0] = "1/4 cup";
+                    portionTypes[1] = "1/2 cup";
+                    portionTypes[2] = "1 cup";
+                    break;
+                case ounces:
+                    portionTypes[0] = "1 ounce";
+                    portionTypes[1] = "2 ounces";
+                    portionTypes[2] = "4 ounces";
+                    break;
+            }
+
+            viewHolder.mainLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                   // ToastHelper.show("Add item " + model.getName(), _context);
 
                     // add
                     AddedItemModel addedItem = new AddedItemModel();
                     addedItem.setDefault();
                     addedItem.setItemId(model.getId());
+                    addedItem.setSelectedPortion(portionTypes[viewHolder.portionPicker.getValue()]);
+
+                    double weightMultiple = getWeightMultiple(viewHolder.portionPicker.getValue());
+
+                    addedItem.setWeightMultiple(weightMultiple);
 
                     _contentFacade.updateAddedItem(addedItem, _context);
 
                     _listener.fragmentPop();
                 }
             });
+
+
+            viewHolder.portionPicker.setMinValue(0);
+            viewHolder.portionPicker.setMaxValue(portionTypes.length - 1);
+            viewHolder.portionPicker.setDisplayedValues(portionTypes);
+
+            NumberPicker.OnValueChangeListener myValueChangedListener = new NumberPicker.OnValueChangeListener() {
+                @Override
+                public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                    double weightMultiple = getWeightMultiple(newVal);
+
+                    Double grams = model.getGrams() * weightMultiple;
+
+                    String gramsValue = String.valueOf(grams) + " g";
+
+                    viewHolder.grams.setText(gramsValue);
+                }
+            };
+
+            viewHolder.portionPicker.setOnValueChangedListener(myValueChangedListener);
         }
+    }
+
+    /**
+     * @param portionTypeIndex
+     * @return
+     */
+    private Double getWeightMultiple(int portionTypeIndex) {
+        double weightMultiple = 1.0;
+
+        switch (portionTypeIndex) {
+            case 0:
+                weightMultiple = 0.5;
+                break;
+            case 1:
+                weightMultiple = 1.0;
+                break;
+            case 2:
+                weightMultiple = 2.0;
+                break;
+        }
+
+        return weightMultiple;
     }
 
     @Override
@@ -127,9 +194,10 @@ public class SelectorListAdapter extends RecyclerView.Adapter<SelectorListAdapte
 
         public final TextView header;
         public final TextView itemName;
-        public final TextView itemPortion;
         public final TextView grams;
         public final ImageView itemIcon;
+        public final RelativeLayout mainLayout;
+        public final NumberPicker portionPicker;
 
         public ViewHolder(View arg) {
             super(arg);
@@ -137,10 +205,13 @@ public class SelectorListAdapter extends RecyclerView.Adapter<SelectorListAdapte
 
             header = (TextView) view.findViewById(R.id.rowDelimiter);
 
+            mainLayout = (RelativeLayout) view.findViewById(R.id.mainLayout);
+
             itemName = (TextView) view.findViewById(R.id.itemName);
-            itemPortion = (TextView) view.findViewById(R.id.itemPortion);
             grams = (TextView) view.findViewById(R.id.grams);
             itemIcon = (ImageView) view.findViewById(R.id.itemIcon);
+
+            portionPicker = (NumberPicker) view.findViewById(R.id.numberPicker1);
         }
     }
 

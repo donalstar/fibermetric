@@ -89,9 +89,11 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
             viewHolder.itemIcon.setImageResource(partIndicatorResourceId);
 
             viewHolder.itemName.setText(model.getName());
-            viewHolder.itemPortion.setText(model.getPortion());
+            viewHolder.itemPortion.setText(model.getSelectedPortion());
 
-            String gramsValue = String.valueOf(model.getGrams()) + " g";
+            Double grams = model.getGrams() * model.getWeightMultiple();
+
+            String gramsValue = String.valueOf(grams) + " g";
 
             viewHolder.grams.setText(gramsValue);
 

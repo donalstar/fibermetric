@@ -63,7 +63,7 @@ public class ContentFacade {
                 model.setDefault();
                 model.fromCursor(cursor);
 
-                current += model.getGrams();
+                current += (model.getGrams() * model.getWeightMultiple());
             } while (cursor.moveToNext());
         }
 

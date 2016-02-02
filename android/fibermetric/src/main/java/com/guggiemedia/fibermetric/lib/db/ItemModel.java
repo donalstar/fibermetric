@@ -10,11 +10,10 @@ import java.io.Serializable;
  *
  */
 public class ItemModel implements DataBaseModel, Serializable {
-    public static final String PROVIDER = "Fibermetric";
-
     private Long _id;
     private String _name;
     private String _portion;
+    private PortionTypeEnum _portionType;
     private Double _grams;
     private ItemTypeEnum _type;
 
@@ -24,6 +23,7 @@ public class ItemModel implements DataBaseModel, Serializable {
 
         _name = "Unknown";
         _portion = "Unknown";
+        _portionType = PortionTypeEnum.UNKNOWN;
     }
 
     @Override
@@ -32,6 +32,7 @@ public class ItemModel implements DataBaseModel, Serializable {
 
         cv.put(ItemTable.Columns.NAME, _name);
         cv.put(ItemTable.Columns.PORTION, _portion);
+        cv.put(ItemTable.Columns.PORTION_TYPE, _portionType.toString());
         cv.put(ItemTable.Columns.GRAMS, _grams);
         cv.put(ItemTable.Columns.TYPE, _type.toString());
 
@@ -43,6 +44,7 @@ public class ItemModel implements DataBaseModel, Serializable {
         _id = cursor.getLong(cursor.getColumnIndex(ItemTable.Columns._ID));
         _name = cursor.getString(cursor.getColumnIndex(ItemTable.Columns.NAME));
         _portion = cursor.getString(cursor.getColumnIndex(ItemTable.Columns.PORTION));
+        _portionType = PortionTypeEnum.discoverMatchingEnum(cursor.getString(cursor.getColumnIndex(ItemTable.Columns.PORTION_TYPE)));
         _grams = cursor.getDouble(cursor.getColumnIndex(ItemTable.Columns.GRAMS));
         _type = ItemTypeEnum.discoverMatchingEnum(cursor.getString(cursor.getColumnIndex(ItemTable.Columns.TYPE)));
     }
@@ -76,6 +78,14 @@ public class ItemModel implements DataBaseModel, Serializable {
 
     public String getPortion() {
         return _portion;
+    }
+
+    public PortionTypeEnum getPortionType() {
+        return _portionType;
+    }
+
+    public void setPortionType(PortionTypeEnum portionType) {
+        this._portionType = portionType;
     }
 
     public void setPortion(String _serial) {

@@ -12,19 +12,22 @@ import java.io.Serializable;
 public class AddedItemModel implements DataBaseModel, Serializable {
     private Long _id;
     private Long _itemId;
+    private String _selectedPortion;
 
     private String _name;
-    private String _portion;
     private Double _grams;
     private ItemTypeEnum _type;
+    private Double _weightMultiple;
+
 
     @Override
     public void setDefault() {
         _id = 0L;
         _itemId = 0L;
+        _selectedPortion = "Unknown";
+        _weightMultiple = 1.0;
 
         _name = "Unknown";
-        _portion = "Unknown";
     }
 
     @Override
@@ -32,11 +35,8 @@ public class AddedItemModel implements DataBaseModel, Serializable {
         ContentValues cv = new ContentValues();
 
         cv.put(AddedItemTable.Columns.ITEM_ID, _itemId);
-
-        cv.put(ItemTable.Columns.NAME, _name);
-        cv.put(ItemTable.Columns.GRAMS, _grams);
-        cv.put(ItemTable.Columns.PORTION, _portion);
-        cv.put(ItemTable.Columns.TYPE, _type.toString());
+        cv.put(AddedItemTable.Columns.SELECTED_PORTION, _selectedPortion);
+        cv.put(AddedItemTable.Columns.WEIGHT_MULTIPLE, _weightMultiple);
 
         return cv;
     }
@@ -45,10 +45,11 @@ public class AddedItemModel implements DataBaseModel, Serializable {
     public void fromCursor(Cursor cursor) {
         _id = cursor.getLong(cursor.getColumnIndex(AddedItemTable.Columns._ID));
         _itemId = cursor.getLong(cursor.getColumnIndex(AddedItemTable.Columns.ITEM_ID));
+        _selectedPortion = cursor.getString(cursor.getColumnIndex(AddedItemTable.Columns.SELECTED_PORTION));
+        _weightMultiple = cursor.getDouble(cursor.getColumnIndex(AddedItemTable.Columns.WEIGHT_MULTIPLE));
 
         if (cursor.getColumnIndex(ItemTable.Columns.NAME) != -1) {
             _name = cursor.getString(cursor.getColumnIndex(ItemTable.Columns.NAME));
-            _portion = cursor.getString(cursor.getColumnIndex(ItemTable.Columns.PORTION));
             _grams = cursor.getDouble(cursor.getColumnIndex(ItemTable.Columns.GRAMS));
             _type = ItemTypeEnum.discoverMatchingEnum(cursor.getString(cursor.getColumnIndex(ItemTable.Columns.TYPE)));
         }
@@ -88,12 +89,20 @@ public class AddedItemModel implements DataBaseModel, Serializable {
         _name = arg;
     }
 
-    public String getPortion() {
-        return _portion;
+    public String getSelectedPortion() {
+        return _selectedPortion;
     }
 
-    public void setPortion(String _serial) {
-        this._portion = _serial;
+    public void setSelectedPortion(String selectedPortion) {
+        this._selectedPortion = selectedPortion;
+    }
+
+    public Double getWeightMultiple() {
+        return _weightMultiple;
+    }
+
+    public void setWeightMultiple(Double weightMultiple) {
+        this._weightMultiple = weightMultiple;
     }
 
     public Double getGrams() {

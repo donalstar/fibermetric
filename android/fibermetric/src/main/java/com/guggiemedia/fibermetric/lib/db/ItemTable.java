@@ -26,6 +26,7 @@ public class ItemTable implements DataBaseTable {
             + Columns._ID + " INTEGER PRIMARY KEY,"
             + Columns.NAME + " TEXT NOT NULL,"
             + Columns.PORTION + " TEXT NOT NULL,"
+            + Columns.PORTION_TYPE + " TEXT NOT NULL,"
             + Columns.GRAMS + " FLOAT NOT NULL,"
             + Columns.TYPE + " TEXT NOT NULL"
             + ");";
@@ -33,6 +34,7 @@ public class ItemTable implements DataBaseTable {
     public static final class Columns implements BaseColumns {
         public static final String NAME = "name";
         public static final String PORTION = "portion";
+        public static final String PORTION_TYPE = "portion_type";
         public static final String GRAMS = "grams";
         public static final String TYPE = "type";
     }
@@ -44,6 +46,7 @@ public class ItemTable implements DataBaseTable {
         PROJECTION_MAP.put(ItemTable.TABLE_NAME + "." + Columns._ID, Columns._ID);
         PROJECTION_MAP.put(ItemTable.TABLE_NAME + "." + Columns.NAME, Columns.NAME);
         PROJECTION_MAP.put(Columns.PORTION, Columns.PORTION);
+        PROJECTION_MAP.put(Columns.PORTION_TYPE, Columns.PORTION_TYPE);
         PROJECTION_MAP.put(Columns.GRAMS, Columns.GRAMS);
         PROJECTION_MAP.put(Columns.TYPE, Columns.TYPE);
     }

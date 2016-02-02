@@ -3,76 +3,86 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
-    android:paddingBottom="16dp">
-
-
-    <TextView
-        android:id="@+id/rowDelimiter"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:background="@color/white"
-        android:paddingBottom="10dp"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp"
-        android:textColor="@color/black54"
-        android:textSize="16dp"
-        android:textStyle="bold" />
+    android:layout_marginBottom="10dp"
+    android:background="@color/cararra">
 
     <RelativeLayout
-        android:id="@+id/statusImage"
+        android:id="@+id/mainLayout"
+        android:layout_centerVertical="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/rowDelimiter"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="6dp"
-        android:layout_marginTop="6dp">
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/rowDelimiter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:background="@color/white"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:textColor="@color/black54"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:id="@+id/statusImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rowDelimiter"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginTop="6dp">
 
 
-        <ImageView
-            android:id="@+id/itemIcon"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
+            <ImageView
+                android:id="@+id/itemIcon"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+        </RelativeLayout>
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rowDelimiter"
+            android:layout_toRightOf="@id/statusImage"
+            android:padding="5dp"
+            android:stretchColumns="1">
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/itemName"
+                    android:layout_gravity="left"
+                    android:textColor="@color/darkSeaGreen"
+                    android:textSize="18sp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/grams"
+                    android:gravity="left|top" />
+            </TableRow>
+        </TableLayout>
     </RelativeLayout>
 
-    <TableLayout
-        android:layout_width="fill_parent"
+    <RelativeLayout
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/rowDelimiter"
-        android:layout_toRightOf="@id/statusImage"
-        android:padding="5dp"
-        android:stretchColumns="1">
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/itemName"
-                android:layout_gravity="left"
-                android:textColor="@color/black87"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/itemPortion"
-                android:gravity="left|top" />
-        </TableRow>
-    </TableLayout>
-
-
-    <TextView
-        android:id="@+id/grams"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:gravity="center"
-        android:paddingBottom="10dp"
-        android:paddingRight="10dp"
-        android:text="GRAMS" />
+        android:paddingRight="5dp">
+
+        <NumberPicker
+            android:id="@+id/numberPicker1"
+            android:layout_width="100dp"
+            android:layout_centerVertical="true"
+            android:layout_height="120dp"
+            android:background="@color/white"
+            android:scaleX="0.70"
+            android:scaleY="0.70" />
+    </RelativeLayout>
 </RelativeLayout>
 
 
