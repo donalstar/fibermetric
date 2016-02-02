@@ -25,7 +25,6 @@ import com.guggiemedia.fibermetric.R;
 import com.guggiemedia.fibermetric.lib.db.AddedItemTable;
 import com.guggiemedia.fibermetric.lib.db.ContentFacade;
 import com.guggiemedia.fibermetric.lib.db.DataBaseTable;
-import com.guggiemedia.fibermetric.lib.db.ItemTable;
 import com.guggiemedia.fibermetric.utility.ToastHelper;
 
 

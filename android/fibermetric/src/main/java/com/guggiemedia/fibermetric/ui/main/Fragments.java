@@ -3,6 +3,8 @@ package com.guggiemedia.fibermetric.ui.main;
 public enum Fragments {
     UNKNOWN("Unknown"),
     FOOD_SELECTOR_VIEW("FoodSelectorView"),
+    HISTORY_VIEW("HistoryView"),
+    WEEK_HISTORY_VIEW("WeekHistoryView"),
     STATUS_VIEW("StatusView");
 
     private final String _name;
@@ -18,6 +20,7 @@ public enum Fragments {
 
     /**
      * string to enum conversion
+     *
      * @param arg
      * @return
      */
@@ -28,7 +31,7 @@ public enum Fragments {
             return result;
         }
 
-        for (Fragments token: Fragments.values()) {
+        for (Fragments token : Fragments.values()) {
             if (token._name.equals(arg)) {
                 result = token;
             }

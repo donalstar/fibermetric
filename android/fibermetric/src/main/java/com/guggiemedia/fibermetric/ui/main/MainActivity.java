@@ -1,5 +1,6 @@
 package com.guggiemedia.fibermetric.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -88,6 +89,12 @@ public class MainActivity extends AppCompatActivity implements MainActivityListe
             case FOOD_SELECTOR_VIEW:
                 fragment = FoodSelectorFragment.newInstance();
                 break;
+            case HISTORY_VIEW:
+                fragment = HistoryFragment.newInstance();
+                break;
+            case WEEK_HISTORY_VIEW:
+                fragment = WeekHistoryFragment.newInstance();
+                break;
             case STATUS_VIEW:
                 args.putBoolean(HomeFragment.ARG_PARAM_TODAY, true);
                 fragment = HomeFragment.newInstance(args);
@@ -129,8 +136,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityListe
                 fragmentSelect(Fragments.STATUS_VIEW, bundle);
                 break;
             case R.id.navHistory:
-                ToastHelper.show("History" +
-                        "", this);
+                fragmentSelect(Fragments.HISTORY_VIEW, bundle);
+                break;
+            case R.id.navWeekHistory:
+                fragmentSelect(Fragments.WEEK_HISTORY_VIEW, bundle);
                 break;
             case R.id.navHelp:
                 break;
@@ -142,7 +151,5 @@ public class MainActivity extends AppCompatActivity implements MainActivityListe
                 throw new IllegalArgumentException("unknown nav drawer selection");
         }
     }
-
-
 }
 

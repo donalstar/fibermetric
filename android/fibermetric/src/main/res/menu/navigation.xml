@@ -15,6 +15,11 @@
             android:id="@+id/navHistory"
             android:icon="@drawable/ic_week_default"
             android:title="@string/menuHistory" />
+
+        <item
+            android:id="@+id/navWeekHistory"
+            android:icon="@drawable/ic_week_default"
+            android:title="Week History" />
     </group>
 
     <group android:id="@+id/group3">
