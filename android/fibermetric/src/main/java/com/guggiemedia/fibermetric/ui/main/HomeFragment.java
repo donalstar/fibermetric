@@ -22,9 +22,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.guggiemedia.fibermetric.R;
-import com.guggiemedia.fibermetric.lib.db.AddedItemTable;
-import com.guggiemedia.fibermetric.lib.db.ContentFacade;
-import com.guggiemedia.fibermetric.lib.db.DataBaseTable;
+import com.guggiemedia.fibermetric.db.AddedItemTable;
+import com.guggiemedia.fibermetric.db.ContentFacade;
+import com.guggiemedia.fibermetric.db.DataBaseTable;
 import com.guggiemedia.fibermetric.utility.ToastHelper;
 
 
@@ -53,7 +53,6 @@ public class HomeFragment extends Fragment implements FragmentContext, LoaderMan
 
         return new CursorLoader(getActivity(), AddedItemTable.ADDED_ITEMS_CONTENT_URI, projection, null, null, null);
     }
-
 
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
         if (cursor != null) {

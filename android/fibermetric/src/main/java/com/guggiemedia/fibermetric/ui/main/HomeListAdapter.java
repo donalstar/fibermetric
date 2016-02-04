@@ -12,8 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.guggiemedia.fibermetric.R;
-import com.guggiemedia.fibermetric.lib.db.AddedItemModel;
-import com.guggiemedia.fibermetric.lib.db.ItemModel;
+import com.guggiemedia.fibermetric.db.AddedItemModel;
 
 
 /**

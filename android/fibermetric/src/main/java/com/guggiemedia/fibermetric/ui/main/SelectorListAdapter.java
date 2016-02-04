@@ -13,9 +13,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.guggiemedia.fibermetric.R;
-import com.guggiemedia.fibermetric.lib.db.AddedItemModel;
-import com.guggiemedia.fibermetric.lib.db.ContentFacade;
-import com.guggiemedia.fibermetric.lib.db.ItemModel;
+import com.guggiemedia.fibermetric.db.AddedItemModel;
+import com.guggiemedia.fibermetric.db.ContentFacade;
+import com.guggiemedia.fibermetric.db.ItemModel;
 
 /**
  *

@@ -18,8 +18,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.guggiemedia.fibermetric.R;
-import com.guggiemedia.fibermetric.lib.db.DataBaseTable;
-import com.guggiemedia.fibermetric.lib.db.ItemTable;
+import com.guggiemedia.fibermetric.db.DataBaseTable;
+import com.guggiemedia.fibermetric.db.ItemTable;
 
 public class FoodSelectorFragment extends Fragment implements FragmentContext, LoaderManager.LoaderCallbacks<Cursor> {
     public static final String LOG_TAG = FoodSelectorFragment.class.getName();

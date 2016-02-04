@@ -1,7 +1,6 @@
 package com.guggiemedia.fibermetric.ui.main;
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,9 +20,13 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.guggiemedia.fibermetric.R;
+import com.guggiemedia.fibermetric.db.ContentFacade;
+import com.guggiemedia.fibermetric.db.HistoryModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class WeekHistoryFragment extends Fragment implements FragmentContext {
@@ -35,12 +38,14 @@ public class WeekHistoryFragment extends Fragment implements FragmentContext {
 
     private MainActivityListener _listener;
 
-    protected BarChart mChart;
+    private final ContentFacade _contentFacade = new ContentFacade();
 
+
+    protected BarChart mChart;
 
     private Typeface tf;
 
-    protected String[] mMonths = new String[]{
+    protected String[] _dayLabels = new String[]{
             "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"
     };
 
@@ -65,6 +70,8 @@ public class WeekHistoryFragment extends Fragment implements FragmentContext {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_week_history, container, false);
+
+        List<HistoryModel> historyModels = _contentFacade.selectHistoryAll(getActivity());
 
         mChart = (BarChart) view.findViewById(R.id.chart1);
 
@@ -107,36 +114,45 @@ public class WeekHistoryFragment extends Fragment implements FragmentContext {
         limitLine.setTextSize(10f);
         limitLine.setTypeface(tf);
 
+        setData(historyModels);
 
         yr.removeAllLimitLines(); // reset all limit lines to avoid overlapping lines
         yr.addLimitLine(limitLine);
 
-        setData(7, 50);
-        mChart.animateY(1500);
-
+        mChart.animateY(1000);
 
         Legend l = mChart.getLegend();
         l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
         l.setFormSize(8f);
         l.setXEntrySpace(4f);
 
-
         return view;
     }
 
-    private void setData(int count, float range) {
 
-        ArrayList<BarEntry> yVals1 = new ArrayList<>();
+    private void setData(List<HistoryModel> historyModels) {
+
         ArrayList<String> xVals = new ArrayList<>();
 
-        for (int i = 0; i < count; i++) {
-            xVals.add(mMonths[i % 7]);
-            yVals1.add(new BarEntry((float) (Math.random() * range), i));
+        for (int i = 0; i < historyModels.size(); i++) {
+            xVals.add(_dayLabels[i % _dayLabels.length]);
         }
 
-        BarDataSet set1 = new BarDataSet(yVals1, "Grams (daily)");
+        ArrayList<BarEntry> yVals1 = new ArrayList<>();
 
-        set1.setColor(Color.rgb(135, 211, 124)); // green
+        for (int i = 0; i < historyModels.size(); i++) {
+            HistoryModel model = historyModels.get(i);
+
+            float values[] = {model.getFruit().floatValue(),
+                    model.getVeg().floatValue(),
+                    model.getGrain().floatValue()};
+
+            yVals1.add(new BarEntry(values, i));
+        }
+
+        BarDataSet set1 = new BarDataSet(yVals1, "grams (daily)");
+        set1.setColors(getColors());
+        set1.setStackLabels(new String[]{"Fruit", "Veg", "Grains"});
 
         ArrayList<BarDataSet> dataSets = new ArrayList<BarDataSet>();
         dataSets.add(set1);
@@ -147,6 +163,20 @@ public class WeekHistoryFragment extends Fragment implements FragmentContext {
 
 
         mChart.setData(data);
+    }
+
+    private int[] getColors() {
+
+        int stacksize = 3;
+
+        // have as many colors as stack-values per entry
+        int[] colors = new int[stacksize];
+
+        for (int i = 0; i < stacksize; i++) {
+            colors[i] = ColorTemplate.VORDIPLOM_COLORS[i];
+        }
+
+        return colors;
     }
 
     @Override
