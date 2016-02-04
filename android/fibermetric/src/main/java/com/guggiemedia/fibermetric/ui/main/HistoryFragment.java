@@ -22,8 +22,11 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.guggiemedia.fibermetric.R;
+import com.guggiemedia.fibermetric.db.ContentFacade;
+import com.guggiemedia.fibermetric.db.HistoryModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class HistoryFragment extends Fragment implements FragmentContext {
@@ -35,15 +38,9 @@ public class HistoryFragment extends Fragment implements FragmentContext {
 
     private MainActivityListener _listener;
 
-
+    private final ContentFacade _contentFacade = new ContentFacade();
+    
     private LineChart mChart;
-
-
-    private Typeface tf;
-
-    protected String[] mMonths = new String[]{
-            "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"
-    };
 
 
     public static HistoryFragment newInstance() {
@@ -67,7 +64,7 @@ public class HistoryFragment extends Fragment implements FragmentContext {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_history, container, false);
 
-//        return inflater.inflate(R.layout.fragment_history, container, false);
+        List<HistoryModel> historyModels = _contentFacade.selectHistoryAll(getActivity());
 
         mChart = (LineChart) view.findViewById(R.id.chart1);
 
@@ -82,7 +79,6 @@ public class HistoryFragment extends Fragment implements FragmentContext {
         mChart.setDragEnabled(true);
         mChart.setScaleEnabled(true);
 
-
         // x-axis limit line
         LimitLine llXAxis = new LimitLine(10f, "Index 10");
         llXAxis.setLineWidth(4f);
@@ -93,7 +89,7 @@ public class HistoryFragment extends Fragment implements FragmentContext {
 
         Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Regular.ttf");
 
-        LimitLine ll1 = new LimitLine(140f, "Daily Recommended");
+        LimitLine ll1 = new LimitLine(40f, "Daily Recommended");
         ll1.setLineWidth(4f);
         ll1.enableDashedLine(10f, 10f, 0f);
         ll1.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
@@ -105,10 +101,10 @@ public class HistoryFragment extends Fragment implements FragmentContext {
         leftAxis.removeAllLimitLines(); // reset all limit lines to avoid overlapping lines
         leftAxis.addLimitLine(ll1);
 
-        leftAxis.setAxisMaxValue(220f);
-        leftAxis.setAxisMinValue(-50f);
+        leftAxis.setAxisMaxValue(60f);
+        leftAxis.setAxisMinValue(0f);
         leftAxis.setStartAtZero(false);
-        //leftAxis.setYOffset(20f);
+
         leftAxis.enableGridDashedLine(10f, 10f, 0f);
 
         // limit lines are drawn behind data (and not on top)
@@ -117,10 +113,9 @@ public class HistoryFragment extends Fragment implements FragmentContext {
         mChart.getAxisRight().setEnabled(false);
 
         // add data
-        setData(45, 100);
+        setData(historyModels);
 
-        mChart.animateX(1500, Easing.EasingOption.EaseInOutQuart);
-//        mChart.invalidate();
+        mChart.animateX(1000, Easing.EasingOption.EaseInOutQuart);
 
         // get the legend (only possible after setting data)
         Legend l = mChart.getLegend();
@@ -131,21 +126,20 @@ public class HistoryFragment extends Fragment implements FragmentContext {
         return view;
     }
 
-    private void setData(int count, float range) {
+    private void setData(List<HistoryModel> historyModels) {
 
-        ArrayList<String> xVals = new ArrayList<String>();
-        for (int i = 0; i < count; i++) {
+        ArrayList<String> xVals = new ArrayList<>();
+        for (int i = 0; i < historyModels.size(); i++) {
             xVals.add((i) + "");
         }
 
-        ArrayList<Entry> yVals = new ArrayList<Entry>();
+        ArrayList<Entry> yVals = new ArrayList<>();
 
-        for (int i = 0; i < count; i++) {
 
-            float mult = (range + 1);
-            float val = (float) (Math.random() * mult) + 3;// + (float)
+        for (int i = 0; i < historyModels.size(); i++) {
+            HistoryModel model = historyModels.get(i);
 
-            yVals.add(new Entry(val, i));
+            yVals.add(new Entry(model.getTotal().floatValue(), i));
         }
 
         // create a dataset and give it a type
@@ -169,12 +163,12 @@ public class HistoryFragment extends Fragment implements FragmentContext {
         ArrayList<LineDataSet> dataSets = new ArrayList<>();
         dataSets.add(set1);
 
-        // create a data object with the datasets
         LineData data = new LineData(xVals, dataSets);
 
         // set data
         mChart.setData(data);
     }
+
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
