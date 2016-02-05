@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.LimitLine;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -25,6 +25,7 @@ import com.guggiemedia.fibermetric.R;
 import com.guggiemedia.fibermetric.db.ContentFacade;
 import com.guggiemedia.fibermetric.db.HistoryModel;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,9 +40,6 @@ public class HistoryFragment extends Fragment implements FragmentContext {
     private MainActivityListener _listener;
 
     private final ContentFacade _contentFacade = new ContentFacade();
-    
-    private LineChart mChart;
-
 
     public static HistoryFragment newInstance() {
         return new HistoryFragment();
@@ -66,109 +64,165 @@ public class HistoryFragment extends Fragment implements FragmentContext {
 
         List<HistoryModel> historyModels = _contentFacade.selectHistoryAll(getActivity());
 
-        mChart = (LineChart) view.findViewById(R.id.chart1);
+        LineChart chart = (LineChart) view.findViewById(R.id.chart);
 
-
-        mChart.setDrawGridBackground(false);
-
-        // no description text
-        mChart.setDescription("");
-        mChart.setNoDataTextDescription("You need to provide data for the chart.");
-
-        // enable scaling and dragging
-        mChart.setDragEnabled(true);
-        mChart.setScaleEnabled(true);
-
-        // x-axis limit line
-        LimitLine llXAxis = new LimitLine(10f, "Index 10");
-        llXAxis.setLineWidth(4f);
-        llXAxis.enableDashedLine(10f, 10f, 0f);
-        llXAxis.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
-        llXAxis.setTextSize(10f);
-
-
-        Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Regular.ttf");
-
-        LimitLine ll1 = new LimitLine(40f, "Daily Recommended");
-        ll1.setLineWidth(4f);
-        ll1.enableDashedLine(10f, 10f, 0f);
-        ll1.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
-        ll1.setTextSize(10f);
-        ll1.setTypeface(tf);
-
-
-        YAxis leftAxis = mChart.getAxisLeft();
-        leftAxis.removeAllLimitLines(); // reset all limit lines to avoid overlapping lines
-        leftAxis.addLimitLine(ll1);
-
-        leftAxis.setAxisMaxValue(60f);
-        leftAxis.setAxisMinValue(0f);
-        leftAxis.setStartAtZero(false);
-
-        leftAxis.enableGridDashedLine(10f, 10f, 0f);
-
-        // limit lines are drawn behind data (and not on top)
-        leftAxis.setDrawLimitLinesBehindData(true);
-
-        mChart.getAxisRight().setEnabled(false);
-
-        // add data
-        setData(historyModels);
-
-        mChart.animateX(1000, Easing.EasingOption.EaseInOutQuart);
-
-        // get the legend (only possible after setting data)
-        Legend l = mChart.getLegend();
-
-        l.setForm(Legend.LegendForm.LINE);
-
+        configureChart(chart, historyModels);
 
         return view;
     }
 
-    private void setData(List<HistoryModel> historyModels) {
+    /**
+     * @param chart
+     * @param historyModels
+     */
+    private void configureChart(LineChart chart, List<HistoryModel> historyModels) {
+        chart.setDrawGridBackground(false);
 
-        ArrayList<String> xVals = new ArrayList<>();
-        for (int i = 0; i < historyModels.size(); i++) {
-            xVals.add((i) + "");
+        // no description text
+        chart.setDescription("");
+        chart.setNoDataTextDescription("You need to provide data for the chart.");
+
+        // enable scaling and dragging
+        chart.setDragEnabled(true);
+        chart.setScaleEnabled(true);
+
+        Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Regular.ttf");
+
+        XAxis xl = chart.getXAxis();
+
+        ChartUtility.configureXAxis(xl, tf);
+
+        YAxis yAxis = chart.getAxisLeft();
+
+        ChartUtility.configureYAxis(yAxis);
+
+        YAxis yAxisRight = chart.getAxisRight();
+
+        ChartUtility.configureYAxisRight(yAxisRight, tf);
+
+        ChartUtility.addDailyLimitLine(yAxis, tf);
+
+        chart.getAxisRight().setEnabled(false);
+
+        // add data
+        LineData data = getChartData(historyModels);
+
+        // set data
+        chart.setData(data);
+
+        chart.animateX(1000, Easing.EasingOption.EaseInOutQuart);
+
+        // get the legend (only possible after setting data)
+        Legend l = chart.getLegend();
+
+        l.setForm(Legend.LegendForm.LINE);
+    }
+
+    private LineData getChartData(List<HistoryModel> historyModels) {
+
+
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd");
+
+        List<String> xValues = new ArrayList<>();
+
+        for (HistoryModel model : historyModels) {
+            String dateLabel = format.format(model.getDate());
+
+
+            xValues.add(dateLabel);
         }
 
-        ArrayList<Entry> yVals = new ArrayList<>();
+//        List<String> xValues = new ArrayList<>();
+//        for (int i = 0; i < historyModels.size(); i++) {
+//            xValues.add((i) + "x");
+//        }
 
+        List<Entry> totals = new ArrayList<>();
 
         for (int i = 0; i < historyModels.size(); i++) {
             HistoryModel model = historyModels.get(i);
 
-            yVals.add(new Entry(model.getTotal().floatValue(), i));
+            totals.add(new Entry(model.getTotal().floatValue(), i));
         }
 
-        // create a dataset and give it a type
-        LineDataSet set1 = new LineDataSet(yVals, "Daily");
+        List<Entry> fruit = new ArrayList<>();
 
+        for (int i = 0; i < historyModels.size(); i++) {
+            HistoryModel model = historyModels.get(i);
+
+            fruit.add(new Entry(model.getFruit().floatValue() + model.getVeg().floatValue(), i));
+        }
+
+        List<Entry> veg = new ArrayList<>();
+
+        for (int i = 0; i < historyModels.size(); i++) {
+            HistoryModel model = historyModels.get(i);
+
+            veg.add(new Entry(model.getVeg().floatValue(), i));
+        }
+
+        int greenColor = Color.rgb(135, 211, 124);
+
+
+        LineDataSet fruitSet = new LineDataSet(fruit, "fruit");
 
         // set the line to be drawn like this "- - - - - -"
-        set1.enableDashedLine(10f, 5f, 0f);
-        set1.enableDashedHighlightLine(10f, 5f, 0f);
-        set1.setColor(Color.BLACK);
-        set1.setCircleColor(Color.BLACK);
-        set1.setLineWidth(1f);
+        fruitSet.enableDashedLine(10f, 5f, 0f);
+        fruitSet.enableDashedHighlightLine(10f, 5f, 0f);
+        fruitSet.setColor(greenColor);
+        fruitSet.setLineWidth(1f);
 
-        set1.setFillColor(Color.rgb(135, 211, 124));
+        fruitSet.setFillColor(Color.rgb(135, 211, 124));
 
-        set1.setDrawCircleHole(false);
-        set1.setValueTextSize(9f);
+        fruitSet.setDrawCubic(true);
+        fruitSet.setDrawCircles(false);
+        fruitSet.setDrawValues(false);
 
-        set1.setDrawFilled(true);
+        fruitSet.setFillColor(greenColor);
+        fruitSet.setDrawFilled(true);
+
+        int yellowColor = Color.rgb(245, 215, 110);
+
+        LineDataSet vegSet = new LineDataSet(veg, "veg");
+
+        // set the line to be drawn like this "- - - - - -"
+        vegSet.enableDashedLine(10f, 5f, 0f);
+        vegSet.enableDashedHighlightLine(10f, 5f, 0f);
+        vegSet.setColor(yellowColor);
+        vegSet.setLineWidth(1f);
+
+        vegSet.setFillColor(yellowColor);
+
+        vegSet.setDrawCubic(true);
+        vegSet.setDrawCircles(false);
+        vegSet.setDrawValues(false);
+
+        vegSet.setFillColor(yellowColor);
+        vegSet.setDrawFilled(true);
+
+        int orangeColor = Color.rgb(244, 179, 80);
+
+        LineDataSet totalSet = new LineDataSet(totals, "grain");
+
+        totalSet.enableDashedLine(10f, 5f, 0f);
+        totalSet.enableDashedHighlightLine(10f, 5f, 0f);
+        totalSet.setColor(orangeColor);
+        totalSet.setLineWidth(1.5f);
+        totalSet.setFillColor(orangeColor);
+        totalSet.setDrawFilled(true);
+        totalSet.setDrawCubic(true);
+        totalSet.setDrawCircles(false);
+        totalSet.setDrawValues(false);
 
         ArrayList<LineDataSet> dataSets = new ArrayList<>();
-        dataSets.add(set1);
+        dataSets.add(totalSet);
 
-        LineData data = new LineData(xVals, dataSets);
+        dataSets.add(fruitSet);
 
-        // set data
-        mChart.setData(data);
+        dataSets.add(vegSet);
+
+        return new LineData(xValues, dataSets);
     }
-
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {

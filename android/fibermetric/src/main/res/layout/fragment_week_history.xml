@@ -2,13 +2,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context="com.guggiemedia.fibermetric.ui.main.HistoryFragment">
 
 
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:text="DESCRIP"
+        android:textColor="@color/black54"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+
     <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/chart1"
+        android:id="@+id/chart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white" />
+        android:layout_below="@id/title" />
 
 </RelativeLayout>

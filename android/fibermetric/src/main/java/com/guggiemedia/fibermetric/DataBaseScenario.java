@@ -14,6 +14,7 @@ import com.guggiemedia.fibermetric.db.ItemTypeEnum;
 import com.guggiemedia.fibermetric.db.PortionTypeEnum;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -211,19 +212,21 @@ public class DataBaseScenario {
      * @param context
      */
     public void loadHistory(Context context) {
-        double dataValues[][] = {
-                {12.0f, 9.0f, 15.0f},
-                {10.0f, 19.0f, 18.0f},
-                {20.0f, 12.0f, 14.0f},
-                {16.0f, 20.0f, 11.0f},
-                {8.0f, 16.0f, 12.0f},
-                {16.0f, 20.0f, 9.0f},
-                {13.0f, 9.0f, 10.0f}
-        };
 
-        List<HistoryModel> models = new ArrayList<>();
+        double dataValues[][] = new double[30][3];
 
-        Date date = new Date();
+        for (int i = 0; i < dataValues.length; i++) {
+
+            double values[] = new double[3];
+
+            for (int j = 0; j < values.length; j++) {
+                values[j] = (Math.random() * 20);
+            }
+
+            dataValues[i] = values;
+        }
+
+        Calendar calendar = Calendar.getInstance();
 
         for (int i = 0; i < dataValues.length; i++) {
             double dailyValue[] = dataValues[i];
@@ -237,9 +240,12 @@ public class DataBaseScenario {
 
             double total = dailyValue[0] + dailyValue[1] + dailyValue[2];
             model.setTotal(total);
-            model.setDate(date);
 
-            models.add(model);
+            calendar.add(Calendar.DAY_OF_MONTH, -1);
+
+            Date date = calendar.getTime();
+
+            model.setDate(date);
 
             ContextList list = new ContextList();
 

@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.net.Uri;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -67,6 +68,33 @@ public class ContentFacade {
         List<HistoryModel> result = new ArrayList<>();
 
         Cursor cursor = context.getContentResolver().query(HistoryTable.CONTENT_URI, null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                HistoryModel model = new HistoryModel();
+                model.setDefault();
+                model.fromCursor(cursor);
+                result.add(model);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+
+        return result;
+    }
+
+    /**
+     * @param context
+     * @return
+     */
+    public List<HistoryModel> selectHistoryByDate(Context context, Date fromDate, Date toDate) {
+        List<HistoryModel> result = new ArrayList<>();
+
+        String selection = "date > ? and date < ?";
+
+        String[] selectionArgs = {String.valueOf(fromDate.getTime()), String.valueOf(toDate.getTime())};
+
+        Cursor cursor = context.getContentResolver().query(HistoryTable.CONTENT_URI, null, selection, selectionArgs, null);
 
         if (cursor.moveToFirst()) {
             do {

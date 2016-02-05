@@ -1,6 +1,7 @@
 package com.guggiemedia.fibermetric.ui.main;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,10 +12,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -25,7 +26,10 @@ import com.guggiemedia.fibermetric.R;
 import com.guggiemedia.fibermetric.db.ContentFacade;
 import com.guggiemedia.fibermetric.db.HistoryModel;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -40,15 +44,7 @@ public class WeekHistoryFragment extends Fragment implements FragmentContext {
 
     private final ContentFacade _contentFacade = new ContentFacade();
 
-
-    protected BarChart mChart;
-
     private Typeface tf;
-
-    protected String[] _dayLabels = new String[]{
-            "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"
-    };
-
 
     public static WeekHistoryFragment newInstance() {
         return new WeekHistoryFragment();
@@ -71,74 +67,99 @@ public class WeekHistoryFragment extends Fragment implements FragmentContext {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_week_history, container, false);
 
-        List<HistoryModel> historyModels = _contentFacade.selectHistoryAll(getActivity());
+        TextView titleView = (TextView) view.findViewById(R.id.title);
 
-        mChart = (BarChart) view.findViewById(R.id.chart1);
+        List<HistoryModel> historyModels = getData();
 
-        mChart.setDrawBarShadow(false);
+        HistoryModel firstDayModel = historyModels.get(0);
+        HistoryModel lastDayModel = historyModels.get(historyModels.size() - 1);
 
-        mChart.setDrawValueAboveBar(true);
+        SimpleDateFormat format = new SimpleDateFormat("EEE MM/dd");
 
-        mChart.setDescription("");
+        String firstDay = format.format(firstDayModel.getDate());
+        String lastDay = format.format(lastDayModel.getDate());
 
-        // scaling can now only be done on x- and y-axis separately
-        mChart.setPinchZoom(false);
+        titleView.setText("Daily fiber intake - " + firstDay + " to " + lastDay);
 
-        mChart.setDrawGridBackground(false);
+        BarChart chart = (BarChart) view.findViewById(R.id.chart);
 
-        tf = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Regular.ttf");
-
-        XAxis xl = mChart.getXAxis();
-        xl.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xl.setTypeface(tf);
-        xl.setDrawAxisLine(true);
-        xl.setDrawGridLines(true);
-        xl.setGridLineWidth(0.3f);
-
-        YAxis yl = mChart.getAxisLeft();
-        yl.setTypeface(tf);
-        yl.setDrawAxisLine(true);
-        yl.setDrawGridLines(true);
-        yl.setGridLineWidth(0.3f);
-
-
-        YAxis yr = mChart.getAxisRight();
-        yr.setTypeface(tf);
-        yr.setDrawAxisLine(true);
-        yr.setDrawGridLines(false);
-
-        LimitLine limitLine = new LimitLine(35f, "Daily Recommended");
-        limitLine.setLineWidth(4f);
-        limitLine.enableDashedLine(10f, 10f, 0f);
-        limitLine.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
-        limitLine.setTextSize(10f);
-        limitLine.setTypeface(tf);
-
-        setData(historyModels);
-
-        yr.removeAllLimitLines(); // reset all limit lines to avoid overlapping lines
-        yr.addLimitLine(limitLine);
-
-        mChart.animateY(1000);
-
-        Legend l = mChart.getLegend();
-        l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
-        l.setFormSize(8f);
-        l.setXEntrySpace(4f);
+        configureChart(chart, historyModels);
 
         return view;
     }
 
+    /**
+     *
+     * @return
+     */
+    private List<HistoryModel> getData() {
+        Date now = new Date();
 
-    private void setData(List<HistoryModel> historyModels) {
+        Calendar calendar = Calendar.getInstance();
 
-        ArrayList<String> xVals = new ArrayList<>();
+        calendar.add(Calendar.DAY_OF_MONTH, -8);
 
-        for (int i = 0; i < historyModels.size(); i++) {
-            xVals.add(_dayLabels[i % _dayLabels.length]);
+        return _contentFacade.selectHistoryByDate(getActivity(), calendar.getTime(), now);
+    }
+
+    /**
+     * @param chart
+     * @param historyModels
+     */
+    private void configureChart(BarChart chart, List<HistoryModel> historyModels) {
+        chart.setDescription("");
+
+        chart.setDrawBarShadow(false);
+
+        chart.setDrawValueAboveBar(true);
+
+        // scaling can now only be done on x- and y-axis separately
+        chart.setPinchZoom(false);
+
+        chart.setDrawGridBackground(false);
+
+        tf = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Regular.ttf");
+
+        XAxis xl = chart.getXAxis();
+
+        ChartUtility.configureXAxis(xl, tf);
+
+        YAxis yl = chart.getAxisLeft();
+
+        ChartUtility.configureYAxis(yl);
+
+        YAxis yAxisRight = chart.getAxisRight();
+
+        ChartUtility.configureYAxisRight(yAxisRight, tf);
+
+        ChartUtility.addDailyLimitLine(yAxisRight, tf);
+
+        BarData data = getChartData(historyModels);
+
+        chart.setData(data);
+
+        chart.animateY(1000);
+
+        Legend l = chart.getLegend();
+        l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
+        l.setFormSize(8f);
+        l.setXEntrySpace(4f);
+    }
+
+    private BarData getChartData(List<HistoryModel> historyModels) {
+
+        SimpleDateFormat format = new SimpleDateFormat("EEE");
+
+        List<String> xValues = new ArrayList<>();
+
+        for (HistoryModel model : historyModels) {
+            String dateLabel = format.format(model.getDate());
+
+
+            xValues.add(dateLabel);
         }
 
-        ArrayList<BarEntry> yVals1 = new ArrayList<>();
+        List<BarEntry> yValues = new ArrayList<>();
 
         for (int i = 0; i < historyModels.size(); i++) {
             HistoryModel model = historyModels.get(i);
@@ -147,22 +168,21 @@ public class WeekHistoryFragment extends Fragment implements FragmentContext {
                     model.getVeg().floatValue(),
                     model.getGrain().floatValue()};
 
-            yVals1.add(new BarEntry(values, i));
+            yValues.add(new BarEntry(values, i));
         }
 
-        BarDataSet set1 = new BarDataSet(yVals1, "grams (daily)");
+        BarDataSet set1 = new BarDataSet(yValues, "grams (daily)");
         set1.setColors(getColors());
         set1.setStackLabels(new String[]{"Fruit", "Veg", "Grains"});
 
-        ArrayList<BarDataSet> dataSets = new ArrayList<BarDataSet>();
+        ArrayList<BarDataSet> dataSets = new ArrayList<>();
         dataSets.add(set1);
 
-        BarData data = new BarData(xVals, dataSets);
+        BarData data = new BarData(xValues, dataSets);
         data.setValueTextSize(10f);
         data.setValueTypeface(tf);
 
-
-        mChart.setData(data);
+        return data;
     }
 
     private int[] getColors() {
