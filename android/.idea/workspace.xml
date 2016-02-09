@@ -10,21 +10,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="09c92558-d98b-4288-9e7b-6fcf26ad11e6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/ChartUtility.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/CalendarDialog.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/MainActivityDialogEnum.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fibermetric/src/main/res/layout/dialog_calendar.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fibermetric/src/main/res/menu/menu_calendar.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/gradle_project_sync_data.bin" afterPath="$PROJECT_DIR$/build/intermediates/gradle_project_sync_data.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/db/ContentFacade.java" afterPath="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/db/ContentFacade.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/DataBaseScenario.java" afterPath="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/DataBaseScenario.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/HistoryFragment.java" afterPath="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/HistoryFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/WeekHistoryFragment.java" afterPath="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/WeekHistoryFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fibermetric/src/main/res/layout/fragment_history.xml" afterPath="$PROJECT_DIR$/fibermetric/src/main/res/layout/fragment_history.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fibermetric/src/main/res/layout/fragment_week_history.xml" afterPath="$PROJECT_DIR$/fibermetric/src/main/res/layout/fragment_week_history.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fibermetric/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/fibermetric/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/HomeFragment.java" afterPath="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/HomeFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/MainActivity.java" afterPath="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/MainActivityListener.java" afterPath="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/MainActivityListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fibermetric/src/main/res/values/styles.xml" afterPath="$PROJECT_DIR$/fibermetric/src/main/res/values/styles.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="android.iws" />
@@ -53,98 +51,92 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="WeekHistoryFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/WeekHistoryFragment.java">
+      <file leaf-file-name="HomeFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/HomeFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.6666666">
-              <caret line="149" column="0" selection-start-line="149" selection-start-column="0" selection-end-line="159" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="94" selection-end-column="79" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1635#1636#0" expanded="true" />
-                <element signature="e#1683#1684#0" expanded="true" />
-                <element signature="e#6497#6498#0" expanded="true" />
-                <element signature="e#6525#6526#0" expanded="true" />
-                <element signature="e#6576#6577#0" expanded="true" />
-                <element signature="e#6623#6624#0" expanded="true" />
+                <element signature="e#2170#2171#0" expanded="true" />
+                <element signature="e#2210#2211#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SelectByRowIdCmd.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/chain/SelectByRowIdCmd.java">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fibermetric/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="25" selection-end-column="50" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HistoryFragment.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/HistoryFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.11912752">
-              <caret line="99" column="0" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+              <caret line="5" column="32" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1504#1505#0" expanded="true" />
-                <element signature="e#1548#1549#0" expanded="true" />
+                <element signature="e#2482#2500#0" expanded="true" />
+                <element signature="e#2855#2873#0" expanded="true" />
+                <element signature="e#3242#3260#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataBaseScenario.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/DataBaseScenario.java">
+      <file leaf-file-name="CalendarDialog.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/CalendarDialog.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="243" column="52" selection-start-line="228" selection-start-column="5" selection-end-line="243" selection-end-column="52" />
-              <folding />
+              <caret line="17" column="65" selection-start-line="17" selection-start-column="65" selection-end-line="17" selection-end-column="65" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1255#1623#0" expanded="true" />
+                <element signature="e#1622#1623#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FibermetricApplication.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/FibermetricApplication.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fragment_week_history.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fibermetric/src/main/res/layout/fragment_week_history.xml">
+      <file leaf-file-name="dialog_calendar.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/fibermetric/src/main/res/layout/dialog_calendar.xml">
           <provider editor-type-id="android-designer">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.6551723">
-              <caret line="9" column="31" selection-start-line="8" selection-start-column="4" selection-end-line="9" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.10676157">
+              <caret line="4" column="39" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChartUtility.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/ChartUtility.java">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="71" />
+              <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="50" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#5326#5327#0" expanded="true" />
+                <element signature="e#5384#5385#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ContentFacade.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/db/ContentFacade.java">
+      <file leaf-file-name="Fragments.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/Fragments.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="96" />
+              <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fragment_history.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fibermetric/src/main/res/layout/fragment_history.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.206897">
+              <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -158,6 +150,7 @@
         <option value="Interface" />
         <option value="resourceFile" />
         <option value="Class" />
+        <option value="layoutResourceFile_vertical" />
       </list>
     </option>
   </component>
@@ -1947,19 +1940,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/fibermetric/src/main/res/layout/fragment_home.xml" />
-        <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/lib/db/DataBaseProvider.java" />
-        <option value="$PROJECT_DIR$/fibermetric/src/main/res/values/styles.xml" />
-        <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/lib/db/ItemModel.java" />
-        <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/lib/db/PortionTypeEnum.java" />
-        <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/lib/DataBaseScenario.java" />
-        <option value="$PROJECT_DIR$/fibermetric/src/main/res/layout/row_food_selector.xml" />
-        <option value="$PROJECT_DIR$/fibermetric/src/main/res/values/colors.xml" />
-        <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/lib/db/AddedItemTable.java" />
-        <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/lib/db/ItemTable.java" />
-        <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/lib/db/AddedItemModel.java" />
-        <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/HomeListAdapter.java" />
-        <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/SelectorListAdapter.java" />
         <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/lib/db/ContentFacade.java" />
         <option value="$PROJECT_DIR$/fibermetric/src/main/res/menu/menu_history.xml" />
         <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/DemoBase.java" />
@@ -1967,17 +1947,13 @@
         <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/IBarLineScatterCandleBubbleDataSet.java" />
         <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/IDataSet.java" />
         <option value="$PROJECT_DIR$/fibermetric/build.gradle" />
-        <option value="$PROJECT_DIR$/fibermetric/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/fibermetric/src/main/res/layout/activity_linechart.xml" />
         <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/HorizontalBarChartActivity.java" />
         <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/LineChartActivity1.java" />
         <option value="$PROJECT_DIR$/fibermetric/src/main/res/layout/activity_horizontalbarchart.xml" />
         <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/WeeklyHistoryFragment.java" />
         <option value="$PROJECT_DIR$/fibermetric/src/main/res/menu/navigation.xml" />
-        <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/Fragments.java" />
         <option value="$PROJECT_DIR$/fibermetric/src/main/res/layout/fragment_history.xml" />
-        <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/MainActivity.java" />
-        <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/HomeFragment.java" />
         <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/Constant.java" />
         <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/db/DataBaseHelper.java" />
         <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/db/HistoryTable.java" />
@@ -1998,6 +1974,23 @@
         <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/db/ContentFacade.java" />
         <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/WeekHistoryFragment.java" />
         <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/HistoryFragment.java" />
+        <option value="$PROJECT_DIR$/fibermetric/src/main/res/menu/menu_calendar.xml" />
+        <option value="$PROJECT_DIR$/fibermetric/src/main/res/values/styles.xml" />
+        <option value="$PROJECT_DIR$/fibermetric/src/main/res/layout/fragment_calendar.xml" />
+        <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/CalendarFragment.java" />
+        <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/MainActivityListener.java" />
+        <option value="$PROJECT_DIR$/fibermetric/src/main/res/layout/dialog_suspend1.xml" />
+        <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/SuspendDialog1.java" />
+        <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/MainActivityDialogEnum.java" />
+        <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/HomeFragment.java" />
+        <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/Fragments.java" />
+        <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/MainActivity.java" />
+        <option value="$PROJECT_DIR$/fibermetric/src/main/res/layout/activity_calendar.xml" />
+        <option value="$PROJECT_DIR$/fibermetric/src/main/res/layout/calendar_view_example.xml" />
+        <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/CalendarActivity.java" />
+        <option value="$PROJECT_DIR$/fibermetric/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/CalendarDialog.java" />
+        <option value="$PROJECT_DIR$/fibermetric/src/main/res/layout/dialog_calendar.xml" />
       </list>
     </option>
   </component>
@@ -2012,10 +2005,10 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-2293" />
-    <option name="y" value="-298" />
+    <option name="x" value="-2439" />
+    <option name="y" value="-211" />
     <option name="width" value="1655" />
-    <option name="height" value="1336" />
+    <option name="height" value="1285" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -2282,74 +2275,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fibermetric" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fibermetric" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="db" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fibermetric" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fibermetric" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chain" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2732,16 +2657,16 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.guggiemedia.fibermetric.ui.main" />
       <recent name="com.guggiemedia.fibermetric.chain" />
       <recent name="com.guggiemedia.fibermetric.db" />
-      <recent name="com.guggiemedia.fibermetric.ui.main" />
       <recent name="com.guggiemedia.fibermetric.lib.db" />
       <recent name="com.guggiemedia.fibermetric.ui.login" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/fibermetric/src/main/res/layout" />
-      <recent name="$PROJECT_DIR$/fibermetric/src/main/res/drawable" />
       <recent name="$PROJECT_DIR$/fibermetric/src/main/res/menu" />
+      <recent name="$PROJECT_DIR$/fibermetric/src/main/res/drawable" />
       <recent name="$PROJECT_DIR$/fibermetric" />
       <recent name="$PROJECT_DIR$/fibermetric/src/main/res/anim" />
     </key>
@@ -3057,14 +2982,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-2293" y="-298" width="1655" height="1336" extended-state="0" />
+    <frame x="-2439" y="-211" width="1655" height="1285" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32868853" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32848588" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3967213" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25870648" sideWeight="0.50455374" order="7" side_tool="true" content_ui="tabs" />
@@ -3072,15 +2997,15 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3262295" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4704918" sideWeight="0.49544626" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3259196" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4704876" sideWeight="0.49544626" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21574706" sideWeight="0.49635038" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32213116" sideWeight="0.4893746" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32164243" sideWeight="0.4893746" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -3133,159 +3058,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/db/ItemTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="48" selection-start-line="29" selection-start-column="48" selection-end-line="29" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/db/AddedItemTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="56" column="77" selection-start-line="56" selection-start-column="77" selection-end-line="56" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/db/AddedItemModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="95" column="60" selection-start-line="95" selection-start-column="60" selection-end-line="95" selection-end-column="60" />
-          <folding>
-            <element signature="e#2610#2611#0" expanded="false" />
-            <element signature="e#2648#2649#0" expanded="false" />
-            <element signature="e#2708#2709#0" expanded="false" />
-            <element signature="e#2761#2762#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/HomeListAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/res/menu/menu_history.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
-          <folding>
-            <element signature="e#370#390#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/res/anim/move_left_in_activity.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fibermetric/assets/n.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="54" column="12" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/settings.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fibermetric/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="1" selection-start-line="39" selection-start-column="1" selection-end-line="39" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="17" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
-          <folding>
-            <element signature="e#2481#2499#0" expanded="true" />
-            <element signature="e#2854#2872#0" expanded="true" />
-            <element signature="e#3241#3259#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/res/drawable/calendar.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/res/menu/navigation.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="43" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="43" />
-          <folding>
-            <element signature="e#364#384#0" expanded="true" />
-            <element signature="e#523#544#0" expanded="true" />
-            <element signature="e#894#915#0" expanded="true" />
-            <element signature="e#1050#1068#0" expanded="true" />
-            <element signature="e#1260#1281#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/Fragments.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/res/layout/fragment_history.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.206897">
-          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/FoodSelectorFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/SelectorListAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3299,17 +3071,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="61" selection-start-line="39" selection-start-column="61" selection-end-line="39" selection-end-column="61" />
-          <folding>
-            <element signature="e#4320#4321#0" expanded="true" />
-            <element signature="e#4378#4379#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3372,27 +3133,27 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1904#1905#0" expanded="true" />
-            <element signature="e#1933#1934#0" expanded="true" />
-            <element signature="e#1975#1976#0" expanded="true" />
-            <element signature="e#2010#2011#0" expanded="true" />
-            <element signature="e#2040#2041#0" expanded="true" />
-            <element signature="e#2067#2068#0" expanded="true" />
-            <element signature="e#2105#2106#0" expanded="true" />
-            <element signature="e#2136#2137#0" expanded="true" />
-            <element signature="e#2168#2169#0" expanded="true" />
-            <element signature="e#2197#2198#0" expanded="true" />
-            <element signature="e#2239#2240#0" expanded="true" />
-            <element signature="e#2274#2275#0" expanded="true" />
-            <element signature="e#2306#2307#0" expanded="true" />
-            <element signature="e#2335#2336#0" expanded="true" />
-            <element signature="e#2377#2378#0" expanded="true" />
-            <element signature="e#2412#2413#0" expanded="true" />
-            <element signature="e#2441#2442#0" expanded="true" />
-            <element signature="e#2469#2470#0" expanded="true" />
-            <element signature="e#2507#2508#0" expanded="true" />
-            <element signature="e#2540#2541#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1904#1905#0" expanded="false" />
+            <element signature="e#1933#1934#0" expanded="false" />
+            <element signature="e#1975#1976#0" expanded="false" />
+            <element signature="e#2010#2011#0" expanded="false" />
+            <element signature="e#2040#2041#0" expanded="false" />
+            <element signature="e#2067#2068#0" expanded="false" />
+            <element signature="e#2105#2106#0" expanded="false" />
+            <element signature="e#2136#2137#0" expanded="false" />
+            <element signature="e#2168#2169#0" expanded="false" />
+            <element signature="e#2197#2198#0" expanded="false" />
+            <element signature="e#2239#2240#0" expanded="false" />
+            <element signature="e#2274#2275#0" expanded="false" />
+            <element signature="e#2306#2307#0" expanded="false" />
+            <element signature="e#2335#2336#0" expanded="false" />
+            <element signature="e#2377#2378#0" expanded="false" />
+            <element signature="e#2412#2413#0" expanded="false" />
+            <element signature="e#2441#2442#0" expanded="false" />
+            <element signature="e#2469#2470#0" expanded="false" />
+            <element signature="e#2507#2508#0" expanded="false" />
+            <element signature="e#2540#2541#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3493,16 +3254,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/HomeFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.57885903">
-          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/chain/SelectByRowIdCmd.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3562,7 +3313,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="71" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3601,13 +3352,170 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/HistoryFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11912752">
-          <caret line="99" column="0" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="179" column="0" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1504#1505#0" expanded="true" />
             <element signature="e#1548#1549#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/res/menu/menu_calendar.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
+          <folding>
+            <element signature="e#370#390#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/FoodSelectorFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="109" column="8" selection-start-line="109" selection-start-column="8" selection-end-line="109" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/res/layout/fragment_food_selector.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.172414">
+          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="43" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.586206">
+          <caret line="34" column="11" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/MainActivityListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/MainActivityDialogEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/res/values/colors.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4601227">
+          <caret line="35" column="17" selection-start-line="35" selection-start-column="17" selection-end-line="35" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="32" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
+          <folding>
+            <element signature="e#2482#2500#0" expanded="true" />
+            <element signature="e#2855#2873#0" expanded="true" />
+            <element signature="e#3242#3260#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="50" />
+          <folding>
+            <element signature="e#5326#5327#0" expanded="true" />
+            <element signature="e#5384#5385#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/HomeFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="94" selection-end-column="79" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2170#2171#0" expanded="true" />
+            <element signature="e#2210#2211#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-23/android/widget/CalendarView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35526314">
+          <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/Fragments.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/java/com/guggiemedia/fibermetric/ui/main/CalendarDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="65" selection-start-line="17" selection-start-column="65" selection-end-line="17" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1255#1623#0" expanded="true" />
+            <element signature="e#1622#1623#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/res/layout/fragment_history.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.206897">
+          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fibermetric/src/main/res/layout/dialog_calendar.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.10676157">
+          <caret line="4" column="39" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>

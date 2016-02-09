@@ -7,6 +7,14 @@ import android.os.Bundle;
  */
 public interface MainActivityListener {
 
+
+    /**
+     * display selected dialog
+     *
+     * @param selected
+     */
+    void dialogSelect(MainActivityDialogEnum selected, Bundle args);
+
     /**
      * display selected fragment (within MainActivity)
      *

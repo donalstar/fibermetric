@@ -168,6 +168,7 @@ public class HomeFragment extends Fragment implements FragmentContext, LoaderMan
         super.onCreateOptionsMenu(menu, inflater);
     }
 
+
     @Override
     public String getName() {
         return TITLE;
@@ -187,6 +188,8 @@ public class HomeFragment extends Fragment implements FragmentContext, LoaderMan
 
             case R.id.actionSearch:
                 ToastHelper.show("Choose a date", getContext());
+
+                _listener.dialogSelect(MainActivityDialogEnum.CALENDAR, null);
                 break;
             default:
                 throw new IllegalArgumentException("unknown menu option");

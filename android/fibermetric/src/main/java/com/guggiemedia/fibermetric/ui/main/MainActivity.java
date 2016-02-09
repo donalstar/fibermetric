@@ -1,8 +1,8 @@
 package com.guggiemedia.fibermetric.ui.main;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -12,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.guggiemedia.fibermetric.R;
-import com.guggiemedia.fibermetric.utility.ToastHelper;
 
 public class MainActivity extends AppCompatActivity implements MainActivityListener {
     public static final String LOG_TAG = MainActivity.class.getName();
@@ -80,6 +79,33 @@ public class MainActivity extends AppCompatActivity implements MainActivityListe
         return true;
     }
 
+    // MainActivityListener
+    @Override
+    public void dialogSelect(MainActivityDialogEnum selected, Bundle args) {
+        String tag = "bogus";
+        DialogFragment fragment = null;
+
+        switch (selected) {
+            case CALENDAR:
+                tag = CalendarDialog.FRAGMENT_TAG;
+                fragment = CalendarDialog.newInstance(args);
+                break;
+            default:
+                throw new IllegalArgumentException("unknown dialog option:" + selected);
+        }
+
+        if (fragment == null) {
+            throw new IllegalArgumentException("missing dialog:" + selected);
+        } else {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            Fragment oldFragment = fragmentManager.findFragmentByTag(tag);
+            if (oldFragment != null) {
+                fragmentTransaction.remove(oldFragment);
+            }
+            fragment.show(fragmentTransaction, tag);
+        }
+    }
 
     @Override
     public void fragmentSelect(Fragments selected, Bundle args) {
