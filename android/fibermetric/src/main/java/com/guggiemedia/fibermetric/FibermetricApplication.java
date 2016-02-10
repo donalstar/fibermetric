@@ -3,7 +3,10 @@ package com.guggiemedia.fibermetric;
 import android.app.Application;
 import android.util.Log;
 
+import com.guggiemedia.fibermetric.db.DailyRecordModel;
 import com.guggiemedia.fibermetric.utility.UserPreferenceHelper;
+
+import java.util.List;
 
 /**
  *
@@ -27,7 +30,9 @@ public class FibermetricApplication extends Application {
     private void initializeDatabase() {
         DataBaseScenario scenario = new DataBaseScenario();
 
-        scenario.loadItems(this);
         scenario.loadHistory(this);
+
+        scenario.loadItems(this);
+
     }
 }

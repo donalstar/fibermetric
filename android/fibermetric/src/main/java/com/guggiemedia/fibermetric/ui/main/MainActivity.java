@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -37,26 +38,34 @@ public class MainActivity extends AppCompatActivity implements MainActivityListe
 
                 Fragment fragment = fragmentManager.findFragmentById(R.id.contentLayout);
 
+                ActionBar actionBar = getSupportActionBar();
+
                 if (fragment != null) {
                     FragmentContext fragmentContext = (FragmentContext) fragment;
 
                     String title = fragmentContext.getName();
 
-                    getSupportActionBar().setTitle(title);
+                    if (actionBar != null) {
+                        actionBar.setTitle(title);
 
-                    getSupportActionBar().setHomeAsUpIndicator(fragmentContext.getHomeIndicator());
+                        actionBar.setHomeAsUpIndicator(fragmentContext.getHomeIndicator());
+                    }
+
                 }
 
                 int stackHeight = getSupportFragmentManager().getBackStackEntryCount();
 
-                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                if (actionBar != null) {
+                    actionBar.setDisplayHomeAsUpEnabled(true);
 
-                if (stackHeight > 0) { // if we have something on the stack (doesn't include the current shown fragment)
-                    getSupportActionBar().setHomeButtonEnabled(true);
-                } else {
-                    getSupportActionBar().setHomeButtonEnabled(false);
-                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                    if (stackHeight > 0) { // if we have something on the stack (doesn't include the current shown fragment)
+                        actionBar.setHomeButtonEnabled(true);
+                    } else {
+                        actionBar.setHomeButtonEnabled(false);
+                        actionBar.setDisplayHomeAsUpEnabled(true);
+                    }
                 }
+
             }
 
         });

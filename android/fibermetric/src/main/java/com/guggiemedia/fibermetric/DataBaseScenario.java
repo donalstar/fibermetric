@@ -211,7 +211,9 @@ public class DataBaseScenario {
     /**
      * @param context
      */
-    public void loadHistory(Context context) {
+    public List<DailyRecordModel> loadHistory(Context context) {
+
+        List<DailyRecordModel> models = new ArrayList<>();
 
         double dataValues[][] = new double[30][3];
 
@@ -252,7 +254,11 @@ public class DataBaseScenario {
             addToHistoryContextList(model, list, context);
 
             CommandFactory.execute(list);
+
+            models.add(model);
         }
+
+        return models;
     }
 
     private void addToHistoryContextList(DailyRecordModel model, ContextList list, Context context) {

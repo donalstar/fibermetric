@@ -136,9 +136,11 @@ public class SelectorListAdapter extends RecyclerView.Adapter<SelectorListAdapte
 
                     addedItem.setWeightMultiple(weightMultiple);
 
-                    _contentFacade.updateAddedItem(addedItem, _context);
+                    DailyRecordModel dailyRecordModel = updateDailyRecord(model);
 
-                    updateDailyRecord(model);
+                    addedItem.setDailyRecordId(dailyRecordModel.getId());
+
+                    _contentFacade.updateAddedItem(addedItem, _context);
 
                     _listener.fragmentPop();
                 }
@@ -169,7 +171,7 @@ public class SelectorListAdapter extends RecyclerView.Adapter<SelectorListAdapte
     /**
      * @param model
      */
-    private void updateDailyRecord(ItemModel model) {
+    private DailyRecordModel updateDailyRecord(ItemModel model) {
         DailyRecordModel dailyRecordModel = _contentFacade.selectDailyRecordForDate(_context, new Date());
 
         if (dailyRecordModel == null) {
@@ -209,6 +211,8 @@ public class SelectorListAdapter extends RecyclerView.Adapter<SelectorListAdapte
         }
 
         _contentFacade.updateDailyRecord(dailyRecordModel, _context);
+
+        return dailyRecordModel;
     }
 
     /**

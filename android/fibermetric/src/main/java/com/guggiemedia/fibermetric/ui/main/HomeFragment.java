@@ -17,12 +17,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -30,9 +32,11 @@ import com.guggiemedia.fibermetric.R;
 import com.guggiemedia.fibermetric.db.AddedItemTable;
 import com.guggiemedia.fibermetric.db.ContentFacade;
 import com.guggiemedia.fibermetric.db.DataBaseTable;
-import com.guggiemedia.fibermetric.utility.ToastHelper;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 
 public class HomeFragment extends Fragment implements FragmentContext, LoaderManager.LoaderCallbacks<Cursor> {
@@ -49,6 +53,8 @@ public class HomeFragment extends Fragment implements FragmentContext, LoaderMan
     private ProgressBar _progressBar;
     private TextView _progressValue;
 
+    private Date _currentDate;
+
     private static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MMM dd, yyyy");
 
     public static final int LOADER_ID = 271828;
@@ -60,7 +66,43 @@ public class HomeFragment extends Fragment implements FragmentContext, LoaderMan
 
         String[] projection = table.getDefaultProjection();
 
-        return new CursorLoader(getActivity(), AddedItemTable.ADDED_ITEMS_CONTENT_URI, projection, null, null, null);
+        String selection = "date > ? and date < ?";
+
+        String[] selectionArgs = getDateRangeSelectionArgs(_currentDate);
+
+        return new CursorLoader(getActivity(), AddedItemTable.ADDED_ITEMS_CONTENT_URI, projection, selection, selectionArgs, null);
+    }
+
+    /**
+     * @param date
+     * @return
+     */
+    private String[] getDateRangeSelectionArgs(Date date) {
+        Date dateRange[] = getDateRangeForSelection(date);
+
+        return new String[]{String.valueOf(dateRange[0].getTime()), String.valueOf(dateRange[1].getTime())};
+    }
+
+    /**
+     * @param date
+     * @return
+     */
+    private Date[] getDateRangeForSelection(Date date) {
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.setTime(date);
+
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+
+        Date startDate = calendar.getTime();
+
+        calendar.add(Calendar.DAY_OF_MONTH, 1);
+
+        Date endDate = calendar.getTime();
+
+        return new Date[]{startDate, endDate};
     }
 
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
@@ -99,6 +141,8 @@ public class HomeFragment extends Fragment implements FragmentContext, LoaderMan
         setHasOptionsMenu(true);
 
         _adapter = new HomeListAdapter(getActivity());
+
+        _currentDate = new Date();
     }
 
     @Override
@@ -198,8 +242,6 @@ public class HomeFragment extends Fragment implements FragmentContext, LoaderMan
                 break;
 
             case R.id.actionSearch:
-                ToastHelper.show("Choose a date", getContext());
-
                 _listener.dialogSelect(MainActivityDialogEnum.CALENDAR, null);
                 break;
             default:
@@ -225,10 +267,16 @@ public class HomeFragment extends Fragment implements FragmentContext, LoaderMan
     private void listenForDateSelectBroadcast() {
         IntentFilter filter = new IntentFilter(CalendarDialog.DATE_SELECT_FILTER);
 
+        final LoaderManager.LoaderCallbacks<Cursor> callback = this;
+
         getActivity().registerReceiver(new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 Long date = intent.getLongExtra("date", 0L);
+
+                _currentDate = new Date(date);
+
+                getLoaderManager().restartLoader(LOADER_ID, null, callback);
 
                 ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
 
@@ -236,6 +284,8 @@ public class HomeFragment extends Fragment implements FragmentContext, LoaderMan
 
                 actionBar.setTitle(title);
             }
-        }, filter);
+        }
+
+                , filter);
     }
 }

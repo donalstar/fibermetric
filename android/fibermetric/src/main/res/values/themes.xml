@@ -1,24 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <resources>
-    <style name="Theme.Fibermetric" parent="Base.Theme.Fibermetric">
-        <!-- empty -->
-    </style>
 
-    <style name="Base.Theme.Fibermetric1" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#673AB7</item>
-        <item name="colorPrimaryDark">#512DA8</item>
-        <item name="colorAccent">#FF4081</item>
-        <item name="android:windowBackground">@color/window_background</item>
-    </style>
-
-    <style name="Base.Theme.Fibermetric" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Base.Theme.Fibermetric" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- main application color -->
-        <item name="colorPrimary">@color/darkSeaGreen</item>
+        <item name="colorPrimary">@color/zest</item>
         <!-- darker variant of primary color. Color of status bar -->
-        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorPrimaryDark">@color/mid_green</item>
         <!-- FAB will use this color as its background -->
-        <item name="colorAccent">@color/mid_green</item>
+        <item name="colorAccent">@color/darkSeaGreen</item>
         <!-- color of titles -->
         <item name="android:textColorPrimary">@color/warm_grey_dark</item>
         <!-- color of controls and toolbar subtitle -->
@@ -32,7 +22,10 @@
         <item name="android:buttonStyle">@style/AppButtonStyle</item>
         <item name="android:checkboxStyle">@style/AppCheckBoxStyle</item>
 
+        <!--<item name="android:itemTextAppearance">@style/MenuTextStyle</item>-->
+        <item name="android:itemBackground">@color/transparent</item>
     </style>
+
 
     <!-- Style of toolbar -->
     <style name="AppToolbarStyle" parent="Widget.AppCompat.Toolbar">
@@ -63,7 +56,8 @@
 
     <!-- Typography styles -->
     <style name="Subhead2" parent="Subhead1">
-        <item name="android:fontFamily">sans-serif-medium</item> // roboto medium
+        <item name="android:fontFamily">sans-serif-medium</item>
+        // roboto medium
     </style>
 
     <style name="Subhead1" parent="Base.TextAppearance.AppCompat.Subhead">
@@ -71,7 +65,8 @@
     </style>
 
     <style name="Body2" parent="TextAppearance.AppCompat.Body2">
-        <item name="android:fontFamily">sans-serif-medium</item> // roboto medium
+        <item name="android:fontFamily">sans-serif-medium</item>
+        // roboto medium
         <item name="android:textColor">@color/black87</item>
     </style>
 
@@ -80,13 +75,15 @@
     </style>
 
     <style name="NavigationTabs">
-        <item name="android:fontFamily">sans-serif-medium</item> // roboto medium
+        <item name="android:fontFamily">sans-serif-medium</item>
+        // roboto medium
         <item name="android:textColor">@color/nav_tab</item>
         <item name="android:textSize">14sp</item>
     </style>
 
     <style name="Caption2" parent="TextAppearance.AppCompat.Caption">
-        <item name="android:fontFamily">sans-serif-medium</item> // roboto medium
+        <item name="android:fontFamily">sans-serif-medium</item>
+        // roboto medium
         <item name="android:textColor">@color/caption2</item>
         <item name="android:textSize">14sp</item>
     </style>
@@ -97,7 +94,8 @@
 
     <!-- Widgets styles -->
     <style name="AppButtonStyle" parent="Base.Widget.AppCompat.Button">
-        <item name="android:fontFamily">sans-serif-medium</item> // roboto medium
+        <item name="android:fontFamily">sans-serif-medium</item>
+        // roboto medium
         <item name="android:textColor">@color/darkSeaGreen</item>
     </style>
 

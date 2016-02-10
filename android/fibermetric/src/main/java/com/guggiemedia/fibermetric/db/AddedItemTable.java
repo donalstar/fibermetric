@@ -39,8 +39,11 @@ public class AddedItemTable implements DataBaseTable {
                     + AddedItemTable.TABLE_NAME
                     + " ON " + AddedItemTable.TABLE_NAME + "." + AddedItemTable.Columns.ITEM_ID + " = "
                     + ItemTable.TABLE_NAME
+                    + "." + Columns._ID
+                    + " INNER JOIN " + DailyRecordTable.TABLE_NAME + " " + DailyRecordTable.TABLE_NAME
+                    + " ON " + AddedItemTable.TABLE_NAME + "." + AddedItemTable.Columns.DAILY_RECORD_ID + " = "
+                    + DailyRecordTable.TABLE_NAME
                     + "." + Columns._ID;
-
 
     public static final class Columns implements BaseColumns {
         public static final String ITEM_ID = "item_id";

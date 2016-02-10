@@ -110,7 +110,7 @@ public class WeekHistoryFragment extends Fragment implements FragmentContext {
 
         chart.setDrawBarShadow(false);
 
-        chart.setDrawValueAboveBar(true);
+        chart.setDrawValueAboveBar(false);
 
         // scaling can now only be done on x- and y-axis separately
         chart.setPinchZoom(false);

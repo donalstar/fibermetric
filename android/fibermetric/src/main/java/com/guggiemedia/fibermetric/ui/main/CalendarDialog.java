@@ -44,6 +44,7 @@ public class CalendarDialog extends DialogFragment {
 
         calendarView.setSelectedWeekBackgroundColor(getResources().getColor(R.color.transparent));
 
+
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView calendarView, int year, int month, int day) {
