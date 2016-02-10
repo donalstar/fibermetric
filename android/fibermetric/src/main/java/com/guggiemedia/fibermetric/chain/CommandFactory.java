@@ -16,6 +16,10 @@ public class CommandFactory {
 
         switch (context.getCommand()) {
 
+            case ADDED_ITEM_UPDATE:
+                command = new AddedItemUpdateCmd();
+                break;
+
             case HISTORY_UPDATE:
                 command = new DailyRecordUpdateCmd();
                 break;

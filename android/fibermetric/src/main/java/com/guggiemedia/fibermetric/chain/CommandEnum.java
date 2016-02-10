@@ -5,6 +5,7 @@ package com.guggiemedia.fibermetric.chain;
  */
 public enum CommandEnum {
     UNKNOWN("Unknown"),
+    ADDED_ITEM_UPDATE("AddedItemUpdate"),
     HISTORY_SELECT("HistorySelect"),
     HISTORY_UPDATE("HistoryUpdate"),
     ITEM_UPDATE("ItemUpdate"),
@@ -23,6 +24,7 @@ public enum CommandEnum {
 
     /**
      * string to enum conversion
+     *
      * @param arg
      * @return
      */
@@ -33,7 +35,7 @@ public enum CommandEnum {
             return result;
         }
 
-        for (CommandEnum token: CommandEnum.values()) {
+        for (CommandEnum token : CommandEnum.values()) {
             if (token._name.equals(arg)) {
                 result = token;
             }

@@ -1,16 +1,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
-
-    <CalendarView
-        android:id="@+id/calendarView"
+    <com.imanoweb.calendarview.CustomCalendarView
+        android:id="@+id/calendar_view"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="246dp"
         android:layout_marginBottom="16dp"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        app:calendarBackgroundColor="@color/white"
+        app:calendarTitleTextColor="@color/black"
+        app:currentDayOfMonthColor="@color/zest"
+        app:dayOfMonthTextColor="@color/black"
+        app:dayOfWeekTextColor="@color/black"
+        app:disabledDayBackgroundColor="@color/white"
+        app:disabledDayTextColor="@color/warm_grey_light"
+        app:selectedDayBackgroundColor="@color/mid_green"
+        app:titleLayoutBackgroundColor="@color/white"
+        app:weekLayoutBackgroundColor="@color/white" />
 
     <Button
         android:id="@+id/cancel"

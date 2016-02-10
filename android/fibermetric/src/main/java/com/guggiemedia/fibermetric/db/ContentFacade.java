@@ -137,15 +137,20 @@ public class ContentFacade {
     }
 
     /**
+     *
+     * @param dateRange
      * @param context
      * @return
      */
-    public Double getGetDailyProgress(Context context) {
+    public Double getGetDailyProgress(Date dateRange[], Context context) {
         Double daily = 35.0;
 
         Double current = 0.0;
 
-        Cursor cursor = context.getContentResolver().query(AddedItemTable.ADDED_ITEMS_CONTENT_URI, null, null, null, null);
+        String selection = "date > ? and date < ?";
+        String selectionArgs[] = {String.valueOf(dateRange[0].getTime()), String.valueOf(dateRange[1].getTime())};
+
+        Cursor cursor = context.getContentResolver().query(AddedItemTable.ADDED_ITEMS_CONTENT_URI, null, selection, selectionArgs, null);
         if (cursor.moveToFirst()) {
             do {
                 AddedItemModel model = new AddedItemModel();

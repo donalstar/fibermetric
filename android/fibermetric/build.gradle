@@ -37,5 +37,8 @@ dependencies {
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:1.9.5'
     compile files('libs/mpandroidchartlibrary-2-1-6.jar')
+
+    compile 'com.github.npanigrahy:Custom-Calendar-View:v1.0'
+
 }
 

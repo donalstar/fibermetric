@@ -13,6 +13,9 @@ public class ContextFactory {
         AbstractCmdCtx result = null;
 
         switch(command) {
+            case ADDED_ITEM_UPDATE:
+                result = new AddedItemUpdateCtx(androidContext);
+                break;
 
             case HISTORY_SELECT:
                 result = new DailyRecordSelectCtx(androidContext);

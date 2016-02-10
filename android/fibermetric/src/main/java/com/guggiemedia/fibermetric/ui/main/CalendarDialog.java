@@ -2,16 +2,19 @@ package com.guggiemedia.fibermetric.ui.main;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CalendarView;
 
 import com.guggiemedia.fibermetric.R;
 import com.guggiemedia.fibermetric.utility.ToastHelper;
+import com.imanoweb.calendarview.CalendarListener;
+import com.imanoweb.calendarview.CustomCalendarView;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -24,7 +27,7 @@ public class CalendarDialog extends DialogFragment {
 
     public static final String DATE_SELECT_FILTER = "DateSelect";
 
-    CalendarView calendarView;
+    CustomCalendarView _calendarView;
 
     Date _selectedDate;
 
@@ -40,21 +43,14 @@ public class CalendarDialog extends DialogFragment {
 
         View view = inflater.inflate(R.layout.dialog_calendar, container, false);
 
-        calendarView = (CalendarView) view.findViewById(R.id.calendarView);
+        _calendarView = (CustomCalendarView) view.findViewById(R.id.calendar_view);
 
-        calendarView.setSelectedWeekBackgroundColor(getResources().getColor(R.color.transparent));
-
-
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        _calendarView.setCalendarListener(new CalendarListener() {
             @Override
-            public void onSelectedDayChange(CalendarView calendarView, int year, int month, int day) {
-                Calendar calendar = Calendar.getInstance();
+            public void onDateSelected(Date date) {
+                Log.i(LOG_TAG, "onDateSelected " + date);
 
-                calendar.set(Calendar.DAY_OF_MONTH, day);
-                calendar.set(Calendar.MONTH, month);
-                calendar.set(Calendar.YEAR, year);
-
-                _selectedDate = calendar.getTime();
+                _selectedDate = date;
 
                 long currentDateTime = (new Date()).getTime();
 
@@ -63,9 +59,24 @@ public class CalendarDialog extends DialogFragment {
                 } else {
                     ToastHelper.show("Choose a date in the past", getActivity());
                 }
+            }
+
+            @Override
+            public void onMonthChanged(Date date) {
 
             }
         });
+
+        _calendarView.refreshCalendar(Calendar.getInstance());
+
+        _calendarView.markDayAsSelectedDay(new Date());
+        _calendarView.markDayAsCurrentDay(Calendar.getInstance());
+
+        final Typeface typeface = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Light.ttf");
+        if (null != typeface) {
+            _calendarView.setCustomTypeface(typeface);
+            _calendarView.refreshCalendar(Calendar.getInstance());
+        }
 
         Button cancelButton = (Button) view.findViewById(R.id.cancel);
 

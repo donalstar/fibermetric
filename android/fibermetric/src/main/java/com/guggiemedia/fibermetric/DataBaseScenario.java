@@ -2,12 +2,14 @@ package com.guggiemedia.fibermetric;
 
 import android.content.Context;
 
+import com.guggiemedia.fibermetric.chain.AddedItemUpdateCtx;
 import com.guggiemedia.fibermetric.chain.CommandEnum;
 import com.guggiemedia.fibermetric.chain.CommandFactory;
 import com.guggiemedia.fibermetric.chain.ContextFactory;
 import com.guggiemedia.fibermetric.chain.ContextList;
 import com.guggiemedia.fibermetric.chain.DailyRecordUpdateCtx;
 import com.guggiemedia.fibermetric.chain.ItemUpdateCtx;
+import com.guggiemedia.fibermetric.db.AddedItemModel;
 import com.guggiemedia.fibermetric.db.DailyRecordModel;
 import com.guggiemedia.fibermetric.db.ItemModel;
 import com.guggiemedia.fibermetric.db.ItemTypeEnum;
@@ -203,6 +205,43 @@ public class DataBaseScenario {
     private void addToContextList(ItemModel model, ContextList list, Context context) {
         ItemUpdateCtx ctx
                 = (ItemUpdateCtx) ContextFactory.factory(CommandEnum.ITEM_UPDATE, context);
+
+        ctx.setModel(model);
+        list.add(ctx);
+    }
+
+    public void loadAddedItems(Context context, List<DailyRecordModel> dailyRecords, List<ItemModel> itemModels) {
+        // pick 2 days ago
+        DailyRecordModel dailyRecord = dailyRecords.get(1);
+
+        List<AddedItemModel> models = new ArrayList<>();
+
+        int itemIndex[] = {2, 5, 8, 16, 20};
+
+        // test: 5 added items
+        for (int i = 0; i < 5; i++) {
+            AddedItemModel model = new AddedItemModel();
+            model.setDefault();
+
+            ItemModel itemToAdd = itemModels.get(itemIndex[i]);
+
+            model.setItemId(itemToAdd.getId());
+            model.setSelectedPortion(itemToAdd.getPortion());
+            model.setWeightMultiple(1.0);
+
+            model.setDailyRecordId(dailyRecord.getId());
+
+            ContextList list = new ContextList();
+
+            addToAddedItemsContextList(model, list, context);
+
+            CommandFactory.execute(list);
+        }
+    }
+
+    private void addToAddedItemsContextList(AddedItemModel model, ContextList list, Context context) {
+        AddedItemUpdateCtx ctx
+                = (AddedItemUpdateCtx) ContextFactory.factory(CommandEnum.ADDED_ITEM_UPDATE, context);
 
         ctx.setModel(model);
         list.add(ctx);

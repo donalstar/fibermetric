@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Custom-Calendar-View-v1.0">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/fibermetric/build/intermediates/exploded-aar/com.github.npanigrahy/Custom-Calendar-View/v1.0/res" />
+      <root url="jar://$PROJECT_DIR$/fibermetric/build/intermediates/exploded-aar/com.github.npanigrahy/Custom-Calendar-View/v1.0/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

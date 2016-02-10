@@ -54,6 +54,7 @@ public class HomeFragment extends Fragment implements FragmentContext, LoaderMan
     private TextView _progressValue;
 
     private Date _currentDate;
+    private String _title;
 
     private static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MMM dd, yyyy");
 
@@ -152,6 +153,9 @@ public class HomeFragment extends Fragment implements FragmentContext, LoaderMan
         _progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
         _progressValue = (TextView) view.findViewById(R.id.progressValue);
 
+        _currentDate = new Date();
+
+        _title = DATE_FORMAT.format(_currentDate);
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
@@ -226,7 +230,7 @@ public class HomeFragment extends Fragment implements FragmentContext, LoaderMan
 
     @Override
     public String getName() {
-        return TITLE;
+        return _title;
     }
 
     @Override
@@ -254,8 +258,9 @@ public class HomeFragment extends Fragment implements FragmentContext, LoaderMan
     // set progress bar value, see github issue 107
     private void setProgressValue() {
 
-        Double progress = _contentFacade.getGetDailyProgress(getActivity());
+        Date dateRange[] = getDateRangeForSelection(_currentDate);
 
+        Double progress = _contentFacade.getGetDailyProgress(dateRange, getActivity());
 
         int progressValue = (int) (progress * 100);
 
@@ -275,6 +280,8 @@ public class HomeFragment extends Fragment implements FragmentContext, LoaderMan
                 Long date = intent.getLongExtra("date", 0L);
 
                 _currentDate = new Date(date);
+
+                setProgressValue();
 
                 getLoaderManager().restartLoader(LOADER_ID, null, callback);
 
