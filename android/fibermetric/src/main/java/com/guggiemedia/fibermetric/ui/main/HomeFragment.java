@@ -1,6 +1,9 @@
 package com.guggiemedia.fibermetric.ui.main;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -8,6 +11,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -27,6 +32,8 @@ import com.guggiemedia.fibermetric.db.ContentFacade;
 import com.guggiemedia.fibermetric.db.DataBaseTable;
 import com.guggiemedia.fibermetric.utility.ToastHelper;
 
+import java.text.SimpleDateFormat;
+
 
 public class HomeFragment extends Fragment implements FragmentContext, LoaderManager.LoaderCallbacks<Cursor> {
     public static final String LOG_TAG = HomeFragment.class.getName();
@@ -41,6 +48,8 @@ public class HomeFragment extends Fragment implements FragmentContext, LoaderMan
 
     private ProgressBar _progressBar;
     private TextView _progressValue;
+
+    private static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MMM dd, yyyy");
 
     public static final int LOADER_ID = 271828;
 
@@ -79,6 +88,8 @@ public class HomeFragment extends Fragment implements FragmentContext, LoaderMan
         _listener = (MainActivityListener) getActivity();
 
         _contentFacade = new ContentFacade();
+
+        listenForDateSelectBroadcast();
     }
 
     @Override
@@ -211,4 +222,20 @@ public class HomeFragment extends Fragment implements FragmentContext, LoaderMan
     }
 
 
+    private void listenForDateSelectBroadcast() {
+        IntentFilter filter = new IntentFilter(CalendarDialog.DATE_SELECT_FILTER);
+
+        getActivity().registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Long date = intent.getLongExtra("date", 0L);
+
+                ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+
+                String title = DATE_FORMAT.format(date);
+
+                actionBar.setTitle(title);
+            }
+        }, filter);
+    }
 }

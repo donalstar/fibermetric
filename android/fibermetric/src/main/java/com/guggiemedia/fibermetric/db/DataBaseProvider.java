@@ -32,8 +32,8 @@ public class DataBaseProvider extends ContentProvider {
     static {
         URI_MATCHER = new UriMatcher(UriMatcher.NO_MATCH);
 
-        URI_MATCHER.addURI(Constant.AUTHORITY, HistoryTable.TABLE_NAME, URI_MATCH_HISTORY);
-        URI_MATCHER.addURI(Constant.AUTHORITY, HistoryTable.TABLE_NAME + "/#", URI_MATCH_HISTORY_ID);
+        URI_MATCHER.addURI(Constant.AUTHORITY, DailyRecordTable.TABLE_NAME, URI_MATCH_HISTORY);
+        URI_MATCHER.addURI(Constant.AUTHORITY, DailyRecordTable.TABLE_NAME + "/#", URI_MATCH_HISTORY_ID);
 
         URI_MATCHER.addURI(Constant.AUTHORITY, ItemTable.TABLE_NAME, URI_MATCH_ITEM);
         URI_MATCHER.addURI(Constant.AUTHORITY, ItemTable.TABLE_NAME + "/#", URI_MATCH_ITEM_ID);
@@ -56,14 +56,14 @@ public class DataBaseProvider extends ContentProvider {
         switch (URI_MATCHER.match(uri)) {
 
             case URI_MATCH_HISTORY:
-                count = db.delete(HistoryTable.TABLE_NAME, selection, selectionArgs);
+                count = db.delete(DailyRecordTable.TABLE_NAME, selection, selectionArgs);
                 break;
             case URI_MATCH_HISTORY_ID:
                 id = uri.getPathSegments().get(1);
 
-                selection = getItemIdSelectionClause(HistoryTable.Columns._ID, id, selection);
+                selection = getItemIdSelectionClause(DailyRecordTable.Columns._ID, id, selection);
 
-                count = db.delete(HistoryTable.TABLE_NAME, selection, selectionArgs);
+                count = db.delete(DailyRecordTable.TABLE_NAME, selection, selectionArgs);
                 break;
 
             case URI_MATCH_ITEM:
@@ -111,9 +111,9 @@ public class DataBaseProvider extends ContentProvider {
         switch (URI_MATCHER.match(uri)) {
 
             case URI_MATCH_HISTORY:
-                return HistoryTable.CONTENT_TYPE;
+                return DailyRecordTable.CONTENT_TYPE;
             case URI_MATCH_HISTORY_ID:
-                return HistoryTable.CONTENT_ITEM_TYPE;
+                return DailyRecordTable.CONTENT_ITEM_TYPE;
             case URI_MATCH_ITEM:
                 return ItemTable.CONTENT_TYPE;
             case URI_MATCH_ITEM_ID:
@@ -137,10 +137,10 @@ public class DataBaseProvider extends ContentProvider {
         switch (URI_MATCHER.match(uri)) {
 
             case URI_MATCH_HISTORY:
-                rowId = db.insert(HistoryTable.TABLE_NAME, null, values);
+                rowId = db.insert(DailyRecordTable.TABLE_NAME, null, values);
                 if (rowId > 0) {
-                    Uri result = ContentUris.withAppendedId(HistoryTable.CONTENT_URI, rowId);
-                    getContext().getContentResolver().notifyChange(HistoryTable.CONTENT_URI, null);
+                    Uri result = ContentUris.withAppendedId(DailyRecordTable.CONTENT_URI, rowId);
+                    getContext().getContentResolver().notifyChange(DailyRecordTable.CONTENT_URI, null);
                     return result;
                 }
                 break;
@@ -184,18 +184,18 @@ public class DataBaseProvider extends ContentProvider {
         switch (URI_MATCHER.match(uri)) {
 
             case URI_MATCH_HISTORY:
-                qb.setTables(HistoryTable.TABLE_NAME);
-                qb.setProjectionMap(HistoryTable.PROJECTION_MAP);
+                qb.setTables(DailyRecordTable.TABLE_NAME);
+                qb.setProjectionMap(DailyRecordTable.PROJECTION_MAP);
                 if (sortOrder == null) {
-                    orderBy = HistoryTable.DEFAULT_SORT_ORDER;
+                    orderBy = DailyRecordTable.DEFAULT_SORT_ORDER;
                 }
                 break;
             case URI_MATCH_HISTORY_ID:
-                qb.setTables(HistoryTable.TABLE_NAME);
-                qb.setProjectionMap(HistoryTable.PROJECTION_MAP);
-                qb.appendWhere(HistoryTable.Columns._ID + "=" + uri.getPathSegments().get(1));
+                qb.setTables(DailyRecordTable.TABLE_NAME);
+                qb.setProjectionMap(DailyRecordTable.PROJECTION_MAP);
+                qb.appendWhere(DailyRecordTable.Columns._ID + "=" + uri.getPathSegments().get(1));
                 if (sortOrder == null) {
-                    orderBy = HistoryTable.DEFAULT_SORT_ORDER;
+                    orderBy = DailyRecordTable.DEFAULT_SORT_ORDER;
                 }
                 break;
             case URI_MATCH_ITEM:
@@ -256,11 +256,11 @@ public class DataBaseProvider extends ContentProvider {
         switch (URI_MATCHER.match(uri)) {
 
             case URI_MATCH_HISTORY:
-                count = db.update(HistoryTable.TABLE_NAME, values, selection, selectionArgs);
+                count = db.update(DailyRecordTable.TABLE_NAME, values, selection, selectionArgs);
                 break;
             case URI_MATCH_HISTORY_ID:
                 id = uri.getPathSegments().get(1);
-                count = db.update(HistoryTable.TABLE_NAME, values, HistoryTable.Columns._ID + "=" + id + (!TextUtils.isEmpty(selection) ? " AND (" + selection + ')' : ""), selectionArgs);
+                count = db.update(DailyRecordTable.TABLE_NAME, values, DailyRecordTable.Columns._ID + "=" + id + (!TextUtils.isEmpty(selection) ? " AND (" + selection + ')' : ""), selectionArgs);
                 break;
             case URI_MATCH_ITEM:
                 count = db.update(ItemTable.TABLE_NAME, values, selection, selectionArgs);

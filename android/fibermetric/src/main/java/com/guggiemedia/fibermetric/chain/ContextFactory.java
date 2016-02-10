@@ -15,11 +15,11 @@ public class ContextFactory {
         switch(command) {
 
             case HISTORY_SELECT:
-                result = new HistorySelectCtx(androidContext);
+                result = new DailyRecordSelectCtx(androidContext);
                 break;
 
             case HISTORY_UPDATE:
-                result = new HistoryUpdateCtx(androidContext);
+                result = new DailyRecordUpdateCtx(androidContext);
                 break;
 
             case ITEM_UPDATE:

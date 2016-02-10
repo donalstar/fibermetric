@@ -23,7 +23,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.guggiemedia.fibermetric.R;
 import com.guggiemedia.fibermetric.db.ContentFacade;
-import com.guggiemedia.fibermetric.db.HistoryModel;
+import com.guggiemedia.fibermetric.db.DailyRecordModel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -62,20 +62,20 @@ public class HistoryFragment extends Fragment implements FragmentContext {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_history, container, false);
 
-        List<HistoryModel> historyModels = _contentFacade.selectHistoryAll(getActivity());
+        List<DailyRecordModel> dailyRecordModels = _contentFacade.selectDailyRecordAll(getActivity());
 
         LineChart chart = (LineChart) view.findViewById(R.id.chart);
 
-        configureChart(chart, historyModels);
+        configureChart(chart, dailyRecordModels);
 
         return view;
     }
 
     /**
      * @param chart
-     * @param historyModels
+     * @param dailyRecordModels
      */
-    private void configureChart(LineChart chart, List<HistoryModel> historyModels) {
+    private void configureChart(LineChart chart, List<DailyRecordModel> dailyRecordModels) {
         chart.setDrawGridBackground(false);
 
         // no description text
@@ -105,7 +105,7 @@ public class HistoryFragment extends Fragment implements FragmentContext {
         chart.getAxisRight().setEnabled(false);
 
         // add data
-        LineData data = getChartData(historyModels);
+        LineData data = getChartData(dailyRecordModels);
 
         // set data
         chart.setData(data);
@@ -118,14 +118,14 @@ public class HistoryFragment extends Fragment implements FragmentContext {
         l.setForm(Legend.LegendForm.LINE);
     }
 
-    private LineData getChartData(List<HistoryModel> historyModels) {
+    private LineData getChartData(List<DailyRecordModel> dailyRecordModels) {
 
 
         SimpleDateFormat format = new SimpleDateFormat("MM/dd");
 
         List<String> xValues = new ArrayList<>();
 
-        for (HistoryModel model : historyModels) {
+        for (DailyRecordModel model : dailyRecordModels) {
             String dateLabel = format.format(model.getDate());
 
 
@@ -133,30 +133,30 @@ public class HistoryFragment extends Fragment implements FragmentContext {
         }
 
 //        List<String> xValues = new ArrayList<>();
-//        for (int i = 0; i < historyModels.size(); i++) {
+//        for (int i = 0; i < dailyRecordModels.size(); i++) {
 //            xValues.add((i) + "x");
 //        }
 
         List<Entry> totals = new ArrayList<>();
 
-        for (int i = 0; i < historyModels.size(); i++) {
-            HistoryModel model = historyModels.get(i);
+        for (int i = 0; i < dailyRecordModels.size(); i++) {
+            DailyRecordModel model = dailyRecordModels.get(i);
 
             totals.add(new Entry(model.getTotal().floatValue(), i));
         }
 
         List<Entry> fruit = new ArrayList<>();
 
-        for (int i = 0; i < historyModels.size(); i++) {
-            HistoryModel model = historyModels.get(i);
+        for (int i = 0; i < dailyRecordModels.size(); i++) {
+            DailyRecordModel model = dailyRecordModels.get(i);
 
             fruit.add(new Entry(model.getFruit().floatValue() + model.getVeg().floatValue(), i));
         }
 
         List<Entry> veg = new ArrayList<>();
 
-        for (int i = 0; i < historyModels.size(); i++) {
-            HistoryModel model = historyModels.get(i);
+        for (int i = 0; i < dailyRecordModels.size(); i++) {
+            DailyRecordModel model = dailyRecordModels.get(i);
 
             veg.add(new Entry(model.getVeg().floatValue(), i));
         }

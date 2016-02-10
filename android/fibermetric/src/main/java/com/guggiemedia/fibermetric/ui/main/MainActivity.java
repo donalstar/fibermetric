@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -27,9 +28,12 @@ public class MainActivity extends AppCompatActivity implements MainActivityListe
 
         final FragmentManager fragmentManager = getSupportFragmentManager();
 
+
         fragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
             @Override
             public void onBackStackChanged() {
+
+                Log.i(LOG_TAG, "Back stack changed");
 
                 Fragment fragment = fragmentManager.findFragmentById(R.id.contentLayout);
 

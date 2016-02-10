@@ -27,6 +27,7 @@ public class AddedItemTable implements DataBaseTable {
 
     public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ("
             + Columns._ID + " INTEGER PRIMARY KEY,"
+            + Columns.DAILY_RECORD_ID + " INTEGER NOT NULL,"
             + Columns.ITEM_ID + " INTEGER NOT NULL,"
             + Columns.SELECTED_PORTION + " TEXT NOT NULL,"
             + Columns.WEIGHT_MULTIPLE + " FLOAT NOT NULL"
@@ -43,6 +44,7 @@ public class AddedItemTable implements DataBaseTable {
 
     public static final class Columns implements BaseColumns {
         public static final String ITEM_ID = "item_id";
+        public static final String DAILY_RECORD_ID = "daily_record_id";
         public static final String SELECTED_PORTION = "selected_portion";
         public static final String WEIGHT_MULTIPLE = "weight_multiple";
     }
@@ -53,6 +55,7 @@ public class AddedItemTable implements DataBaseTable {
     static {
         PROJECTION_MAP.put(AddedItemTable.TABLE_NAME + "." + Columns._ID, Columns._ID);
         PROJECTION_MAP.put(Columns.ITEM_ID, Columns.ITEM_ID);
+        PROJECTION_MAP.put(Columns.DAILY_RECORD_ID, Columns.DAILY_RECORD_ID);
         PROJECTION_MAP.put(Columns.SELECTED_PORTION, Columns.SELECTED_PORTION);
         PROJECTION_MAP.put(Columns.WEIGHT_MULTIPLE, Columns.WEIGHT_MULTIPLE);
 

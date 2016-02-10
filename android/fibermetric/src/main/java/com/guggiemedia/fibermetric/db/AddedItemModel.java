@@ -12,6 +12,7 @@ import java.io.Serializable;
 public class AddedItemModel implements DataBaseModel, Serializable {
     private Long _id;
     private Long _itemId;
+    private Long _dailyRecordId;
     private String _selectedPortion;
 
     private String _name;
@@ -24,6 +25,7 @@ public class AddedItemModel implements DataBaseModel, Serializable {
     public void setDefault() {
         _id = 0L;
         _itemId = 0L;
+        _dailyRecordId = 0L;
         _selectedPortion = "Unknown";
         _weightMultiple = 1.0;
 
@@ -35,6 +37,7 @@ public class AddedItemModel implements DataBaseModel, Serializable {
         ContentValues cv = new ContentValues();
 
         cv.put(AddedItemTable.Columns.ITEM_ID, _itemId);
+        cv.put(AddedItemTable.Columns.DAILY_RECORD_ID, _dailyRecordId);
         cv.put(AddedItemTable.Columns.SELECTED_PORTION, _selectedPortion);
         cv.put(AddedItemTable.Columns.WEIGHT_MULTIPLE, _weightMultiple);
 
@@ -45,6 +48,7 @@ public class AddedItemModel implements DataBaseModel, Serializable {
     public void fromCursor(Cursor cursor) {
         _id = cursor.getLong(cursor.getColumnIndex(AddedItemTable.Columns._ID));
         _itemId = cursor.getLong(cursor.getColumnIndex(AddedItemTable.Columns.ITEM_ID));
+        _dailyRecordId = cursor.getLong(cursor.getColumnIndex(AddedItemTable.Columns.DAILY_RECORD_ID));
         _selectedPortion = cursor.getString(cursor.getColumnIndex(AddedItemTable.Columns.SELECTED_PORTION));
         _weightMultiple = cursor.getDouble(cursor.getColumnIndex(AddedItemTable.Columns.WEIGHT_MULTIPLE));
 
@@ -79,6 +83,14 @@ public class AddedItemModel implements DataBaseModel, Serializable {
 
     public void setItemId(Long itemId) {
         this._itemId = itemId;
+    }
+
+    public Long getDailyRecordId() {
+        return _dailyRecordId;
+    }
+
+    public void setDailyRecordId(Long dailyRecordId) {
+        this._dailyRecordId = dailyRecordId;
     }
 
     public String getName() {

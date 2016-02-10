@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.net.Uri;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -39,8 +40,8 @@ public class ContentFacade {
      * @param model
      * @param context
      */
-    public void updateHistory(HistoryModel model, Context context) {
-        updateModel(model, HistoryTable.CONTENT_URI, context);
+    public void updateDailyRecord(DailyRecordModel model, Context context) {
+        updateModel(model, DailyRecordTable.CONTENT_URI, context);
     }
 
 
@@ -64,14 +65,14 @@ public class ContentFacade {
      * @param context
      * @return
      */
-    public List<HistoryModel> selectHistoryAll(Context context) {
-        List<HistoryModel> result = new ArrayList<>();
+    public List<DailyRecordModel> selectDailyRecordAll(Context context) {
+        List<DailyRecordModel> result = new ArrayList<>();
 
-        Cursor cursor = context.getContentResolver().query(HistoryTable.CONTENT_URI, null, null, null, null);
+        Cursor cursor = context.getContentResolver().query(DailyRecordTable.CONTENT_URI, null, null, null, null);
 
         if (cursor.moveToFirst()) {
             do {
-                HistoryModel model = new HistoryModel();
+                DailyRecordModel model = new DailyRecordModel();
                 model.setDefault();
                 model.fromCursor(cursor);
                 result.add(model);
@@ -85,20 +86,45 @@ public class ContentFacade {
 
     /**
      * @param context
+     * @param date
      * @return
      */
-    public List<HistoryModel> selectHistoryByDate(Context context, Date fromDate, Date toDate) {
-        List<HistoryModel> result = new ArrayList<>();
+    public DailyRecordModel selectDailyRecordForDate(Context context, Date date) {
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.setTime(date);
+
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+
+        Date startDate = calendar.getTime();
+
+        calendar.add(Calendar.DAY_OF_MONTH, 1);
+
+        Date endDate = calendar.getTime();
+
+        List<DailyRecordModel> models = selectDailyRecordByDate(context, startDate, endDate);
+
+        return (models.isEmpty()) ? null : models.get(0);
+    }
+
+    /**
+     * @param context
+     * @return
+     */
+    public List<DailyRecordModel> selectDailyRecordByDate(Context context, Date fromDate, Date toDate) {
+        List<DailyRecordModel> result = new ArrayList<>();
 
         String selection = "date > ? and date < ?";
 
         String[] selectionArgs = {String.valueOf(fromDate.getTime()), String.valueOf(toDate.getTime())};
 
-        Cursor cursor = context.getContentResolver().query(HistoryTable.CONTENT_URI, null, selection, selectionArgs, null);
+        Cursor cursor = context.getContentResolver().query(DailyRecordTable.CONTENT_URI, null, selection, selectionArgs, null);
 
         if (cursor.moveToFirst()) {
             do {
-                HistoryModel model = new HistoryModel();
+                DailyRecordModel model = new DailyRecordModel();
                 model.setDefault();
                 model.fromCursor(cursor);
                 result.add(model);

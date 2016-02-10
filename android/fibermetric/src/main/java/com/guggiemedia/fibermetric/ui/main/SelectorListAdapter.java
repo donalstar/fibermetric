@@ -15,7 +15,10 @@ import android.widget.TextView;
 import com.guggiemedia.fibermetric.R;
 import com.guggiemedia.fibermetric.db.AddedItemModel;
 import com.guggiemedia.fibermetric.db.ContentFacade;
+import com.guggiemedia.fibermetric.db.DailyRecordModel;
 import com.guggiemedia.fibermetric.db.ItemModel;
+
+import java.util.Date;
 
 /**
  *
@@ -33,12 +36,16 @@ public class SelectorListAdapter extends RecyclerView.Adapter<SelectorListAdapte
 
     private ContentFacade _contentFacade;
 
+    private Date _currentDate;
+
 
     public SelectorListAdapter(Activity activity) {
         _listener = (MainActivityListener) activity;
         _context = activity;
 
         _contentFacade = new ContentFacade();
+
+        _currentDate = new Date();
     }
 
     public void setCursor(Cursor cursor) {
@@ -131,6 +138,8 @@ public class SelectorListAdapter extends RecyclerView.Adapter<SelectorListAdapte
 
                     _contentFacade.updateAddedItem(addedItem, _context);
 
+                    updateDailyRecord(model);
+
                     _listener.fragmentPop();
                 }
             });
@@ -155,6 +164,51 @@ public class SelectorListAdapter extends RecyclerView.Adapter<SelectorListAdapte
 
             viewHolder.portionPicker.setOnValueChangedListener(myValueChangedListener);
         }
+    }
+
+    /**
+     * @param model
+     */
+    private void updateDailyRecord(ItemModel model) {
+        DailyRecordModel dailyRecordModel = _contentFacade.selectDailyRecordForDate(_context, new Date());
+
+        if (dailyRecordModel == null) {
+            dailyRecordModel = new DailyRecordModel();
+            dailyRecordModel.setDefault();
+
+            switch (model.getType()) {
+                case grain:
+                    dailyRecordModel.setGrain(model.getGrams());
+                    break;
+                case fruit:
+                    dailyRecordModel.setFruit(model.getGrams());
+                    break;
+                case vegetable:
+                    dailyRecordModel.setVeg(model.getGrams());
+                    break;
+            }
+
+            dailyRecordModel.setTotal(model.getGrams());
+
+            dailyRecordModel.setDate(_currentDate);
+            dailyRecordModel.setDisplayDate(_currentDate.toString());
+        } else {
+            switch (model.getType()) {
+                case grain:
+                    dailyRecordModel.setGrain(dailyRecordModel.getGrain() + model.getGrams());
+                    break;
+                case fruit:
+                    dailyRecordModel.setFruit(dailyRecordModel.getFruit() + model.getGrams());
+                    break;
+                case vegetable:
+                    dailyRecordModel.setVeg(dailyRecordModel.getVeg() + model.getGrams());
+                    break;
+            }
+
+            dailyRecordModel.setTotal(dailyRecordModel.getTotal() + model.getGrams());
+        }
+
+        _contentFacade.updateDailyRecord(dailyRecordModel, _context);
     }
 
     /**

@@ -6,9 +6,9 @@ import com.guggiemedia.fibermetric.chain.CommandEnum;
 import com.guggiemedia.fibermetric.chain.CommandFactory;
 import com.guggiemedia.fibermetric.chain.ContextFactory;
 import com.guggiemedia.fibermetric.chain.ContextList;
-import com.guggiemedia.fibermetric.chain.HistoryUpdateCtx;
+import com.guggiemedia.fibermetric.chain.DailyRecordUpdateCtx;
 import com.guggiemedia.fibermetric.chain.ItemUpdateCtx;
-import com.guggiemedia.fibermetric.db.HistoryModel;
+import com.guggiemedia.fibermetric.db.DailyRecordModel;
 import com.guggiemedia.fibermetric.db.ItemModel;
 import com.guggiemedia.fibermetric.db.ItemTypeEnum;
 import com.guggiemedia.fibermetric.db.PortionTypeEnum;
@@ -231,7 +231,7 @@ public class DataBaseScenario {
         for (int i = 0; i < dataValues.length; i++) {
             double dailyValue[] = dataValues[i];
 
-            HistoryModel model = new HistoryModel();
+            DailyRecordModel model = new DailyRecordModel();
             model.setDefault();
 
             model.setFruit(dailyValue[0]);
@@ -246,7 +246,7 @@ public class DataBaseScenario {
             Date date = calendar.getTime();
 
             model.setDate(date);
-
+            model.setDisplayDate(date.toString());
             ContextList list = new ContextList();
 
             addToHistoryContextList(model, list, context);
@@ -255,9 +255,9 @@ public class DataBaseScenario {
         }
     }
 
-    private void addToHistoryContextList(HistoryModel model, ContextList list, Context context) {
-        HistoryUpdateCtx ctx
-                = (HistoryUpdateCtx) ContextFactory.factory(CommandEnum.HISTORY_UPDATE, context);
+    private void addToHistoryContextList(DailyRecordModel model, ContextList list, Context context) {
+        DailyRecordUpdateCtx ctx
+                = (DailyRecordUpdateCtx) ContextFactory.factory(CommandEnum.HISTORY_UPDATE, context);
 
         ctx.setModel(model);
         list.add(ctx);

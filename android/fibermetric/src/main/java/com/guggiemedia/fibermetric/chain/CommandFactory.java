@@ -17,7 +17,7 @@ public class CommandFactory {
         switch (context.getCommand()) {
 
             case HISTORY_UPDATE:
-                command = new HistoryUpdateCmd();
+                command = new DailyRecordUpdateCmd();
                 break;
 
             case ITEM_UPDATE:
@@ -29,7 +29,7 @@ public class CommandFactory {
                 break;
 
             case HISTORY_SELECT:
-                command = new HistorySelectCmd();
+                command = new DailyRecordSelectCmd();
                 break;
 
             default:

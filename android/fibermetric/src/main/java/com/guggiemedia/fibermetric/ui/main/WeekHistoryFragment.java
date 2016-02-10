@@ -1,7 +1,6 @@
 package com.guggiemedia.fibermetric.ui.main;
 
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -24,7 +23,7 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.guggiemedia.fibermetric.R;
 import com.guggiemedia.fibermetric.db.ContentFacade;
-import com.guggiemedia.fibermetric.db.HistoryModel;
+import com.guggiemedia.fibermetric.db.DailyRecordModel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -69,10 +68,10 @@ public class WeekHistoryFragment extends Fragment implements FragmentContext {
 
         TextView titleView = (TextView) view.findViewById(R.id.title);
 
-        List<HistoryModel> historyModels = getData();
+        List<DailyRecordModel> dailyRecordModels = getData();
 
-        HistoryModel firstDayModel = historyModels.get(0);
-        HistoryModel lastDayModel = historyModels.get(historyModels.size() - 1);
+        DailyRecordModel firstDayModel = dailyRecordModels.get(0);
+        DailyRecordModel lastDayModel = dailyRecordModels.get(dailyRecordModels.size() - 1);
 
         SimpleDateFormat format = new SimpleDateFormat("EEE MM/dd");
 
@@ -83,7 +82,7 @@ public class WeekHistoryFragment extends Fragment implements FragmentContext {
 
         BarChart chart = (BarChart) view.findViewById(R.id.chart);
 
-        configureChart(chart, historyModels);
+        configureChart(chart, dailyRecordModels);
 
         return view;
     }
@@ -92,21 +91,21 @@ public class WeekHistoryFragment extends Fragment implements FragmentContext {
      *
      * @return
      */
-    private List<HistoryModel> getData() {
+    private List<DailyRecordModel> getData() {
         Date now = new Date();
 
         Calendar calendar = Calendar.getInstance();
 
         calendar.add(Calendar.DAY_OF_MONTH, -8);
 
-        return _contentFacade.selectHistoryByDate(getActivity(), calendar.getTime(), now);
+        return _contentFacade.selectDailyRecordByDate(getActivity(), calendar.getTime(), now);
     }
 
     /**
      * @param chart
-     * @param historyModels
+     * @param dailyRecordModels
      */
-    private void configureChart(BarChart chart, List<HistoryModel> historyModels) {
+    private void configureChart(BarChart chart, List<DailyRecordModel> dailyRecordModels) {
         chart.setDescription("");
 
         chart.setDrawBarShadow(false);
@@ -134,7 +133,7 @@ public class WeekHistoryFragment extends Fragment implements FragmentContext {
 
         ChartUtility.addDailyLimitLine(yAxisRight, tf);
 
-        BarData data = getChartData(historyModels);
+        BarData data = getChartData(dailyRecordModels);
 
         chart.setData(data);
 
@@ -146,13 +145,13 @@ public class WeekHistoryFragment extends Fragment implements FragmentContext {
         l.setXEntrySpace(4f);
     }
 
-    private BarData getChartData(List<HistoryModel> historyModels) {
+    private BarData getChartData(List<DailyRecordModel> dailyRecordModels) {
 
         SimpleDateFormat format = new SimpleDateFormat("EEE");
 
         List<String> xValues = new ArrayList<>();
 
-        for (HistoryModel model : historyModels) {
+        for (DailyRecordModel model : dailyRecordModels) {
             String dateLabel = format.format(model.getDate());
 
 
@@ -161,8 +160,8 @@ public class WeekHistoryFragment extends Fragment implements FragmentContext {
 
         List<BarEntry> yValues = new ArrayList<>();
 
-        for (int i = 0; i < historyModels.size(); i++) {
-            HistoryModel model = historyModels.get(i);
+        for (int i = 0; i < dailyRecordModels.size(); i++) {
+            DailyRecordModel model = dailyRecordModels.get(i);
 
             float values[] = {model.getFruit().floatValue(),
                     model.getVeg().floatValue(),
